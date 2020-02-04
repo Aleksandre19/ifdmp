@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <!--  Jquery script for loading button -->
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $(".loader").fadeOut("slow");
+        });
+    </script>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <!-- Loading icon -->
+    <div class="loader"></div>
+    <!-- Whole page wrapper -->
+    <div id="all-page-wrapper">
+        <!--  Home section linker -->
+        <div id="home-page"></div>
+        <!-- HEADER -->
+        <header class="container-fluid header no-gutters ">
+            <div class="row menuSlWrapper">
+                <!-- TOP MAIN MENU -->
+                <div class="col-8 col-sm-9 col-md-10 top-menu-wrapper">
+                    <nav class="navbar navbar-expand-md navbar-light main-menu">
+                        <button class="navbar-toggler purple darken-3" type="button" data-toggle="collapse" data-target="#mainMenuDropdown" aria-controls="mainMenuDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                        <div class="collapse navbar-collapse dd" id="mainMenuDropdown">
+                            <ul class="navbar-nav mr-auto  ">
+                                <li class="nav-item navbar-item"><a href="#home-page" class="nav-link active hvr-float">home</a></li>
+                                <li class="nav-item navbar-item"><a href="#about-page" class="nav-link hvr-float">about me</a></li>
+                                <li class="nav-item navbar-item"><a href="#videos-page" class="nav-link hvr-float">videos</a></li>
+                                <li class="nav-item navbar-item"><a href="#register-page" class="nav-link hvr-float">consultation</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- / TOP MAIN MENU -->
+                <!-- TOP SOCIAL LINKS -->
+                <div class="col-4 col-sm-3 col-md-2 social-links">
+                    <div class="row">
+                        <div class="sl-wrapper">
+                            <a href="http://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="http://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /TOP SOCIAL LINKS -->
+            </div>
+        </header>
+        <!-- /HEADER -->
+        <!-- Slideshow's container -->
+        <section class="container-fluid sections " id="home-page">
+            <!-- Here goes background slideshow's images -->
+            <div class="container-fluid slideshow">
+                <!-- Here goes texts of animations -->
+            </div>
+        </section>
+        <!-- /Slideshow's container -->
+        <!-- Welcoming text animations's container-->
+        <div class="text-container">
+            <!-- Weight & Health's svg file container  -->
+            <div id="wh-container">
+                <!-- Weight & Health's svg file -->
+                <svg id="logo" width="100%" height="97" viewBox="0 0 973 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_d)">
+                            <path d="M31.1216 59.2261L32.6938 70.0073L34.9961 60.293L51.168 3.24219H60.2646L76.0435 60.293L78.2896 70.1758L80.0303 59.1699L92.7207 3.24219H103.558L83.7363 85H73.9097L57.064 25.4224L55.7725 19.1895L54.481 25.4224L37.0176 85H27.1909L7.42529 3.24219H18.2065L31.1216 59.2261Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M161.788 47.2095H126.356V76.1841H167.516V85H115.575V3.24219H166.954V12.1143H126.356V38.3936H161.788V47.2095Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M192.503 85H181.722V3.24219H192.503V85Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M272.633 74.2749C269.863 78.243 265.988 81.2191 261.009 83.2031C256.068 85.1497 250.303 86.123 243.714 86.123C237.051 86.123 231.136 84.5695 225.97 81.4624C220.804 78.3179 216.799 73.8631 213.954 68.0981C211.146 62.3332 209.705 55.651 209.63 48.0518V40.9204C209.63 28.6043 212.494 19.0584 218.221 12.2827C223.986 5.507 232.072 2.11914 242.479 2.11914C251.014 2.11914 257.883 4.30908 263.087 8.68896C268.29 13.0314 271.472 19.2082 272.633 27.2192H261.852C259.83 16.4006 253.391 10.9912 242.535 10.9912C235.31 10.9912 229.826 13.5368 226.083 18.6279C222.376 23.6816 220.505 31.0189 220.467 40.6396V47.3218C220.467 56.4933 222.564 63.7931 226.756 69.2212C230.949 74.6118 236.62 77.3071 243.771 77.3071C247.813 77.3071 251.351 76.8579 254.383 75.9595C257.416 75.061 259.924 73.5449 261.908 71.4111V53.0493H242.984V44.2896H272.633V74.2749Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M353.492 85H342.655V47.2095H301.439V85H290.658V3.24219H301.439V38.3936H342.655V3.24219H353.492V85Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M427.445 12.1143H401.166V85H390.44V12.1143H364.217V3.24219H427.445V12.1143Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M462.035 63.0444C462.035 59.1138 463.12 55.5013 465.292 52.207C467.5 48.9128 471.693 45.0757 477.87 40.6958C474.238 36.2785 471.805 32.7222 470.57 30.0269C469.334 27.3315 468.717 24.6549 468.717 21.9971C468.717 15.7829 470.551 10.9163 474.22 7.39746C477.888 3.87858 482.867 2.11914 489.156 2.11914C494.771 2.11914 499.413 3.76628 503.082 7.06055C506.751 10.3174 508.585 14.4352 508.585 19.4141C508.585 22.7083 507.743 25.7593 506.058 28.5669C504.411 31.3371 501.51 34.257 497.354 37.3267L491.346 41.7627L509.54 63.4937C512.085 58.6271 513.358 53.2178 513.358 47.2656H522.735C522.735 56.8115 520.433 64.729 515.829 71.0181L527.508 85H515.042L509.596 78.5425C506.826 81.0132 503.569 82.9036 499.825 84.2139C496.119 85.4867 492.338 86.123 488.482 86.123C480.509 86.123 474.107 84.008 469.278 79.7778C464.449 75.5477 462.035 69.9699 462.035 63.0444ZM488.482 77.644C493.985 77.644 499.02 75.5477 503.587 71.355L483.653 47.4902L481.8 48.8379C475.549 53.4424 472.423 58.1779 472.423 63.0444C472.423 67.4618 473.845 70.9993 476.69 73.6572C479.573 76.3151 483.504 77.644 488.482 77.644ZM479.105 21.6602C479.105 25.2539 481.314 29.7461 485.731 35.1367L492.357 30.4761C494.903 28.6792 496.643 26.9759 497.579 25.3662C498.515 23.7191 498.983 21.735 498.983 19.4141C498.983 16.9059 498.047 14.8283 496.175 13.1812C494.304 11.4966 491.945 10.6543 489.1 10.6543C486.03 10.6543 483.597 11.7025 481.8 13.7988C480.003 15.8577 479.105 18.4782 479.105 21.6602Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M628.751 85H617.914V47.2095H576.698V85H565.917V3.24219H576.698V38.3936H617.914V3.24219H628.751V85Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M694.112 47.2095H658.68V76.1841H699.84V85H647.899V3.24219H699.278V12.1143H658.68V38.3936H694.112V47.2095Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M758.407 63.6621H724.154L716.461 85H705.343L736.563 3.24219H745.997L777.274 85H766.212L758.407 63.6621ZM727.411 54.79H755.206L741.28 16.5503L727.411 54.79Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M799.117 76.1841H837.862V85H788.28V3.24219H799.117V76.1841Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M891.151 12.1143H864.872V85H854.146V12.1143H827.923V3.24219H891.151V12.1143Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                            <path d="M966.114 85H955.277V47.2095H914.061V85H903.28V3.24219H914.061V38.3936H955.277V3.24219H966.114V85Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
+                        </g>
+                        <defs>
+                            <filter id="filter0_d" x="0.884155" y="0.119141" width="971.23" height="96.0039" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="2"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.20 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                            </filter>
+                        </defs>
+                    </svg>
+                <!-- /Weight & Health's svg file -->
+                <!-- Span for screen reader -->
+                <span class="sr-only"> Weight & Health </span>
+                <!-- /Span for screen reader -->
+            </div>
+            <!-- /Weight & Health's svg file container  -->
+            <!-- Animation's texts -->
+            <div id="free-consultation-text">
+                <h1>Free Consultation With </h1>
+            </div>
+            <div id="diana">
+                <h2>
+                    Doctor Diana Voronina-Akhvlediani
+                </h2>
+            </div>
+            <!-- /Animation's texts -->
+            <!-- Sing up button -->
+            <p><button class="btn btn-lg btn-signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</button></p>
+            <!-- /Sing up button -->
+        </div>
+        <!-- /Weight & Health's svg file container  -->
+
+        <!--  Individual section linker -->
+        <a id="individual-page"></a>
+        <!--  /Individual section linker -->
+
+        <!-- Individual approach section-->
+        <section class="sections individual-section" >
+            <!-- Individual section's wrapper -->
+            <div class="container-fluid individual-section-wrapper">
+                <!-- Centering all section above 1300px screen resolution -->
+                <div class="individual-section-centerer">
+                    <!-- Individual section's texts -->
+                    <article class="description">
+                        <!-- Individual section's description -->
+                        <p>
+                            The human consists with three independent, interconnected centers which are: body, nerves and brain. Because they are interconnected one's state reflects and influence other's state. The excess weight often can be caoused by disbalanced states of nerves
+                            and brain. That is way by reducing the amount of the food to reduce the weight can lead to health's problems. To avoid health's issues before starting diet one must know the reason which causes excess weight. Because there
+                            is no two same leaves in the world the researing of the reasons can be done by individual approach.
+                        </p>
+                        <!-- /Individual section's description -->
+                        <!-- Individual section's Title -->
+                        <h2 class="section-title individual-title">
+                            Individual approach
+                        </h2>
+                        <!-- /Individual section's title -->
+                        <!-- Individual section's icon and underline -->
+                        <hr class="section-title-underline individual-title-underline ">
+                        <i class="individual-desc-icon d-none "></i>
+                        <span class="sr-only"> Individual Approach </span>
+                        <!-- /Individual section's icon and underline -->
+                    </article>
+                    <!-- /Individual section's texts -->
+                    <!-- Individual section's steps -->
+                    <div class="row all-steps-wrapper">
+                        <!-- Step 1 gathering information -->
+                        <div class="col-sm-4 individual-steps gathering-information">
+                            <div class="row">
+                                <article>
+                                    <div class="steps-title-bg gathering-bg">
+                                        <h3 class="steps-title gathering-title">
+                                            Gathering information
+                                        </h3>
+                                    </div>
+                                    <hr class="individual-title-divider gathering-title-divider d-lg-none">
+                                    <i class="far fa-comments individual-icons"></i>
+                                    <p class="steps-text gathering-text">
+                                       On this stage I gather informations about diseases in the past and mental or emotional issues.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <!-- /Step 1 gathering information -->
+                        <!-- Step 2 seperation of pathologies -->
+                        <div class="col-sm-4 individual-steps individual-separation">
+                            <div class="row">
+                                <article>
+                                    <div class="steps-title-bg separation-bg">
+                                        <h3 class="steps-title separation-title">
+                                            Separation of pathologies
+                                        </h3>
+                                    </div>
+                                    <hr class="individual-title-divider separation-title-divider d-lg-none">
+                                    <i class="fas fa-tasks individual-icons"></i>
+                                    <p class="steps-text separation-text">
+                                        On this stage I do separation of the aspects from gathered information which can have relation to the weight distribution. 
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <!-- /Step 2 seperation of pathologies -->
+                        <!-- Step 3 doing research -->
+                        <div class="col-sm-4 individual-steps individual-research">
+                            <div class="row">
+                                <article>
+                                    <div class="steps-title-bg research-bg">
+                                        <h3 class="steps-title research-title">
+                                            Doing of research
+                                        </h3>
+                                    </div>
+                                    <hr class="individual-title-divider research-title-divider d-lg-none">
+                                    <i class="fas fa-stethoscope individual-icons"></i>
+                                    <p class="steps-text research-text">
+                                        On this stage I do researches of reasons which causes pathologies and diseases. After what starts treatment.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <!-- /Step 3 doing research -->
+                    </div>
+                    <!-- /Individual section's steps -->
+                </div>
+                <!-- /Centering all section above 1300px screen resolution -->
+            </div>
+            <!-- /Individual section's wrapper -->
+        </section>
+        <!-- /Individual approach section-->
+        
+
+        <!-- About Me section-->
+        <section class="sections about-me" id="about-page">
+            <!-- Div for background image of medium devices -->
+            <div class="about-md-bg">
+                <!-- About section container -->
+                <div class="container-fluid about-wrapper">
+                    <div class="row">
+                        <!-- About me's text -->
+                        <div class="col-md-6">
+                            <div class="row">
+                                <article>
+                                    <h2 class="section-title about-title">
+                                        About me
+                                    </h2>
+                                    <hr class="section-title-underline about-title-underline">
+                                    <i class="about-section-title-icon"></i>
+                                    <span class="sr-only">About Diana Voronina-Akhvlediani</span>
+                                    <p class="about-text">
+                                        26 years ago I finished Kemerovo’s medical academy’s  faculty of the medicine.  In the beganning I was interestied about human’s organism and it’s relationship with outer word which became frame of my professional life . During this 26 years I do active medical practics:  taking patients with therapeutic diseases, doing as a personal as a online consultations, folowing development of modern medicin, studing and researching of eastern medicine and observing symptoms which caouses diseases. 
+                                        The professional experience gave me facts which says that human consists with three different main centres: Human brain - thinking, spinal cord - body, movement and nerves - filings and emotions.    
+                                        From this three main centres the body is most first and visible manifestation. Because of that the not right functionality of the thinking and emotional centres reflects on the body by one or other diseases or pathologies.  Among those diseases and pathologies there are often weight disruption. That is way to be able to truly understand and find really reasons causing weight distribution doctor should look and research one’s emotional and mental history. This only can be done by individual approach and for this the very first step is free consultation which I offer by this website.  
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <!-- /About me's text -->
+                        <!-- Diana's image -->
+                        <div class="d-none d-md-block col-md-6 diana-img-container">
+                            <div class="row">
+                                <img src="assets/images/about/md/diana-md-img.png" alt="Diana's image" class="diana-img d-lg-none" />
+                                <img src="assets/images/about/lg/diana-lg-img.png" alt="Diana's image" class="diana-img d-none d-lg-block" />
+                            </div>
+                        </div>
+                        <!-- /Diana's image -->
+                    </div>
+                </div>
+                <!-- /About section container -->
+            </div>
+            <!-- /Div for background image of medium devices -->
+        </section>
+        <!-- /About Me section-->
+        
+
+        <!-- Video's section -->
+        <section class="section videos-section" id="videos-page">
+            <!-- Video's section wrapper -->
+            <div class="videos-wrapper">
+                <!-- Video's section title -->
+                <div class="videos-title-container">
+                    <h2 class="section-title videos-title">
+                        Videos
+                    </h2>
+                    <hr class="section-title-underline videos-title-underline">
+                    <i class="videos-section-title-icon"></i>
+                </div>
+                <!-- /Video's section title -->
+                <!-- Video's section container -->
+                <div class="container-fluid">
+                    <div class="row iframe-wrapper">
+                        <!-- Video 1-->
+                        <div class="col-md-6 col-lg-4 video-article">
+                            <div class="row">
+                                <article>
+                                    <h3 class="video-title">Results Of Marathon Participants</h3>
+                                    <iframe class="videos-frame" src="https://www.youtube.com/embed/M8S400st6-E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p class="video-description">
+                                        In this video I talk about result of participants in the project.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <!-- /Video 1-->
+                        <!-- Video 2-->
+                        <div class="col-md-6 col-lg-4 video-article ">
+                            <div class="row">
+                                <article>
+                                    <h3 class="video-title">Weight Loss Algorithm</h3>
+                                    <iframe class="videos-frame" src="https://www.youtube.com/embed/NzeFsI2Zoso" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p class="video-description">
+                                       In this video I talk physical, emotional and mental aspects which most often causes diseases or pathologies.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <!-- /Video 2-->
+                        <!-- Video 3-->
+                        <div class="d-none d-lg-block col-lg-4 video-article">
+                            <div class="row">
+                                <article>
+                                    <h3 class="video-title">Physiologically Weight Loss</h3>
+                                    <iframe class="videos-frame" src="https://www.youtube.com/embed/Re6V4-Qe1eo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p class="video-description">
+                                        In this video I talk about losing weight without any limitation of the natural or physiological needs.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <!-- Video 3-->
+                    </div>
+                </div>
+                <!-- /Video's section container -->
+            </div>
+            <!-- Video's section wrapper -->
+        </section>
+        <!-- /Videos section-->
+
+        <!--  Feedbacks section linker -->
+        <a id="feedbacks-page"></a>
+        <!-- /Feedbacks section linker-->
+
+        <!-- Feedback's section -->
+        <section class="sections feedback-section">
+            <!-- Feedback's section wrapper -->
+            <div class="feedback-wrapper">
+                <!-- Feedback's section title -->
+                <div class="videos-title-container">
+                    <h2 class="section-title feedback-title">
+                        Feedbacks
+                    </h2>
+                    <hr class="section-title-underline feedback-title-underline">
+                    <i class="feedback-section-title-icon"></i>
+                </div>
+                <!-- /Feedback's section title -->
+                <!-- Quotes wrapper -->
+                <div class="all-quote-wrapper">
+                    <!-- Quote 1 -->
+                    <div class="quote-wrapper img1">
+                        <blockquote class="feedback-container">
+                            <div class="row">
+                                <!-- Quote's avatar -->
+                                <div class="feedback-img feedback1">
+                                    <!-- Here goes avatar by background-image property -->
+                                </div>
+                                <!-- /Quote's avatar -->
+                                <!-- Quote's text -->
+                                <p class="feedback-text">
+                                    <i class="fas fa-quote-left front-quote feedback-quote"></i> Not only losing weight but also understand much more about yourself and step on right and healthy way in communication with yourself
+                                    <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                                </p>
+                                <!-- /Quote's text -->
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- /Quote 1 -->
+                    <!-- Quote 2 -->
+                    <div class="quote-wrapper img2">
+                        <blockquote class="feedback-container">
+                            <div class="row">
+                                <!-- Quote's avatar -->
+                                <div class="feedback-img feedback2">
+                                    <!-- Here goes avatar by background-image property -->
+                                </div>
+                                <!-- /Quote's avatar -->
+                                <!-- Quote's text -->
+                                <p class="feedback-text">
+                                    <i class="fas fa-quote-left front-quote feedback-quote"></i> Eating everything and losing weight is really unimaginable but real case for me. It was stressfree to do it.
+                                    <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                                </p>
+                                <!-- /Quote's text -->
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- /Quote 2-->
+                    <!-- Quote 3 -->
+                    <div class="quote-wrapper img3">
+                        <blockquote class="feedback-container">
+                            <div class="row">
+                                <!-- Quote's avatar -->
+                                <div class="feedback-img feedback3">
+                                    <!-- Here goes avatar by background-image property -->
+                                </div>
+                                <!-- /Quote's avatar -->
+                                <!-- Quote's text -->
+                                <p class="feedback-text">
+                                    <i class="fas fa-quote-left front-quote feedback-quote"></i> She really finds the key which cause the hight weight. Managing relationship around me not only changed my life but also lost my weight.
+                                    <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                                </p>
+                                <!-- /Quote's text -->
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- /Quote 3 -->
+                    <!-- Quote 4 -->
+                    <div class="quote-wrapper img4 d-none d-sm-block">
+                        <blockquote class="feedback-container">
+                            <div class="row">
+                                <!-- Quote's avatar -->
+                                <div class="feedback-img feedback4">
+                                    <!-- Here goes avatar by background-image property -->
+                                </div>
+                                <!-- /Quote's avatar -->
+                                <!-- Quote's text -->
+                                <p class="feedback-text last-feedback">
+                                    <i class="fas fa-quote-left front-quote feedback-quote"></i> I could never imagine that the weight losing was possible such way. It is really right and healthy way to do it.
+                                    <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                                </p>
+                                <!-- /Quote's text -->
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- /Quote 4 -->
+                </div>
+                <!-- /Quotes wrapper -->
+            </div>
+            <!-- /Feedback's section wrapper -->
+        </section>
+        <!-- /Feedbacks section-->
+
+
+        <!-- Consultation's section-->
+        <section class="sections register-section" id="register-page">
+            <!-- Left and right background images -->
+            <div class="first-bg-img">
+                <!-- Here goes left top background image -->
+            </div>
+            <div class="second-bg-img">
+                <!-- Here goes bottom right background image -->
+            </div>
+            <!-- /Left and right background images -->
+            <!-- Registration form wrapper -->
+            <div class="register-wrapper">
+                <!-- Registration form container -->
+                <div class="register-container">
+                    <div class="row">
+                        <!-- Registration's texts -->
+                        <div class="register-title-container">
+                            <!-- Registration's title -->
+                            <h2 class="register-title">
+                                Do you want to have free consultation?
+                            </h2>
+                            <!-- /Registration's title -->
+                            <!-- Registration's description-->
+                            <p class="register-text">
+                                If you wan to have free consultation and more information than please fill the from below and i will reach you within 24 hours
+                            </p>
+                            <!-- /Registration's description-->
+                        </div>
+                        <!-- /Registration's texts -->
+                        <!-- Registration's form -->
+                        <div class="register-form">
+                            <form action="#" method="get">
+                                <input type="text" id="name" name="name" class="register-inputs" placeholder=" Your name" required>
+                                <input type="text" id="lastname" name="lastname" class="register-inputs" placeholder=" Your last name" required>
+                                <input type="email" id="email" name="email" class="register-inputs" placeholder=" Your email address" required>
+                                <input type="submit" id="submit" class="register-inputs" value="Register" required>
+                            </form>
+                        </div>
+                        <!-- /Registration's form -->
+                    </div>
+                </div>
+                <!-- /Registration form container -->
+            </div>
+            <!-- Registration form wrapper -->
+        </section>
+        <!-- /Consultation's section-->
+
+
+        <!-- footer section -->
+        <footer class="footer">
+            <!-- Footer wrapper -->
+            <div class="footer-wrapper">
+                <!-- Footer container -->
+                <div class="footer-container">
+                    <div class="row">
+                        <!-- Footer's first column -->
+                        <div class="col-sm-4 ">
+                            <div class="row">
+                                <!-- Footer menu's links -->
+                                <ul class="footer-section-links">
+                                    <li><a href="#home-page">Home</a></li>
+                                    <li><a href="#about-page">About Me</a></li>
+                                    <li><a href="#videos-page">Videos</a></li>
+                                    <li><a href="#register-page">Consultation</a></li>
+                                    <li><a href="#individual-page">Individual Approach</a></li>
+                                    <li><a href="#feedbacks-page">Feedbacks</a></li>
+                                </ul>
+                                <!-- /Footer menu's links -->
+                            </div>
+                        </div>
+                        <!-- /Footer's first column -->
+                        <!-- Footer's second column -->
+                        <div class="col-sm-4 footer-middle-column">
+                            <div class="row">
+                                <!-- Footer's videos links. Those shows up on mobile devices and hides on tablets and above-->
+                                <ul class="d-md-none">
+                                    <li><a href="">Results of marathon participants</a></li>
+                                    <li><a href="">Weight loss algorithm</a></li>
+                                    <li><a href="">Physiologically weight loss</a></li>
+                                </ul>
+                                <!-- /Footer's videos links. -->
+                            </div>
+                            <!-- Footer's social links. Those are hidden on mobile devices and shows up on tablets and above -->
+                            <ul class="footer-sl d-none d-md-block">
+                                <li>
+                                    <a href="http://www.facebook.com" target="_blank"><i class="fab fa-facebook footer-sl-i"></i></a>
+                                    <a href="http://www.instagram.com" target="_blank"><i class="fab fa-instagram footer-sl-i"></i></a>
+                                </li>
+                            </ul>
+                            <!-- /Footer's social links -->
+                        </div>
+                        <!-- /Footer's second column -->
+                        <!-- Footer's third column -->
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <!-- Footer's social links.  Those shows up on mobile devices and are hidden on tablets and above -->
+                                <ul class="footer-sl d-md-none footer-sm-sl">
+                                    <li>
+                                        <a href="http://www.facebook.com" target="_blank"><i class="fab fa-facebook footer-sl-i"></i></a>
+                                        <a href="http://www.instagram.com" target="_blank"><i class="fab fa-instagram footer-sl-i"></i></a>
+                                    </li>
+                                </ul>
+                                <!-- /Footer's social links. -->
+                                <!-- Footer's videos links. Those are hidden on mobile devices and shows up on tablets and above -->
+                                <ul class="d-none d-md-block">
+                                    <li><a href="https://www.youtube.com/embed/M8S400st6-E" target="_blank">Results of marathon participants</a></li>
+                                    <li><a href="https://www.youtube.com/embed/NzeFsI2Zoso" target="_blank">Weight loss algorithm</a></li>
+                                    <li><a href="https://www.youtube.com/embed/Re6V4-Qe1eo" target="_blank">Physiologically weight loss</a></li>
+                                </ul>
+                                <!-- /Footer's videos links. -->
+                            </div>
+                        </div>
+                        <!-- /Footer's third column -->
+                    </div>
+                    <!-- Copyright -->
+                    <h4> &copy; 2019 - 2020 Diana Voronina-Akhvlediani</h4>
+                    <!-- /Copyright -->
+                </div>
+                <!-- Footer container -->
+            </div>
+        </footer>
+        <!-- /footer section -->
+        <!-- / All site wrapper div -->
+
+        <!-- Sign up pop up -->
+        <div id="modalContainer">
+            <div class="modal" tabindex="-1" role="dialog" id="signUpModal">
+                <div class="modal-dialog" role="document">
+                    <!-- Modal container -->
+                    <div class="modal-content">
+                        <!-- Modal header -->
+                        <div class="modal-header">
+                            <!-- Modal description -->
+                            <h3>
+                                For more information please fill the from below and i will reach you within 24 hours.
+                            </h3>
+                            <!-- /Modal description -->
+                            <!-- Modal sign up button -->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- /Modal sign up button -->
+                        </div>
+                        <!-- /Modal header -->
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Example label</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                    <small id="emailHelp" class="form-text text-muted">I'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                </div>
+                                <div class="btn-moddal-wrapper">
+                                    <button type="submit" class="btn btn-modal">SEND</button>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                        <!--/ Modal body -->
+                    </div>
+                    <!-- Modal container -->
+                </div>
+            </div>
+        </div>
+        <!-- /Sign up pop up -->
+    </div>
+    <!-- scrollSpy delay function  -->
+    <script type="text/javascript">
+        $('a[href^="#"]').on('click', function(event) {
+            var target = $(this.getAttribute('href'));
+            if( target.length ) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top
+                }, 1000);
+            }
+        });
+    </script>
+    <!-- /scrollSpy delay function  -->
+    <!-- Bootstrap's javascript links-->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    -->
+    <!-- /Bootstrap's javascript links-->
+</body>
+
+</html>

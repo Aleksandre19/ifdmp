@@ -1,0 +1,2222 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Courgette|Oswald:400|Open+Sans');
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+/* Wrappes all page*/
+#all-page-wrapper{
+    position: relative;
+    height: 100%;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    background-color: #f6f6f6;
+    font-size: 1em;
+    font-family: "Open Sans";
+    position: relative;
+}
+
+/* Loading icon*/
+.loader{
+     position: fixed;
+     left: 0px;
+     top: 0px;
+     width: 100%;
+     height: 100%;
+     z-index: 9999;
+     background: url('../images/loading.gif') 50% 50% no-repeat rgb(246,246,246);
+}
+
+.sections {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    padding: 0;
+}
+
+.section-title {
+    font-family: Monolith;
+    font-size: 1.414em;
+    text-transform: uppercase;
+    color: #595959;
+    width: 90%;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.section-title-underline {
+    width: 277px;
+    height: 0px;
+    margin: 20px auto;
+    margin-bottom: 60px;
+    border: 1px solid #00dddb;
+}
+
+/* Installing Monolith font */
+@font-face {
+    font-family: Monolith;
+    src: url(../fonts/monolith-regular.otf);
+}
+
+
+
+/* #################### HEADER ###################### */
+
+header {
+    width: 100%;
+    min-height: 100px;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    z-index: 1;
+}
+
+
+/*  Main Menu */
+
+.main-menu,
+.social-links i {
+    /* Aligning menu links and social icons on one line */
+    line-height: 70px;
+}
+
+/* Align menu links and social links on one line*/
+.navbar-light,
+.navbar-toggler,
+.social-links .row {
+    line-height: 45px;
+}
+
+.navbar {
+    /* Overwriting bootstrap's styling */
+    padding-top: 6%;
+    position: relative;
+}
+
+.navbar-nav {
+    width: 90%;
+    margin-left: 35px;
+}
+
+.top-manu-wrapper {
+    margin: 0px 25px 0px 0px;
+}
+
+.col-8 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.menuSlWrapper {
+    margin-top: 3%;
+}
+
+/* Burger menu */
+
+.navbar-light .navbar-toggler {
+    margin-left: 5%;
+    font-size: 1.6rem;
+    border: 1px solid;
+    border-color: rgba(168, 168, 168, 0);
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,221,219, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+
+}
+
+/* END Burger menu */
+.main-menu {
+    padding: 0;
+}
+
+
+.main-menu li {
+    list-style: none;
+    line-height: 50px;
+    margin-left: 0px;
+}
+
+
+/* Setting font famnily to menu links */
+.main-menu li a {
+    font-family: "Poiret One";
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+/* Hover on menu links */
+.main-menu li a:hover {
+    text-decoration: none;
+    color: #00dddb;
+}
+
+/* END Main Menu */
+.social-links a i {
+    font-size: 1.6em;
+    color: #00dddb;
+    opacity: 0.6;
+    margin: 0px 7px;
+    transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+}
+
+.social-links a i:hover {
+    opacity: 1;
+}
+
+.sl-wrapper {
+    position: absolute;
+    right: 16%;
+}
+
+/* END Social Links */
+
+/* Slideshow */
+
+/* Slider */
+
+
+.slideshow { /* Styling animation area and setting animation's first image */
+    height: 100%;
+    background: url("../images/food-sm.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: scroll;
+    background-size: cover;
+    animation: slideshow-w 20s infinite 1s;
+    -webkit-animation: slideshow-w 20s infinite 1s;
+    -moz-animation: slideshow-w 20s infinite 1s;
+    -o-animation: slideshow-w 20s infinite 1s;
+}
+
+
+
+
+
+/* Animation's slids transitions */
+@keyframes slideshow-w {
+
+    /* Animation slide transition number 1 */
+    0% {
+        transform: scale(1);
+        background: url("../images/food-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+    14.28% {
+        transform: scale(1.1);
+        background: url("../images/yoga-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+    /* Animation slide transition number 2 */
+    28.56% {
+        transform: scale(1.1);
+        background: url("../images/yoga-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    42.84% {
+        transform: scale(1);
+        background: url("../images/family-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+    /* Animation slide transition number 3 */
+    57.12% {
+        transform: scale(1);
+        background: url("../images/family-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    71.4% {
+        transform: scale(1.1);
+        background: url("../images/food-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    85.68% {
+        transform: scale(1.1);
+        background: url("../images/food-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    100% {
+        transform: scale(1);
+        background: url("../images/food-sm.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+}
+
+/* END Animation's slids transitions */
+
+/* END Slider */
+
+/* Slideshow's background text */
+
+.text-container {
+    /* All text's container */
+    width: 90%;
+    height: 63%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+
+#logo {
+    /* SVG file's fill in animation*/
+    animation: fill-anime 2s ease forwards 3.6s;
+    -webkit-animation: fill-anime 2s ease forwards 3.6s;
+    -moz-animation: fill-anime 2s ease forwards 3.6s;
+    -o-animation: fill-anime 2s ease forwards 3.6s;
+}
+
+
+#wh-container {
+    /* Weight & Health - moving top's animation*/
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: wh-move-top 1s ease forwards 4s;
+    -webkit-animation: wh-move-top 1s ease forwards 4s;
+    -moz-animation: wh-move-top 1s ease forwards 4s;
+    -o-animation: wh-move-top 1s ease forwards 4s;
+}
+
+
+
+#free-consultation-text {
+    /* Consultations's text positioning */
+    width: 100%;
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#free-consultation-text h1 {
+    /* Consulations's text animation */
+    font-family: Monolith;
+    font-size: 1.3em;
+    opacity: 0;
+    color: #00dddb;
+    animation: consultation 2s ease forwards 4s;
+    -webkit-animation: consultation 2s ease forwards 4s;
+    -moz-animation: consultation 2s ease forwards 4s;
+    -o-animation: consultation 2s ease forwards 4s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    -webkit-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    -moz-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    -o-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+#diana {
+    /* Positioning & moving bottom Diana's text */
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: diana-move-bottom 2s ease forwards 4s;
+    -webkit-animation: diana-move-bottom 2s ease forwards 4s;
+    -moz-animation: diana-move-bottom 2s ease forwards 4s;
+    -o-animation: diana-move-bottom 2s ease forwards 4s;
+}
+
+#diana h2 {
+    /* Styling & fading out Diana's text */
+    font-family: Oswald;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0;
+    animation: diana-opacity 2s ease forwards 4s;
+    -webkit-animation: diana-opacity 2s ease forwards 4s;
+    -moz-animation: diana-opacity 2s ease forwards 4s;
+    -o-animation: diana-opacity 2s ease forwards 4s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    -webkit-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    -moz-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    -o-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.btn-signUp,
+.btn-modal {
+    /* Welcoming text's & modal sign up button's styling */
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 10px;
+    background-color: #d95304;
+    border: 1px solid #d95304;
+    color: #fff;
+}
+
+.btn-signUp {
+    /* Welcoming text's sign up button's animation */
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: btn-signUp 1s ease forwards 4s;
+    -webkit-animation: btn-signUp 1s ease forwards 4s;
+    -moz-animation: btn-signUp 1s ease forwards 4s;
+    -o-animation: btn-signUp 1s ease forwards 4s;
+}
+
+/*ATANTION after click blue border is apearign which needs to be checked*/
+
+.btn-signUp:hover,
+.btn-signUp:active,
+.btn-signUp:focus,
+.btn-signUp:active:focus,
+.btn-modal:hover,
+.btn-modal:active,
+.btn-modal:focus,
+.btn-modal:active:focus {
+    /* Welcoming text's & modal sign up button's hovering */
+    /* Welcome text's sign up button hover */
+    background-color: #a83e00;
+    border: 1px solid #a83e00;
+    color: #dadada;
+}
+
+
+
+/* Weight & Health text's strokes animation */
+
+#logo path:nth-child(1) {
+    /* Letter W animation */
+    stroke-dasharray: 630.78px;
+    stroke-dashoffset: 630.78px;
+    animation: text-anime 2s ease forwards;
+    -web-kit-animation: text-anime 2s ease forwards;
+    -moz-animation: text-anime 2s ease forwards;
+    -o-animation: text-anime 2s ease forwards;
+}
+
+
+
+#logo path:nth-child(2) {
+    /* Letter E animation */
+    stroke-dasharray: 419.45px;
+    stroke-dashoffset: 419.45px;
+    animation: text-anime 2s ease forwards 0.3s;
+    -webkit-animation: text-anime 2s ease forwards 0.3s;
+    -moz-animation: text-anime 2s ease forwards 0.3s;
+    -o-animation: text-anime 2s ease forwards 0.3s;
+}
+
+#logo path:nth-child(3) {
+    /* Letter I animation */
+    stroke-dasharray: 185.07px;
+    stroke-dashoffset: 185.07px;
+    animation: text-anime 2s ease forwards 0.6s;
+    -webkit-animation: text-anime 2s ease forwards 0.6s;
+    -moz-animation: text-anime 2s ease forwards 0.6s;
+    -o-animation: text-anime 2s ease forwards 0.6s;
+}
+
+#logo path:nth-child(4) {
+    /* Letter G animation */
+    stroke-dasharray: 453.67px;
+    stroke-dashoffset: 453.67px;
+    animation: text-anime 2s ease forwards 0.9s;
+    -webkit-animation: text-anime 2s ease forwards 0.9s;
+    -moz-animation: text-anime 2s ease forwards 0.9s;
+    -o-animation: text-anime 2s ease forwards 0.9s;
+}
+
+#logo path:nth-child(5) {
+    /* Letter H animation */
+    stroke-dasharray: 435.06px;
+    stroke-dashoffset: 435.06px;
+    animation: text-anime 2s ease forwards 1.2s;
+    -webkit-animation: text-anime 2s ease forwards 1.2s;
+    -moz-animation: text-anime 2s ease forwards 1.2s;
+    -o-animation: text-anime 2s ease forwards 1.2s;
+}
+
+#logo path:nth-child(6) {
+    /* Letter T animation */
+    stroke-dasharray: 289.97px;
+    stroke-dashoffset: 289.97px;
+    animation: text-anime 2s ease forwards 1.5s;
+    -webkit-animation: text-anime 2s ease forwards 1.5s;
+    -moz-animation: text-anime 2s ease forwards 1.5s;
+    -o-animation: text-anime 2s ease forwards 1.5s;
+}
+
+#logo path:nth-child(7) {
+    /* Sign "&" animation */
+    stroke-dasharray: 482.84px;
+    stroke-dashoffset: 482.84px;
+    animation: text-anime 2s ease forwards 1.8s;
+    -webkit-animation: text-anime 2s ease forwards 1.8s;
+    -moz-animation: text-anime 2s ease forwards 1.8s;
+    -o-animation: text-anime 2s ease forwards 1.8s;
+}
+
+#logo path:nth-child(8) {
+    /* Letter H animation */
+    stroke-dasharray: 435.06px;
+    stroke-dashoffset: 435.06px;
+    animation: text-anime 2s ease forwards 2.1s;
+    -webkit-animation: text-anime 2s ease forwards 2.1s;
+    -moz-animation: text-anime 2s ease forwards 2.1s;
+    -o-animation: text-anime 2s ease forwards 2.1s;
+}
+
+
+#logo path:nth-child(9) {
+    /* Letter E animation */
+    stroke-dasharray: 419.45px;
+    stroke-dashoffset: 419.45px;
+    animation: text-anime 2s ease forwards 2.4s;
+    -webkit-animation: text-anime 2s ease forwards 2.4s;
+    -moz-animation: text-anime 2s ease forwards 2.4s;
+    -o-animation: text-anime 2s ease forwards 2.4s;
+}
+
+#logo path:nth-child(10) {
+    /* Letter A animation */
+    stroke-dasharray: 395.49px;
+    stroke-dashoffset: 395.49px;
+    animation: text-anime 2s ease forwards 2.7s;
+    -webkit-animation: text-anime 2s ease forwards 2.7s;
+    -moz-animation: text-anime 2s ease forwards 2.7s;
+    -o-animation: text-anime 2s ease forwards 2.7s;
+}
+
+#logo path:nth-child(11) {
+    /* Letter L animation */
+    stroke-dasharray: 262.67px;
+    stroke-dashoffset: 267.67px;
+    animation: text-anime 2s ease forwards 3s;
+    -webkit-animation: text-anime 2s ease forwards 3s;
+    -moz-animation: text-anime 2s ease forwards 3s;
+    -o-animation: text-anime 2s ease forwards 3s;
+}
+
+#logo path:nth-child(12) {
+    /* Letter T animation */
+    stroke-dasharray: 289.97px;
+    stroke-dashoffset: 289.97px;
+    animation: text-anime 2s ease forwards 3s;
+    -webkit-: text-anime 2s ease forwards 3s;
+    -moz-animation: text-anime 2s ease forwards 3s;
+    -o-animation: text-anime 2s ease forwards 3s;
+}
+
+#logo path:nth-child(13) {
+    /* Letter H animation */
+    stroke-dasharray: 435.06px;
+    stroke-dashoffset: 435.06px;
+    animation: text-anime 2s ease forwards 3s;
+    -webkit-animation: text-anime 2s ease forwards 3s;
+    -moz-animation: text-anime 2s ease forwards 3s;
+    -o-animation: text-anime 2s ease forwards 3s;
+}
+
+
+/* END Weight & Health text's strokes animation */
+
+/* Weight & Health's keyframes*/
+
+@keyframes text-anime {
+    /* Weight & Health - stroke's keyframe */
+    to {
+        stroke-dashoffset: 0px;
+    }
+}
+
+@keyframes wh-move-top {
+    /* Weight & Health - moving top's keyframe*/
+    from {
+        top: 35%;
+    }
+
+    to {
+        top: 20%;
+    }
+}
+
+@keyframes fill-anime {
+    /* Weight & Health - filing's keyframe*/
+    from {
+
+        fill: transparent;
+    }
+
+    to {
+        fill: white;
+    }
+}
+
+
+@keyframes consultation {
+    /* Consultation's text - opacity's keyframe */
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+@keyframes diana-move-bottom {
+    /* Diana's text - moving bottom's keyframe */
+    from {
+        opacity: 0;
+        top: 50%;
+    }
+    to {
+        opacity: 1;
+        top: 65%;
+    }
+
+}
+
+
+@keyframes diana-opacity {
+    /* Diana's text - opacity's keyframe */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes btn-signUp {
+    /* Sign up's keyframe */
+    from {
+        opacity: 0;
+        bottom: -10%;
+    }
+    to {
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+/* END Weight & Health's keyframes*/
+
+/* END Background slideshow's text */
+
+
+/* Sign Up modal */
+.modal-dialog {
+    /* Setting height to modal box */
+    height: 100%;
+}
+
+.modal-content {
+    /* Positioning modal container in center  */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-header {
+    padding: 0;
+}
+
+.modal-header .close {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    margin: -0.7rem -0.3rem -1rem auto;
+}
+
+.modal-body {
+    /* Positioning modal body content to center  */
+    padding: 0;
+    width: 70%;
+    margin: 0px auto;
+}
+
+.modal-body input {
+    /* Setting transparancy to modal form's inputs  */
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-body textarea {
+    /* Setting transparancy to modal form's textarea */
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-header h3 {
+    font-family: Monolith;
+    text-align: center;
+    font-size: 1.4em;
+    letter-spacing: 0.5px;
+    line-height: 35px;
+    font-weight: 200;
+    padding: 15px 20px;
+}
+
+.btn-moddal-wrapper {
+    /* Centering modal button */
+    text-align: center;
+}
+
+/* END Sign Up modal */
+
+/* Responsive design for header section */
+
+/* Styling for divacies less than 320px */
+
+@media (max-width: 320px) {
+    .modal-header h3 {
+        font-size: 1.2em;
+        line-height: 28px;
+        margin-top: 8px;
+    }
+}
+
+/* END Styling for divacies less than 320px */
+
+/* Responsive typography scale for mobile and tablet */
+
+@media (min-width: 576px) {
+    /* Adjusting menu links size after mobile  */
+    .main-menu li {
+        margin-left: 30px;
+    }
+
+    .modal-dialog {
+        max-width: 800px;
+    }
+
+    #free-consultation-text h1,
+    #diana h2 {
+        font-size: 2.5em;
+    }
+
+    .header {
+        padding: 0;
+    }
+
+    .navbar-light,
+    .navbar-toggler,
+    .social-links .row {
+        line-height: 45px;
+    }
+
+    .modal-content {
+        padding: 5% 0%;
+        width: 90%;
+    }
+}
+
+/* END Responsive typography scale for mobile and tablet */
+
+/* Styling for turned over devises */
+
+@media (max-height: 414px) {
+    #free-consultation-text h1 {
+        font-size: 1.3em;
+    }
+
+    #diana h2 {
+        font-size: 1.6em;
+    }
+
+    .btn-signUp {
+        padding-left: 20px;
+        padding-right: 20px;
+        animation: btn-signUp-overTurned 1s ease forwards 4s;
+    }
+}
+
+@keyframes btn-signUp-overTurned {
+    /* Sign up's keyframe */
+    from {
+        opacity: 0;
+        bottom: -15%;
+    }
+    to {
+        opacity: 1;
+        bottom: -8%;
+    }
+}
+
+/* END Styling for turned over devises */
+
+/* Styling for tablets */
+
+/* Styling background sllideshow for tablets */
+
+@media (min-width: 768px) {
+
+    /* Styling animation's text for tablets */
+    .navbar-nav{
+        margin-left: 0;
+    }
+    
+    .navbar-expand-md .navbar-nav .nav-link {
+        padding-right:0; 
+        padding-left:0; 
+    }
+    .main-menu li a {
+        font-size: 1.414em;
+    }
+
+    .navbar-nav li {
+        text-align: center;
+    }
+    .main-menu,
+    .social-links i {
+        line-height: 40px;
+    }
+
+    .header .sl-wrapper {
+        margin-top: 3%;
+        right: 30%;
+    }
+
+    .menuSlWrapper {
+        margin-top: 20px;
+    }
+
+    .slideshow {
+        height: 100%;
+        background: url("../images/food-md.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: scroll;
+        background-size: cover;
+        animation: slideshow-w-md 20s infinite 1s;
+        -webkit-animation: slideshow-w-md 20s infinite 1s;
+        -moz-animation: slideshow-w-md 20s infinite 1s;
+        -o-animation: slideshow-w-md 20s infinite 1s;
+    }
+
+
+
+    /* END Styling animation's text for tablets */
+}
+/* Slideshow for tablets */
+
+@keyframes slideshow-w-md {
+
+    /* Animation slide transition number 1 */
+    0% {
+        transform: scale(1);
+        background: url("../images/food-md.jpg");
+        background-attachment: scroll;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+    14.28% {
+        transform: scale(1.1);
+        background: url("../images/yoga-md.jpg");
+        background-attachment: scroll;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+    /* Animation slide transition number 2 */
+    28.56% {
+        transform: scale(1.1);
+        background: url("../images/yoga-md.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    42.84% {
+        transform: scale(1);
+        background: url("../images/family-md.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+    /* Animation slide transition number 3 */
+    57.12% {
+        transform: scale(1);
+        background: url("../images/family-md.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    71.4% {
+        transform: scale(1.1);
+        background: url("../images/food-md.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    85.68% {
+        transform: scale(1.1);
+        background: url("../images/food-md.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    100% {
+        transform: scale(1);
+        background: url("../images/food-md.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+}
+
+
+/* END Slideshow for tablets */
+
+/* END Styling background sllideshow for tablets */
+
+/* * */
+
+/* Hidding social icons less than 256px */
+
+@media (max-width: 256px) {
+
+    .sl-wrapper a i {
+        display: none;
+    }
+
+    .btn-signUp {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* END Hidding social icons less than 256px */
+
+/* Style for Desktops */
+@media (min-width: 992px){
+    .navbar-expand-md .navbar-nav .nav-link {
+        padding-right: .5rem; 
+        padding-left: .5rem; 
+    }
+}
+/* END Style for desktop */
+
+/* Styling animation's text for table pro */
+
+@media (min-width: 1024px) {
+    .text-container {
+        height: 50%;
+    }
+}
+
+/* END Styling animation's text for table pro */
+
+/* * */
+
+/* END Styling for tablets */
+
+/* Styling for desktop */
+
+/* Slideshow */
+
+@media (min-width: 992px) {
+    .slideshow {
+        height: 100%;
+        background: url("../images/food-lg.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+        animation: slideshow-w-lg 20s infinite 1s;
+        -webkit-animation: slideshow-w-lg 20s infinite 1s;
+        -moz-animation: slideshow-w-lg 20s infinite 1s;
+        -o-animation: slideshow-w-lg 20s infinite 1s;
+    }
+
+    .text-container {
+        height: 67%;
+    }
+    .btn-signUp {
+        animation: btn-signUp-lg 1s ease forwards 4s;
+    }
+
+    .navbar-nav {
+        width: 650px;
+    }
+}
+
+
+@keyframes btn-signUp-lg {
+    /* Sign up's keyframe */
+    from {
+        opacity: 0;
+        bottom: -10%;
+    }
+    to {
+        opacity: 1;
+        bottom: 8%;
+    }
+}
+
+@keyframes slideshow-w-lg {
+
+    /* Animation slide transition number 1 */
+    0% {
+        transform: scale(1);
+        background: url("../images/food-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    14.28% {
+        transform: scale(1.1);
+        background: url("../images/yoga-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+    /* Animation slide transition number 2 */
+    28.56% {
+        transform: scale(1.1);
+        background: url("../images/yoga-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    42.84% {
+        transform: scale(1);
+        background: url("../images/family-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+    /* Animation slide transition number 3 */
+    57.12% {
+        transform: scale(1);
+        background: url("../images/family-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    71.4% {
+        transform: scale(1.1);
+        background: url("../images/food-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    85.68% {
+        transform: scale(1.1);
+        background: url("../images/food-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    100% {
+        transform: scale(1);
+        background: url("../images/food-lg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+}
+
+/* END Slideshow */
+
+/* END Styling for desktop */
+
+/* END Responsive design for header section */
+
+/* END Slideshow */
+
+/* #################### END HEADER ################## */
+
+
+
+                    /* * */
+
+
+
+/* ######## INDIVIDUAL APPROACH ##################### */
+
+.individual-section-wrapper {
+    padding-bottom: 60px;
+}
+
+
+.individual-title {
+    margin-bottom: 20px;
+}
+
+.individual-section {
+    color: #777777;
+    font-size: 1em;
+    background-image: url(../images/individual/sm/individual-bg-sm.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    height: auto;
+    padding-bottom: 50px;
+}
+
+.description p {
+    width: 90%;
+    margin: 80px auto;
+    padding: 5px;
+    text-indent: 20px;
+    text-align: justify;
+    line-height: 26px;
+}
+
+.individual-desc-icon {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-image: url("../images/individual/icon.png");
+    background-repeat: no-repeat;
+    background-origin: center;
+}
+
+.individual-steps .row {
+    margin: 0;
+}
+
+.individual-steps {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.steps-title {
+    font-family: Monolith;
+    font-size: 1.414em;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    margin: 40px 0px 20px 0px;
+}
+
+.gathering-title,
+.gathering-title-divider {
+    color: #d9b23d;
+}
+
+.separation-title,
+.separation-title-divider {
+    color: #f24822;
+}
+
+.research-title,
+.research-title-divider {
+    color: #025e73;
+}
+
+.individual-icons {
+    display: block;
+    text-align: center;
+    margin: 40px auto;
+    font-size: 4em;
+    color: #00dddb;
+}
+
+.steps-text {
+    line-height: 28px;
+    text-align: left;
+    padding: 0px 0px 0px 10px;
+}
+
+.individual-title-divider {
+
+    width: 50px;
+    border: 1px solid;
+    margin: 0 auto;
+}
+
+
+
+/* RESPONSIVE DESIGN */
+
+/* Tablets */
+
+@media (min-width: 767px) {
+    .individual-section-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+}
+
+/* END Tablets */
+
+/* Desktop */
+
+@media(min-width: 992px) {
+
+    .all-steps-wrapper {
+        margin-top: 150px;
+    }
+    
+    .individual-steps{
+        min-height: 500px;
+        background-image: url("../images/individual/step-container-bg.png");
+        background-repeat: no-repeat;
+        background-position: -1%;
+        background-size: 24% 100%;
+    }
+    
+    .individual-title {
+        position: relative;
+        max-width: 340px;
+        margin-top: 100px;
+    }
+
+    .individual-title:after {
+        content: url("../images/individual/icon.png");
+        position: absolute;
+        right: 0px;
+        top: 0;
+    }
+
+    .individual-section-centerer {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .individual-section {
+        background-image: url(../images/individual/lg/individual-bg-lg.png);
+    }
+
+    .description p {
+        width: 900px;
+    }
+
+    .section-title {
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .section-title-underline {
+        margin-left: 20px;
+    }
+
+
+    .steps-title-bg {
+        max-width: 100%;
+        height: 142px;
+        position: relative;
+    }
+
+    .gathering-bg {
+        background-image: url("../images/individual/gathering-title-bg.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 142px;
+    }
+
+    .separation-bg {
+        background-image: url("../images/individual/separation-title-bg.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 142px;
+    }
+
+    .research-bg {
+        background-image: url("../images/individual/research-title-bg.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 142px;
+    }
+
+    .steps-title {
+        position: absolute;
+        top: -8%;
+        left: 0;
+        color: #fff;
+        width: 100%;
+        font-size: 1.6vw;
+    }
+
+    .separation-title {
+        font-size: 1.5vw;
+    }
+    
+    .steps-text{
+        padding: 0px 5px 0px 45px;
+    }
+
+}
+
+/* Fixing sizes for steps's titles */
+
+@media (min-width: 1300px) {
+    .steps-title {
+        font-size: 1.414em;
+    }
+}
+
+/* END Fixing sizes for teps's titles */
+
+/* END Desktop */
+
+/* END RESPONSIVE DESIGN */
+
+/* ######## END INDIVIDUAL APPROACH ################# */
+
+
+                       /* * */
+
+
+
+/* ######## ABOUT ME SECTION ######################## */
+
+.about-me {
+    background-image: url("../images/about/sm/about-sm.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+.about-text {
+    padding: 0;
+}
+
+.about-title {
+    margin-bottom: 0;
+}
+
+.about-title-underline {
+    width: 129px;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    width: 90%;
+    margin: 0px auto;
+    padding: 25px 10px 50px 10px;
+    text-indent: 20px;
+    text-align: justify;
+    line-height: 26px;
+    color: #777777;
+}
+
+
+
+/* Responsive design for about section */
+
+/* Tablets */
+
+@media(min-width: 767px) {
+
+    .about-me {
+        position: relative;
+        height: 100%;
+        background-image: url("../images/about/md/about-md-bg-image.png");
+        background-size: 75%;
+        background-position: left center;
+
+
+    }
+    .about-md-bg {
+        width: 100%;
+        height: 100%;
+        background-image: url("../images/about/md/about-md-bg.png");
+        background-size: 100%;
+        background-position: left;
+        background-repeat: repeat-y;
+    }
+
+    .about-title {
+        text-align: left;
+    }
+
+
+    .about-title-underline {
+        margin: 20px;
+    }
+
+    .about-text {
+        padding: 10px 0px 50px 0px;
+        margin-top: 20px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    .about-wrapper {
+        width: 90%;
+        margin: 0 auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .about-section-title-icon,
+    .videos-section-title-icon,
+    .feedback-section-title-icon {
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin-top: -67px;
+        margin-left: 170px;
+        background-image: url("../images/about/about-icon.png");
+        background-repeat: no-repeat;
+        background-origin: center;
+    }
+
+    .diana-img-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .diana-img {
+        width: 134%;
+        position: absolute;
+        top: 50%;
+        left: 76%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* END Tablets */
+
+
+/* Incrising size of Diana's photo */
+@media (min-width: 863px) {
+    .diana-img {
+        width: 103%;
+    }
+}
+/* END Incrising size of Diana's photo */
+
+/* Desktop */
+@media (min-width: 992px) {
+
+    .about-wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .diana-img-container {
+        overflow: visible;
+    }
+
+    .diana-img {
+        width: 86%;
+        top: 50%;
+        left: 60%;
+
+    }
+}
+/* END Desktop */
+
+
+/* END Responsive design for about section */
+
+/* ######## END ABOUT ME SECTION #################### */
+
+
+
+                    /* * */
+                    
+                    
+
+/* ######## VIDEOS SECTION ########################## */
+
+.videos-section {
+    border: 1px solid transparent;
+
+}
+
+
+.iframe-wrapper {
+    margin-top: 20px;
+}
+
+.videos-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.videos-frame {
+    width: 100%;
+    height: 30vh;
+    border: 3px solid #d9b23d;
+    border-radius: 10px;
+    margin: 45px 0px 10px 0px;
+}
+
+.video-description {
+    width: 100%;
+    margin: 10px auto;
+    padding: 15px;
+    text-indent: 10px;
+    line-height: 26px;
+    color: #777777;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.video-title{
+    font-family: Monolith;
+    text-align: center;
+    font-size: 1.4em;
+    color: #5e5e5e;
+    margin-top: 50px;
+}
+
+.videos-title {
+    margin-bottom: 0;
+}
+
+.videos-title-underline {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.video-article {
+    padding: 0px 5%;
+}
+
+
+/* Responsive design for Video's section */
+
+/* Tablets */
+
+@media(min-width: 767px) {
+
+
+    .videos-section {
+        padding-bottom: 50px;
+        background-image: url("../images/videos/md/videos-md-bg.png");
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: contain;
+    }
+
+    .video-article {
+        padding: 0px 4%;
+    }
+
+
+
+    .videos-section-title-icon {
+        background-image: url("../images/videos/videos-icon.png");
+        margin: 0 auto;
+
+    }
+
+}
+
+/* END Tablets */
+
+/* Desktop */
+
+@media (min-width: 992px) {
+
+    .videos-wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+        margin-bottom: 100px;
+    }
+
+    .videos-section {
+        background-image: url("../images/videos/lg/videos-lg-bg.png");
+        background-size: cover;
+        background-position: top;
+    }
+    .videos-section-title-icon {
+        margin-left: 145px;
+        margin-top: -70px;
+    }
+
+    .videos-title {
+        margin-left: 37px;
+    }
+
+    .videos-title-underline {
+        margin-left: 35px;
+    }
+}
+
+/* END Desktop */
+
+
+/* Ipod Pro */
+@media (min-height: 1366px) {
+    .videos-frame {
+        height: 20vh;
+    }
+}
+
+/* END Ipod Pro */
+
+/* END Responsive design for tablets */
+
+/* ######## END VIDEOS SECTION ###################### */
+
+
+
+                    /* * */
+
+
+
+/* ######## FEEDBACK SECTION ######################## */
+
+.feedback-section {
+    height: auto;
+    padding-top: 15px;
+    padding-bottom: 60px;
+    background-image: url("../images/feedbacks/sm/feedback-sm-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: bottom;
+    border-top: 10px solid #d9b23d;
+}
+
+
+.feedback-title {
+    padding-top: 70px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.feedback-title-underline {
+    width: 145px;
+    margin-bottom: 80px;
+}
+
+
+.quote-wrapper {
+    position: relative;
+}
+
+.feedback-container {
+    width: 90%;
+    margin: 20px auto;
+
+}
+
+
+.feedback-quote {
+    font-size: 1em;
+    color: #c5c5c5;
+}
+
+.front-quote {
+    margin-top: -45px;
+    margin-right: 10px;
+}
+
+.black-quote {
+    margin-bottom: -49px;
+    margin-left: 10px;
+}
+
+.feedback-text {
+    width: 90%;
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 10px 25px 10px;
+    text-align: center;
+    line-height: 22px;
+    color: #777777;
+    margin-top: 45px;
+    background-color: #fff;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    box-shadow: 1px 1px 5px 2px #d6d6d6;
+    -webkit-box-shadow: 1px 1px 5px 2px #d6d6d6;
+    -moz-box-shadow: 1px 1px 5px 2px #d6d6d6;
+    -o-box-shadow: 1px 1px 5px 2px #d6d6d6;
+}
+
+.feedback-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 2px solid #d9b23d;
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 1px 1px 5px 2px #d6d6d6;
+    -webkit-box-shadow: 1px 1px 5px 2px #d6d6d6;
+    -moz-box-shadow: 1px 1px 5px 2px #d6d6d6;
+    -o-box-shadow: 1px 1px 5px 2px #d6d6d6;
+
+}
+
+.feedback1 {
+    background-image: url("../images/feedbacks/avatar/avatar1.jpg");
+}
+
+.feedback2 {
+    background-image: url("../images/feedbacks/avatar/avatar2.jpg");
+}
+
+.feedback3 {
+    background-image: url("../images/feedbacks/avatar/avatar3.jpg");
+}
+
+.feedback4 {
+    background-image: url("../images/feedbacks/avatar/avatar4.jpg");
+}
+
+
+.feedback-user-img-container {
+    width: 85%;
+    height: 100%;
+    margin-top: 30px;
+    margin-bottom: 17px;
+}
+
+.feedback-user-img {
+    width: 100%;
+    height: 25%;
+
+}
+
+
+
+/* Responsive design for feedback's section */
+
+/* Tablets */
+
+@media (min-width: 767px) {
+
+    .feedback-section {
+        padding-bottom: 100px;
+        background-image: url("../images/feedbacks/md/feedback-md-bg.jpg");
+    }
+
+    .all-quote-wrapper {
+        width: 90%;
+        margin: 0 auto;
+        margin-right: 2%;
+    }
+
+
+
+    .feedback-title-underline {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .feedback-section-title-icon {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 40px;
+        background-image: url("../images/feedbacks/feedback-icon.png");
+    }
+
+
+    .feedback-text {
+        width: 100%;
+        min-height: 97px;
+        padding: 25px;
+        margin-top: 0;
+        margin-left: 35px;
+    }
+
+    .feedback-container {
+        width: 100%;
+        margin: 0;
+
+    }
+
+    .quote-wrapper {
+        width: 90%;
+        margin: 0 auto;
+        padding: 10px 0px 0px 80px;
+        border-left: 2px solid #d9b23d;
+    }
+
+    .img1 {
+        padding-top: 0;
+    }
+
+    .img4 {
+        padding-bottom: 0;
+    }
+
+    .feedback-img {
+        top: 0;
+        left: 0;
+        margin-top: 18px;
+    }
+
+    .feedback1 {
+        margin-top: 0;
+    }
+
+    .last-feedback {
+        margin-bottom: 0;
+    }
+
+
+}
+
+
+/* END Tablets */
+
+
+/* Desktop */
+
+@media(min-width: 992px) {
+    .feedback-title {
+        margin-left: 100px;
+    }
+
+    .feedback-title-underline {
+        margin-left: 100px;
+        margin-bottom: 70px
+    }
+
+    .feedback-section-title-icon {
+        margin-left: 265px;
+        margin-top: -120px;
+    }
+
+    .feedback-wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .all-quote-wrapper {
+        padding-top: 40px;
+    }
+}
+
+/* END Desktop */
+
+/* Ipot pro and similar devices */
+@media(min-width: 1024px) {
+    .feedback-section {
+        background-image: url("../images/feedbacks/lg/feedback-lg-bg.jpg");
+    }
+}
+/* END Ipot pro and similar devices */
+
+/* END Responsive design for feedback's section*/
+
+/* ######## END FEEDBACK SECTION #################### */
+
+
+
+                    /* * */
+
+
+
+
+/* ######## REGISTRATION SECTION #################### */
+
+.register-section {
+    height: 100%;
+    background-image: url("../images/registration/sm/register-sm-bg.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+    background-size: contain;
+    position: relative;
+
+}
+
+.register-container {
+    z-index: 2;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.register-title {
+    font-family: Monolith;
+    margin: 0 auto;
+    margin-bottom: 3%;
+    text-align: center;
+    color: #595959;
+    font-weight: 300;
+    line-height: 56px;
+    font-size: 2em;
+}
+
+.register-text {
+    font-family: Monolith;
+    color: #797979;
+    font-size: 1em;
+    text-align: center;
+    padding: 10px;
+    font-weight: 200;
+}
+
+.register-form {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1%;
+}
+
+.register-inputs {
+    display: block;
+    padding: 4%;
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 0.8em;
+    font-style: italic;
+    border: 1px solid #d6d4d4;
+}
+
+.register-inputs::placeholder {
+    color: #d6d4d4;
+}
+
+#submit {
+    border: 1px solid #04d9d9;
+    background-color: #04d9d9;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 3px;
+    font-size: 1.3em;
+    font-style: normal;
+}
+
+
+/* Responsive design for registration's section */
+
+/* Tablets */
+@media (min-width: 767px) {
+    .register-container {
+        max-width: 600px;
+    }
+    .register-inputs {
+        margin: 20px auto;
+    }
+
+    .register-title {
+        font-size: 2.5em;
+    }
+
+    .register-text {
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+    .register-inputs {
+        height: 80px;
+    }
+}
+/* END Tablets */
+
+/* Desktop */
+@media(min-width: 992px) {
+
+    .register-section {
+        background-image: none;
+    }
+
+    .register-section {
+        padding-top: 10%;
+    }
+
+
+
+    .register-text {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        font-size: 1.2em;
+    }
+
+    .register-wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .first-bg-img {
+        width: 11%;
+        height: 100%;
+        position: absolute;
+        top: 5%;
+        left: 0;
+        z-index: 1;
+        background-image: url("../images/registration/lg/register-lg-left-bg-img.png");
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 100%;
+    }
+
+    .second-bg-img {
+        width: 19%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 55%;
+        z-index: 1;
+        background-image: url("../images/registration/lg/register-lg-right-bg-img.png");
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 100%;
+    }
+
+
+
+}
+
+/* END Desktop */
+
+/* END Responsive design for registration's section */
+
+/* ######## END REGISTRATION SECTION #################### */
+
+
+
+                        /* * */
+
+
+
+/* ################# FOTTER ############################# */
+
+.footer {
+    width: 100%;
+    min-height: 200px;
+    background-color: #d95304;
+    border: 1px solid transparent;
+}
+
+.footer-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.footer-container ul {
+    width: 90%;
+    margin: 10px auto;
+    border-top: 1px solid #ffa500a6;
+    padding: 10px 0px 10px 0px;
+}
+
+.footer-container ul li {
+    list-style: none;
+    display: block;
+    padding: 5px;
+    text-align: center;
+}
+
+
+.footer-container ul li a,
+h4 {
+    text-decoration: none;
+    font-size: 1em;
+    color: #fff;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    transition: color 0.25s ease-in-out;
+}
+
+
+
+.footer-container ul li a:hover {
+    color: #f5aa22;
+}
+
+
+.footer-sl-i {
+    font-size: 1.5em;
+    margin: 0px 5px;
+
+}
+
+.footer-sm-sl {
+    text-align: center;
+}
+
+.footer-container{
+    margin-top: 40px;
+}
+
+.footer-container h4 {
+    text-align: center;
+    padding-bottom: 20px;
+    color: #ffc557;
+    font-size: 0.8em;
+    padding-top: 15px;
+}
+
+.footer-container ul.footer-section-links {
+    border-top: none;
+}
+
+.footer-sl {
+    border-bottom: 1px solid #ffa500a6;
+
+}
+
+
+/* Responsive design for footers */
+
+/* Tablets */
+@media (min-width: 767px) {
+    .footer-sl {
+        border-bottom: none;
+    }
+
+    .footer-container ul {
+        border-top: none;
+    }
+
+
+    .footer-container ul li {
+        text-align: left;
+    }
+
+    .footer-middle-column {
+        text-align: center;
+    }
+}
+/* END Tablets */
+
+
+/* Desktop */
+@media(min-width: 992px) {
+
+    .footer-container {
+        width: 80%;
+    }
+
+    .footer-wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+}
+/* END Desktop */
+
+/* END Responsive design for footer */
+
+/* ###################### END FOTTER #################### */
+
+
+
+/* Fixing background blur problem for small devices */
+@media (max-width: 992px) {
+    .register-section, .feedback-section, .about-me, .slideshow {
+        background-attachment: scroll;
+    }
+}
+
+
+/* Fixing Abouit Me section's hight problem in mobiles*/
+@media(max-width: 567px){
+    .about-me{
+        height: auto;
+    }
+}
+
+/* Overwriting bootstrap's .active */
+.navbar-light .navbar-nav .nav-link.active{
+    border-bottom: 1px solid #00dddb;
+    padding-bottom: 0px;
+    color: #00dddb;
+}
+
+/* Overwriting bootstraps's menu links styles */
+.navbar-light .navbar-nav .nav-link{
+    color: rgba(250,250,250,1);
+}
+
+/* Overwriting bootstrap's menu link's hover */
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #00dddb;
+}
