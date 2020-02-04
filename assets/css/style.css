@@ -859,6 +859,15 @@ header {
 
     /* END Styling animation's text for tablets */
 }
+
+/* Adjusting menu's left margin */
+
+@media (min-width: 1024px){
+     .navbar-nav{
+        margin-left: 35px;
+    }
+}
+
 /* Slideshow for tablets */
 
 @keyframes slideshow-w-md {
