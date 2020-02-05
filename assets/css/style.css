@@ -170,6 +170,8 @@ header {
 }
 
 /* END Main Menu */
+
+/* Social links */
 .social-links a i {
     font-size: 1.6em;
     color: #00dddb;
@@ -204,196 +206,10 @@ header {
     background-position: center;
     background-attachment: scroll;
     background-size: cover;
-    animation: slideshow-w 20s infinite 1s;
-    -webkit-animation: slideshow-w 20s infinite 1s;
-    -moz-animation: slideshow-w 20s infinite 1s;
-    -o-animation: slideshow-w 20s infinite 1s;
 }
 
-
-
-
-
-/* Animation's slids transitions */
-@keyframes slideshow-w {
-
-    /* Animation slide transition number 1 */
-    0% {
-        transform: scale(1);
-        background: url("../images/food-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-    14.28% {
-        transform: scale(1.1);
-        background: url("../images/yoga-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-
-    /* Animation slide transition number 2 */
-    28.56% {
-        transform: scale(1.1);
-        background: url("../images/yoga-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    42.84% {
-        transform: scale(1);
-        background: url("../images/family-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-
-    /* Animation slide transition number 3 */
-    57.12% {
-        transform: scale(1);
-        background: url("../images/family-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    71.4% {
-        transform: scale(1.1);
-        background: url("../images/food-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    85.68% {
-        transform: scale(1.1);
-        background: url("../images/food-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    100% {
-        transform: scale(1);
-        background: url("../images/food-sm.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-}
-
-/* END Animation's slids transitions */
 
 /* END Slider */
-
-/* Slideshow's background text */
-
-.text-container {
-    /* All text's container */
-    width: 90%;
-    height: 63%;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-}
-
-
-#logo {
-    /* SVG file's fill in animation*/
-    animation: fill-anime 2s ease forwards 3.6s;
-    -webkit-animation: fill-anime 2s ease forwards 3.6s;
-    -moz-animation: fill-anime 2s ease forwards 3.6s;
-    -o-animation: fill-anime 2s ease forwards 3.6s;
-}
-
-
-#wh-container {
-    /* Weight & Health - moving top's animation*/
-    width: 100%;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: wh-move-top 1s ease forwards 4s;
-    -webkit-animation: wh-move-top 1s ease forwards 4s;
-    -moz-animation: wh-move-top 1s ease forwards 4s;
-    -o-animation: wh-move-top 1s ease forwards 4s;
-}
-
-
-
-#free-consultation-text {
-    /* Consultations's text positioning */
-    width: 100%;
-    position: absolute;
-    top: 43%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#free-consultation-text h1 {
-    /* Consulations's text animation */
-    font-family: Monolith;
-    font-size: 1.3em;
-    opacity: 0;
-    color: #00dddb;
-    animation: consultation 2s ease forwards 4s;
-    -webkit-animation: consultation 2s ease forwards 4s;
-    -moz-animation: consultation 2s ease forwards 4s;
-    -o-animation: consultation 2s ease forwards 4s;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    -webkit-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    -moz-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    -o-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-
-#diana {
-    /* Positioning & moving bottom Diana's text */
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: diana-move-bottom 2s ease forwards 4s;
-    -webkit-animation: diana-move-bottom 2s ease forwards 4s;
-    -moz-animation: diana-move-bottom 2s ease forwards 4s;
-    -o-animation: diana-move-bottom 2s ease forwards 4s;
-}
-
-#diana h2 {
-    /* Styling & fading out Diana's text */
-    font-family: Oswald;
-    font-size: 1.6em;
-    text-transform: uppercase;
-    color: #fff;
-    opacity: 0;
-    animation: diana-opacity 2s ease forwards 4s;
-    -webkit-animation: diana-opacity 2s ease forwards 4s;
-    -moz-animation: diana-opacity 2s ease forwards 4s;
-    -o-animation: diana-opacity 2s ease forwards 4s;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    -webkit-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    -moz-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    -o-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
 
 .btn-signUp,
 .btn-modal {
@@ -849,10 +665,6 @@ header {
         background-position: center;
         background-attachment: scroll;
         background-size: cover;
-        animation: slideshow-w-md 20s infinite 1s;
-        -webkit-animation: slideshow-w-md 20s infinite 1s;
-        -moz-animation: slideshow-w-md 20s infinite 1s;
-        -o-animation: slideshow-w-md 20s infinite 1s;
     }
 
 
@@ -870,88 +682,10 @@ header {
 
 /* Slideshow for tablets */
 
-@keyframes slideshow-w-md {
-
-    /* Animation slide transition number 1 */
-    0% {
-        transform: scale(1);
-        background: url("../images/food-md.jpg");
-        background-attachment: scroll;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-    14.28% {
-        transform: scale(1.1);
-        background: url("../images/yoga-md.jpg");
-        background-attachment: scroll;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-
-    /* Animation slide transition number 2 */
-    28.56% {
-        transform: scale(1.1);
-        background: url("../images/yoga-md.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    42.84% {
-        transform: scale(1);
-        background: url("../images/family-md.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-
-    /* Animation slide transition number 3 */
-    57.12% {
-        transform: scale(1);
-        background: url("../images/family-md.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    71.4% {
-        transform: scale(1.1);
-        background: url("../images/food-md.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    85.68% {
-        transform: scale(1.1);
-        background: url("../images/food-md.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    100% {
-        transform: scale(1);
-        background: url("../images/food-md.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-}
-
 
 /* END Slideshow for tablets */
 
-/* END Styling background sllideshow for tablets */
+
 
 /* * */
 
@@ -1006,10 +740,6 @@ header {
         background-position: center;
         background-attachment: fixed;
         background-size: cover;
-        animation: slideshow-w-lg 20s infinite 1s;
-        -webkit-animation: slideshow-w-lg 20s infinite 1s;
-        -moz-animation: slideshow-w-lg 20s infinite 1s;
-        -o-animation: slideshow-w-lg 20s infinite 1s;
     }
 
     .text-container {
@@ -1022,96 +752,6 @@ header {
     .navbar-nav {
         width: 650px;
     }
-}
-
-
-@keyframes btn-signUp-lg {
-    /* Sign up's keyframe */
-    from {
-        opacity: 0;
-        bottom: -10%;
-    }
-    to {
-        opacity: 1;
-        bottom: 8%;
-    }
-}
-
-@keyframes slideshow-w-lg {
-
-    /* Animation slide transition number 1 */
-    0% {
-        transform: scale(1);
-        background: url("../images/food-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    14.28% {
-        transform: scale(1.1);
-        background: url("../images/yoga-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-
-    /* Animation slide transition number 2 */
-    28.56% {
-        transform: scale(1.1);
-        background: url("../images/yoga-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    42.84% {
-        transform: scale(1);
-        background: url("../images/family-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-
-    /* Animation slide transition number 3 */
-    57.12% {
-        transform: scale(1);
-        background: url("../images/family-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    71.4% {
-        transform: scale(1.1);
-        background: url("../images/food-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    85.68% {
-        transform: scale(1.1);
-        background: url("../images/food-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    100% {
-        transform: scale(1);
-        background: url("../images/food-lg.jpg");
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
 }
 
 /* END Slideshow */
