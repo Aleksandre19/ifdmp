@@ -1,36 +1,57 @@
-function dianaSlider(){
-    
-    if(dianaSliderPreSettingCheck()){
 
+/* Step 2 - Creating dianaSlider function */
+function dianaSlider(){
+
+    /*  Checking if a dianaSlider id has been set to html div elemnt */
+    let checkId = document.getElementById("dianaSlider");
+    if(dianaSliderPreSettingCheck(checkId)){
+
+        /* Checking if slider's wrapper is html div element */ 
+        let checkDiv = document.getElementById("dianaSlider");
+        if(checkDiv.tagName == "DIV"){
+
+            
+
+        }else{
+            dianaSliderAlertBox("Slider's wrapper must html div element.");
+        }
+        
     }else{
-        dianaSliderAlertBox("Please set a dianaSlider id to div html element.");
+        /*  If dianaSlider id has not been set then alerting message */
+        dianaSliderAlertBox("Please set a dianaSlider id to div element.");
     }
 
 }
 
 
-function dianaSliderAlertBox(msg){
+/* Step 3 - Checking if dianaSlider class exists and html element id div */
+function dianaSliderPreSettingCheck(check){
 
-        var testEl = document.createElement("div");
-        testEl.textContent = String(msg);
-        testEl.className = "dianaSlider_alert";
-        return document.body.insertBefore(testEl, document.body.firstChild);
+    let getCheck = check;
 
-}
-
-function dianaSliderPreSettingCheck(){
-
-    var checkId = document.getElementById("dianaSlider");
-
-    if(checkId){
-
+    if(getCheck){
         return true;
-
     }else{
-
         return false;                
     }
 
 }
 
+
+/* Step 4 - Creating dianaSlider alert box function */
+function dianaSliderAlertBox(msg){
+
+        let testEl = document.createElement("div");
+        testEl.textContent = String(msg);
+        testEl.className = "dianaSlider_alert";
+
+        return document.body.insertBefore(testEl, document.body.firstChild);
+
+}
+
+
+
+
+
+/* Step 1 - Initialising dianaSlider function */
 dianaSlider();
