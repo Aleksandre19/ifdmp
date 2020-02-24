@@ -10,7 +10,8 @@ function dianaSlider(){
         let checkDiv = document.getElementById("dianaSlider");
         if(checkDiv.tagName == "DIV"){
 
-            
+           // https://stackoverflow.com/questions/47979405/how-to-check-if-folder-is-empty
+           // https://www.w3schools.com/nodejs/ref_fs.asp
 
         }else{
             dianaSliderAlertBox("Slider's wrapper must html div element.");
@@ -48,9 +49,6 @@ function dianaSliderAlertBox(msg){
         return document.body.insertBefore(testEl, document.body.firstChild);
 
 }
-
-
-
 
 
 /* Step 1 - Initialising dianaSlider function */
