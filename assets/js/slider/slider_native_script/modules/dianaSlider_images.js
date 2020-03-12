@@ -15,7 +15,7 @@ export class Images{
     get loadingImages(){
         let dom = window.location.href;
         let folderUrl = 'assets/js/slider/slider_images/lg/';
-        let imgName = 'food-lg.jpg';
+        let imgName = config.imgName[1];
         document.getElementById("dianaSlider").style.backgroundImage = "url('"+dom+folderUrl+imgName+"')";
        
        // console.log(d);
