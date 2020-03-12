@@ -13,8 +13,8 @@ export class CheckSettings{
         
         // Getting dianaSlider's div element
         const dianaEl = document.getElementById("dianaSlider");
-
-        _checkBackgroundImages.set(this, Number(dianaEl.style.backgroundImage.length));
+        
+       _checkBackgroundImages.set(this, dianaEl.style.backgroundImage.length);
         console.log(_checkBackgroundImages.get(this));
 
         // Defining private variables and setting values

@@ -199,15 +199,6 @@ header {
 /* Slider */
 
 
-.slideshow { /* Styling animation area and setting animation's first image */
-    height: 100%;
-    background: url("../images/food-sm.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: scroll;
-    background-size: cover;
-}
-
 
 /* END Slider */
 
@@ -658,17 +649,6 @@ header {
         margin-top: 20px;
     }
 
-    .slideshow {
-        height: 100%;
-        background: url("../images/food-md.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: scroll;
-        background-size: cover;
-    }
-
-
-
     /* END Styling animation's text for tablets */
 }
 
@@ -733,15 +713,7 @@ header {
 /* Slideshow */
 
 @media (min-width: 992px) {
-    .slideshow {
-        height: 100%;
-        background: url("../images/food-lg.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-
+   
     .text-container {
         height: 67%;
     }
@@ -763,7 +735,6 @@ header {
 /* END Slideshow */
 
 /* #################### END HEADER ################## */
-
 
 
                     /* * */
