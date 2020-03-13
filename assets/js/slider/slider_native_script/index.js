@@ -1,7 +1,7 @@
-import {DianaSliderMessageBox} from './modules/dianaSlider_message.js';
-import {CheckSettings} from './modules/dianaSlider_check_settings.js';
-import {Images} from './modules/dianaSlider_images.js';
-import {Config} from './dianaSlider_config.js';
+import {DianaSliderMessageBox} from './modules/message.js';
+import {CheckSettings} from './modules/check_settings.js';
+import {Images} from './modules/images.js';
+import {Config} from './config.js';
 
 const setting = new CheckSettings();
 

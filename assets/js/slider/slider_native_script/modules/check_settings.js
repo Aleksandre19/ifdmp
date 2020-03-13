@@ -1,4 +1,4 @@
-import {DianaSliderMessageBox} from './dianaSlider_message.js'; // Imprting class for messages
+import {DianaSliderMessageBox} from './message.js'; // Imprting class for messages
 
 // Defining private variables
 const _checkElement = new WeakMap();

@@ -1,5 +1,5 @@
-import {DianaSliderMessageBox} from './dianaSlider_message.js';
-import {Config} from '../dianaSlider_config.js';
+import {DianaSliderMessageBox} from './message.js';
+import {Config} from '../config.js';
 
 const config = new Config();
 
