@@ -15,7 +15,8 @@ const conf = new Config();
 console.log(conf.imgName);
 
 const img = new Images();
-console.log(img.loadingImages);
+
+console.log(img.firstImageLoadStatus);
 
 
 
