@@ -16,7 +16,7 @@ console.log(conf.imgName);
 
 const img = new Images();
 
-console.log(img.firstImageLoadStatus);
+console.log(img.imagesQuantityStatus);
 
 
 
