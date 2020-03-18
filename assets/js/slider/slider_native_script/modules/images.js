@@ -32,7 +32,7 @@ export class Images{
         
         if(config.imgName.length > 1)
             _checkImagesQuantity.set(this, true);
-    
+        
     }
 
     get firstImageLoadStatus(){

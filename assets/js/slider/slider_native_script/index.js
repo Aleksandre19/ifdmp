@@ -2,7 +2,7 @@ import {DianaSliderMessageBox} from './modules/message.js';
 import {CheckSettings} from './modules/check_settings.js';
 import {Images} from './modules/images.js';
 import {Config} from './config.js';
-
+import {Animate} from './modules/animate.js';
 const setting = new CheckSettings();
 
 console.log(setting.settingsStatus);
@@ -17,6 +17,8 @@ console.log(conf.imgName);
 const img = new Images();
 
 console.log(img.imagesQuantityStatus);
+
+const ani = new Animate();
 
 
 
