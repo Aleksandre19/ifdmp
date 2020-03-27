@@ -8,7 +8,7 @@ const conf = new Config();
 
 // Declaring private variabels with WeakMap();
 const _imageNaturalWidth = new WeakMap();
-const _imageNaturalHeight = new WeakMap();
+const _imageStartingNaturLWidth = new WeakMap();
 
 // Creating Animation's class
 export class Animate{
@@ -37,10 +37,8 @@ export class Animate{
 
                 // Setting natural dimentions to the variables
                 _imageNaturalWidth.set(this, image.naturalWidth);
-                _imageNaturalHeight.set(this, image.naturalHeight);
-
                 // Calling animation function
-                Animate.startAnimation(_imageNaturalWidth.get(this), _imageNaturalHeight.get(this));
+                Animate.startAnimation(_imageNaturalWidth.get(this));
                     
             };
     }
@@ -57,16 +55,24 @@ export class Animate{
 
 
     // Starting animation
-    static startAnimation(natWidth, natHeight){
-        
+    static startAnimation(natWidth){
+
+            // Saving image's starting width  
+             _imageStartingNaturLWidth.set(this, natWidth);
+
             setInterval(() => {
-
                 let scaledUpWidth = natWidth++;
-                let scaleUpHight = natHeight++;
 
-                document.getElementById("dianaSlider").style.backgroundSize = `${scaledUpWidth}px ${scaleUpHight}px`;
-                        
+                document.getElementById("dianaSlider").style.backgroundSize = `${scaledUpWidth}px`;
+    
+               console.log(Animate.calculateImageIncrisedDimension(scaledUpWidth));
            },15);
+    }
+
+
+    static calculateImageIncrisedDimension(sUpWidth){
+            
+        return (sUpWidth - _imageStartingNaturLWidth.get(this)) / _imageStartingNaturLWidth.get(this) * 100;
     }
    
        
