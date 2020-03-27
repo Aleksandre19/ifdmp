@@ -1,5 +1,6 @@
 import {Config} from '../config.js';
 
+
 const config = new Config();
 
 const _imageLoadStatus = new WeakMap();
@@ -12,17 +13,14 @@ export class Images{
         _imageLoadStatus.set(this, false);
         _checkImagesQuantity.set(this, false);
 
-        let dom = window.location.href;
-        let folderUrl = 'assets/js/slider/slider_images/lg/';
-        let imgName = config.imgName[1];
-
-
         // Setting first image background to slider     
 
         if(_imageLoadStatus.get(this) === false){
 
-             document.getElementById("dianaSlider").style.backgroundImage = "url('"+dom+folderUrl+imgName+"')";
-            _imageLoadStatus.set(this, true);
+            Images.setBackgroundImage(1);
+
+            // Setting load status to true
+             _imageLoadStatus.set(this, true);
 
         }else{
             _imageLoadStatus.set(this, false);
@@ -42,4 +40,25 @@ export class Images{
     get imagesQuantityStatus(){
         return _checkImagesQuantity.get(this);
     }
+
+    // Getting image absolute path    
+    static imgFullPath(imgNames){
+        let dom = window.location.href;
+        let folderUrl = 'assets/js/slider/slider_images/lg/';
+        let imgName = imgNames;
+        let imgFullUrl = dom + folderUrl + imgName;
+        return imgFullUrl;
+    }
+
+    // Getting image name 
+    static getImageName(i){
+        return config.imgName[i];
+    }
+
+    // Setting background image
+
+    static setBackgroundImage(i){
+        document.getElementById("dianaSlider").style.backgroundImage = "url('"+Images.imgFullPath(Images.getImageName(i))+"')";
+    }
+    
 }
