@@ -10,12 +10,22 @@
     text-align: center;
 }
 
- #dianaSlider {
-        height: 100%;
-        qbackground: url("slider_images/lg/food-lg.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
-        background-size: cover;
-    }
+
+#dianaSlider{
+    width: 100%;
+    height: 100%;
+    background-position: top;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+ #second-bg{
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     top: 0;
+     left: 0;
+     background-color: red;
+     border: 3px solid red;
+ }
 
