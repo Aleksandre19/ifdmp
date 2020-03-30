@@ -10,6 +10,7 @@ const conf = new Config();
 const _imageNaturalWidth = new WeakMap();
 const _imageStartingNaturLWidth = new WeakMap();
 const _imgName = new WeakMap();
+const _functionHasCalled = new WeakMap();
 
 // Creating Animation's class
 export class Animate{
@@ -17,7 +18,7 @@ export class Animate{
     constructor(){
         //Setting animation imnage name
         _imgName.set(this, Images.getImageName(1));
-        console.log(_imgName.get(this));
+    
 
         // Checking if all reuqried setting are ok
         if(settings.settingsStatus){
@@ -66,12 +67,22 @@ export class Animate{
             // Saving image's starting width  
              _imageStartingNaturLWidth.set(this, natWidth);
 
+           // Defining variable to check if function has been called   
+            _functionHasCalled.set(this, true);
+
             setInterval(() => {
                 let scaledUpWidth = natWidth++;
 
                 document.getElementById(id).style.backgroundSize = `${scaledUpWidth}px`;
-    
-                console.log(Animate.calculateImageIncrisedDimension(scaledUpWidth));
+            
+                // When image's dimention is increased by 7% going on next step
+                if(Math.round(Animate.calculateImageIncrisedDimension(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
+                    
+                    Animate.backgroundFadeToggle("#second-bg", Images.imgFullPath(Images.getImageName(0)))
+
+                    _functionHasCalled.set(this, false);
+                }
+
            },15);
     }
 
@@ -88,6 +99,9 @@ export class Animate{
         return _imgName.get(this);
     }
    
-       
+    // Background fading function written in Jquery
+    static backgroundFadeToggle(id, url){
+        $(id).css("background", url).fadeToggle(4000);
+    }   
 
 }
