@@ -17,7 +17,7 @@ export class Images{
 
         if(_imageLoadStatus.get(this) === false){
 
-            Images.setBackgroundImage(1);
+            Images.setBackgroundImage("second-bg",0);
 
             // Setting load status to true
              _imageLoadStatus.set(this, true);
@@ -57,8 +57,8 @@ export class Images{
 
     // Setting background image
 
-    static setBackgroundImage(i){
-        document.getElementById("dianaSlider").style.backgroundImage = "url('"+Images.imgFullPath(Images.getImageName(i))+"')";
+    static setBackgroundImage(id,i){
+        document.getElementById(id).style.backgroundImage = "url('"+Images.imgFullPath(Images.getImageName(i))+"')";
     }
     
 }

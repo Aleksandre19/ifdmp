@@ -44,7 +44,7 @@ export class Animate{
                 // Setting natural dimentions to the variables
                 _imageNaturalWidth.set(this, image.naturalWidth);
                 // Calling animation function
-                Animate.startAnimation(_imageNaturalWidth.get(this));
+                Animate.startAnimation("second-bg",_imageNaturalWidth.get(this));
                     
             };
     }
@@ -61,7 +61,7 @@ export class Animate{
 
 
     // Starting animation
-    static startAnimation(natWidth){
+    static startAnimation(id,natWidth){
 
             // Saving image's starting width  
              _imageStartingNaturLWidth.set(this, natWidth);
@@ -69,9 +69,9 @@ export class Animate{
             setInterval(() => {
                 let scaledUpWidth = natWidth++;
 
-                document.getElementById("dianaSlider").style.backgroundSize = `${scaledUpWidth}px`;
+                document.getElementById(id).style.backgroundSize = `${scaledUpWidth}px`;
     
-               console.log(Animate.calculateImageIncrisedDimension(scaledUpWidth));
+                console.log(Animate.calculateImageIncrisedDimension(scaledUpWidth));
            },15);
     }
 
