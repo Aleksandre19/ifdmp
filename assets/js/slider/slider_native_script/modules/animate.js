@@ -27,7 +27,7 @@ export class Animate{
 
         // Checking if all reuqried setting are ok
         if(settings.settingsStatus){
-            this.getNaturalDiminsion(_imgName.get(this));
+            Animate.getNaturalDiminsion(_imgName.get(this), "second-bg");
         }
     }
 
@@ -36,7 +36,7 @@ export class Animate{
     }
 
     // Starting animation
-     static startAnimation(id,natWidth){
+     static startAnimation(divId,natWidth){
 
             // Saving image's starting width  
              _imageStartingNaturLWidth.set(this, natWidth);
@@ -45,9 +45,10 @@ export class Animate{
             _functionHasCalled.set(this, true);
 
             setInterval(() => {
+
                 let scaledUpWidth = natWidth++;
 
-                document.getElementById(id).style.backgroundSize = `${scaledUpWidth}px`;
+                document.getElementById(divId).style.backgroundSize = `${scaledUpWidth}px`;
             
                 // When image's dimention is increased by 7% going on next step
                 if(Math.round(Animate.calculateImageIncrisedDimension(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
@@ -68,14 +69,14 @@ export class Animate{
    
     
     // Getting natural dimentions of image
-    getNaturalDiminsion(imgName){
+    static getNaturalDiminsion(imgName, divId){
             // Getting image's current width and height
             // This part of the code i found and copyed from here:
             // https://stackoverflow.com/questions/3098404/get-the-size-of-a-css-background-image-using-javascript
             let iName  = imgName;
             let image;
             image = new Image();
-            console.log(image);
+            
             image.src = images.imgFullPath(iName);
             
 
@@ -86,7 +87,7 @@ export class Animate{
                 _imageNaturalWidth.set(this, image.naturalWidth);
 
                 // Calling animation function
-                Animate.startAnimation("second-bg",_imageNaturalWidth.get(this));
+                Animate.startAnimation(divId,_imageNaturalWidth.get(this));
                     
             };
 

@@ -1,10 +1,13 @@
+import {Animate} from './animate.js';
+import {Images} from './images.js';
 
-
+const im = new Images();
 
 export class AnimationFunctions{
     constructor(){
        this.fade;
        this.bgMove;
+       this.stopFade = false;
     }
 
      // Background fadeing function
@@ -31,6 +34,8 @@ export class AnimationFunctions{
                 called = false;
            }else if(op.toFixed(1) < 0){
                clearInterval(this.fade);
+               this.stopFade = true;
+               console.log("stoped");
                console.log(op.toFixed(1));
            }
           
@@ -64,10 +69,18 @@ export class AnimationFunctions{
             // Incirsing in size to cover div element
             el.style.backgroundSize = "120%";
            
-            if(move.toFixed(0) <= -100 && called === true){
 
-                this.backgroundFadeToggle("dianaSlider");
+            if(move.toFixed(0) <= -150 && called === true){
+                if(this.stopFade){
+                    console.log("stoped");
+                    clearInterval(this.bgMove);
+                    Animate.getNaturalDiminsion(im.getImageName(1), "dianaSlider");
 
+                }else{
+                    console.log("not stoped");
+                }
+                
+                
                 called = false;
             }
 
