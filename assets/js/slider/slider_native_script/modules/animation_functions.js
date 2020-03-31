@@ -7,6 +7,7 @@ import {AnimationManager} from './animation_manager.js';
 const im = new Images();
 const anManager = new AnimationManager();
 
+
 export class AnimationFunctions{
     constructor(){
        this.fade;
@@ -34,7 +35,8 @@ export class AnimationFunctions{
            // When opacity is less or equal to 0.7 than calling a backgroundMoving function for second background image
            if(op.toFixed(1) <= 1 && called){
                 //alert("naklebia");
-                this.backgroundMoving("dianaSlider");
+                anManager.divId = "dianaSlider";
+                this.backgroundMoving(anManager.divId);
                 called = false;
            }else if(op.toFixed(1) < 0){
                clearInterval(this.fade);
@@ -76,9 +78,11 @@ export class AnimationFunctions{
 
             if(move.toFixed(0) <= -150 && called === true){
                 if(this.stopFade){
-                    console.log("stoped");
+                     
+                     anManager.oneTransition++;
                     clearInterval(this.bgMove);
-                    console.log(anManager.numberOfImages());
+                    
+                   
                     //Animate.getNaturalDimension(im.getImageName(1), "dianaSlider");
                     //im.setBackgroundImage("second-bg", 2);
 
