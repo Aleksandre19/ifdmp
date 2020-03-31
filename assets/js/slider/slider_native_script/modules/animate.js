@@ -3,12 +3,15 @@ import {CheckSettings} from './check_settings.js';
 import {Config} from '../config.js';
 import {Images} from './images.js';
 import {AnimationFunctions} from './animation_functions.js';
+import {AnimationManager} from './animation_manager.js';
+
 
 // Initialising objects
 const settings = new CheckSettings();
 const conf = new Config();
 const images = new Images();
 const AnimeFun = new AnimationFunctions();
+const anManager = new AnimationManager();
 
 // Declaring private variabels with WeakMap();
 const _imageNaturalWidth = new WeakMap();
@@ -21,13 +24,21 @@ const _functionHasCalled = new WeakMap();
 export class Animate{
 
     constructor(){
-        //Setting animation imnage name
-        _imgName.set(this, images.getImageName(0));
-    
 
+        
+    
+        
         // Checking if all reuqried setting are ok
         if(settings.settingsStatus){
-            Animate.getNaturalDiminsion(_imgName.get(this), "second-bg");
+
+            // Calling animation manager function
+            anManager.manageAnimation();
+
+            //Getting image's name
+             _imgName.set(this, images.getImageName(anManager.imageOrderNumber));
+
+             // Getting natural dimentions of the current image
+            Animate.getNaturalDimension(_imgName.get(this), anManager.divId);
         }
     }
 
@@ -69,7 +80,7 @@ export class Animate{
    
     
     // Getting natural dimentions of image
-    static getNaturalDiminsion(imgName, divId){
+    static getNaturalDimension(imgName, divId){
             // Getting image's current width and height
             // This part of the code i found and copyed from here:
             // https://stackoverflow.com/questions/3098404/get-the-size-of-a-css-background-image-using-javascript

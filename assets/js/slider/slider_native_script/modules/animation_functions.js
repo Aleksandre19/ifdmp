@@ -79,7 +79,7 @@ export class AnimationFunctions{
                     console.log("stoped");
                     clearInterval(this.bgMove);
                     console.log(anManager.numberOfImages());
-                    //Animate.getNaturalDiminsion(im.getImageName(1), "dianaSlider");
+                    //Animate.getNaturalDimension(im.getImageName(1), "dianaSlider");
                     //im.setBackgroundImage("second-bg", 2);
 
                 }else{

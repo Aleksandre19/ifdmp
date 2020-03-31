@@ -13,7 +13,9 @@ export class AnimationManager{
        this.oneTransition = 0;
        this.oneCircle = false;
        this.divId = "";
-       this.imageName = "";
+       this.imageOrderNumber = 0;
+       
+       // Counting images in config.js
        this.numberOfImages = function(){
            return anConfig.imgName.length;
        };
@@ -22,6 +24,16 @@ export class AnimationManager{
 
     // Animation manager function
     manageAnimation(){
+
+        if(this.oneTransition >= 0 && this.oneTransition < this.numberOfImages()){
+
+             //First step when page loads
+            if(this.oneTransition === 0){
+                this.imageOrderNumber = 0;
+                this.divId = "second-bg";
+            }
+
+        }
 
     }
 }
