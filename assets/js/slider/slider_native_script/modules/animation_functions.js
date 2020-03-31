@@ -1,7 +1,11 @@
 import {Animate} from './animate.js';
 import {Images} from './images.js';
+import {AnimationManager} from './animation_manager.js';
+
+
 
 const im = new Images();
+const anManager = new AnimationManager();
 
 export class AnimationFunctions{
     constructor(){
@@ -74,7 +78,9 @@ export class AnimationFunctions{
                 if(this.stopFade){
                     console.log("stoped");
                     clearInterval(this.bgMove);
-                    Animate.getNaturalDiminsion(im.getImageName(1), "dianaSlider");
+                    console.log(anManager.numberOfImages());
+                    //Animate.getNaturalDiminsion(im.getImageName(1), "dianaSlider");
+                    //im.setBackgroundImage("second-bg", 2);
 
                 }else{
                     console.log("not stoped");
