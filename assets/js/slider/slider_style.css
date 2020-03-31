@@ -17,6 +17,7 @@
     background-position: top;
     background-attachment: fixed;
     background-size: cover;
+    background-repeat: no-repeat !important; 
 }
 
  #second-bg{

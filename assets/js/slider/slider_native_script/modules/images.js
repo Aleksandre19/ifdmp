@@ -13,11 +13,15 @@ export class Images{
         _imageLoadStatus.set(this, false);
         _checkImagesQuantity.set(this, false);
 
-        // Setting first image background to slider     
+        // Setting background images to slider     
 
         if(_imageLoadStatus.get(this) === false){
 
-            Images.setBackgroundImage("second-bg",0);
+            // Setting background image for top div element
+            this.setBackgroundImage("second-bg",0);
+
+            // Setting background image for bottom div element
+            this.setBackgroundImage("dianaSlider",1);
 
             // Setting load status to true
              _imageLoadStatus.set(this, true);
@@ -42,7 +46,7 @@ export class Images{
     }
 
     // Getting image absolute path    
-    static imgFullPath(imgNames){
+     imgFullPath(imgNames){
         let dom = window.location.href;
         let folderUrl = 'assets/js/slider/slider_images/lg/';
         let imgName = imgNames;
@@ -51,14 +55,13 @@ export class Images{
     }
 
     // Getting image name 
-    static getImageName(i){
+    getImageName(i){
         return config.imgName[i];
     }
 
     // Setting background image
-
-    static setBackgroundImage(id,i){
-        document.getElementById(id).style.backgroundImage = "url('"+Images.imgFullPath(Images.getImageName(i))+"')";
+    setBackgroundImage(id,i){
+        document.getElementById(id).style.backgroundImage = "url('"+this.imgFullPath(this.getImageName(i))+"')";
     }
     
 }
