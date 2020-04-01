@@ -23,19 +23,7 @@ export class AnimationManager{
 
 
     // Animation manager function
-    manageAnimation(i){
-       
-        // Setting range of transitions between images
-       if(i > 0 && i < this.numberOfImages()){
-           this.oneTransition = i;
-
-           // If all transition has happend than we get one circle
-           if(this.oneTransition === this.numberOfImages()){
-               this.oneTransition = 0;
-               this.oneCircle = true;
-           }
-           
-       }
+    manageAnimation(){
 
         if(this.oneTransition >= 0 && this.oneTransition < this.numberOfImages()){
 

@@ -23,17 +23,16 @@ const _functionHasCalled = new WeakMap();
 // Creating Animation's class
 export class Animate{
 
-    constructor(){      
-       Animate.prepearForAnimation();
-    }
+    constructor(){
 
-
-    static prepearForAnimation(){
-         // Checking if all reuqried setting are ok
+        
+    
+        
+        // Checking if all reuqried setting are ok
         if(settings.settingsStatus){
 
             // Calling animation manager function
-            anManager.manageAnimation(0);
+            anManager.manageAnimation();
 
             //Getting image's name
              _imgName.set(this, images.getImageName(anManager.imageOrderNumber));
@@ -65,7 +64,7 @@ export class Animate{
                 // When image's dimention is increased by 7% going on next step
                 if(Math.round(Animate.calculateImageIncrisedDimension(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
            
-                    AnimeFun.backgroundFadeToggle(divId);
+                    AnimeFun.backgroundFadeToggle("second-bg");
 
                     _functionHasCalled.set(this, false);
                 }
