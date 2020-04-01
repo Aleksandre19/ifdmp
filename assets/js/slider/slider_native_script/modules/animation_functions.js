@@ -79,12 +79,7 @@ export class AnimationFunctions{
             if(move.toFixed(0) <= -150 && called === true){
                 if(this.stopFade){
                      
-                    anManager.oneTransition++;
-                    console.log("transition = " + anManager.oneTransition);
-                    anManager.imageOrderNumber++;
-
-                    im.setBackgroundImage("second-bg", anManager.imageOrderNumber);
-
+                     anManager.oneTransition++;
                     clearInterval(this.bgMove);
                     
                    

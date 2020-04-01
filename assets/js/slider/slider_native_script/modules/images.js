@@ -1,7 +1,5 @@
 import {Config} from '../config.js';
-import {AnimationManager} from './animation_manager.js';
 
-const imgAnManager = new AnimationManager();
 
 const config = new Config();
 
@@ -63,17 +61,7 @@ export class Images{
 
     // Setting background image
     setBackgroundImage(id,i){
-        console.log(i);
-        console.log("tran = " + imgAnManager.oneTransition);
-        let divEl = document.getElementById(id);
-
-        if(imgAnManager.oneTransition === 0 || id === 0){
-            divEl.style.backgroundImage = "url('"+this.imgFullPath(this.getImageName(i))+"')";
-        }
-
-        if(i == 1 && imgAnManager.oneTransition > 0){
-            console.log("udris");
-        }
+        document.getElementById(id).style.backgroundImage = "url('"+this.imgFullPath(this.getImageName(i))+"')";
     }
     
 }
