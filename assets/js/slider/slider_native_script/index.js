@@ -1,6 +1,8 @@
-import {AnimationManager} from './modules/animation_manager.js';
+import {Animate} from './modules1/animate.js';
 
-const aM = new AnimationManager();
+const an = new Animate();
+
+console.log(an);
 
 
 
