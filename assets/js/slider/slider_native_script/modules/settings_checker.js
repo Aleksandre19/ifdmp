@@ -12,7 +12,7 @@ export class SettingsChecker{
         this.imagesNamesInConfig = false;
     }
 
-    checkImageNamesInConfig(){
+    get checkImageNamesInConfig(){
         
         if(settingsConfig.imgName.length > 1){
 

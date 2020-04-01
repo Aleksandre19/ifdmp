@@ -9,13 +9,15 @@ const anManConfig = new Config();
 export class AnimationManager{
 
     constructor(){
-
         
-        
-        //console.log(dianaSliderFimg());
+        this.imgOrderInConfig = 0;
+        this.divId = "dianaSlider-s";
+        if(anManSetting.checkImageNamesInConfig){
 
-        if(anManSetting.checkImageNamesInConfig()){
-            anManImageManager.setBackgroundImageToTheDiv();
+            // Getting image name 
+            let currenImgName = anManImageManager.imgName(this.imgOrderInConfig);
+
+            anManImageManager.setBackgroundImageToTheDiv(currenImgName, this.divId);
         }
     }
 
