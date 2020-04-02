@@ -12,12 +12,18 @@ export class AnimationManager{
         
         this.imgOrderInConfig = 0;
         this.divId = "dianaSlider-s";
+
         if(anManSetting.checkImageNamesInConfig){
 
             // Getting image name 
             let currenImgName = anManImageManager.imgName(this.imgOrderInConfig);
 
             anManImageManager.setBackgroundImageToTheDiv(currenImgName, this.divId);
+
+            anManImageManager.getNaturalDimension(currenImgName, this.divId);
+       
+                console.log(sessionStorage.getItem("imageNaturalWidth"));
+           
         }
     }
 
