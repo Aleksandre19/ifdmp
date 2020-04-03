@@ -32,6 +32,7 @@ export class ImageManager{
 
         imgImageAnimation.imageAnimation(divId);
         
+        return true;
     }
 
 
@@ -65,8 +66,10 @@ export class ImageManager{
         image.onload = function() {
 
             // Saving data in the browser 
-            sessionStorage.setItem("imageNaturalWidth", image.naturalWidth);
+           sessionStorage.setItem("imageNaturalWidth", image.naturalWidth);
 
         };
+
+        return true;
     }
 }

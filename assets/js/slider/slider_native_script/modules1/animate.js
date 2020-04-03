@@ -50,27 +50,6 @@ export class Animate{
     // Starting animation
      static startAnimation(divId,natWidth){
 
-            // Saving image's starting width  
-             _imageStartingNaturLWidth.set(this, natWidth);
-
-           // Defining variable to check if function has been called   
-            _functionHasCalled.set(this, true);
-
-            setInterval(() => {
-
-                let scaledUpWidth = natWidth++;
-
-                document.getElementById(divId).style.backgroundSize = `${scaledUpWidth}px`;
-            
-                // When image's dimention is increased by 7% going on next step
-                if(Math.round(Animate.calculateImageIncrisedDimension(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
-           
-                    AnimeFun.backgroundFadeToggle(divId);
-
-                    _functionHasCalled.set(this, false);
-                }
-
-           },15);
     }
 
 
