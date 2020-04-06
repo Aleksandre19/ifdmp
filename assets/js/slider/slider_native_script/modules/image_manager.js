@@ -1,24 +1,30 @@
+// Importing classes
 import {Config} from '../config.js';
-import {ImageAnimation} from './image_animation.js';
 
-
+// Declaring Classes
 const imgConfig = new Config();
-const imgImageAnimation = new ImageAnimation();
 
 
 // Defining private variable by using WeakMap()
 const _imageNaturalWidth = new WeakMap();
+const _imageStartingNaturLWidth = new WeakMap();
+const _functionHasCalled = new WeakMap();
 
 export class ImageManager{
     constructor(){
+        this.anInSize = null;
+        this.imgManDivId = '';
         
-        this.nam = "";
+        // This variable is used to control setting background image with out calling animation
+        this.justSetBgImage = false;
+
         // Getting image name
         this.imgName = function(i){
             return imgConfig.imgName[i];
         }
     }
 
+    // Setting background image to the div element
     setBackgroundImageToTheDiv(imageName, divId){
         
         // Geting html div element
@@ -29,9 +35,8 @@ export class ImageManager{
 
         // Setting background image to the div element
         divEl.style.backgroundImage = "url('"+imgPath+"')";
-
-        imgImageAnimation.imageAnimation(divId);
         
+        // If everithing gose well returning true
         return true;
     }
 
@@ -48,6 +53,8 @@ export class ImageManager{
 
     }
 
+
+    // Get image natural deminsion
     getNaturalDimension(imgName, divId){
 
         // Getting image's current width and height
@@ -72,4 +79,7 @@ export class ImageManager{
 
         return true;
     }
+
+
+    
 }
