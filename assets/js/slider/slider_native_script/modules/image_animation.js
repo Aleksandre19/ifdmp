@@ -1,4 +1,6 @@
+import {ImageManager} from './image_manager.js';
 
+const imgAniImageManager = new ImageManager();
 
 
 // Defining private variables by using WeakMap()
@@ -38,9 +40,26 @@ export class ImageAnimation{
 
                 // When image's dimention is increased by 7% going on next step
                 if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
-           
-                    console.log("Has increased");
-                    this.animationFadeInOut(elDivId);
+                    
+                    // Getting second image name to set second div background image with
+                    let changeImageName = imgAniImageManager.imgName(1);
+
+                    if(changeImageName){
+
+                        // Setting seconda backgroud image to the second div element with id #dianaSlider-f
+                        imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-f");
+
+                        // Calling animation opacity changer function
+                        this.animationFadeInOut(elDivId);
+
+                    }else{
+                        
+                        // In case there is some mistake in image name the throw new error
+                        throw new Error("There was a some problem! Please check image names in config.js");
+                        return false;
+                    }
+                
+                    // resseting valie of this variable
                     _functionHasCalled.set(this, false);
                 }
                
