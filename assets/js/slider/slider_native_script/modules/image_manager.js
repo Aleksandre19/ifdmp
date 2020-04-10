@@ -55,7 +55,7 @@ export class ImageManager{
 
 
     // Get image natural deminsion
-    getNaturalDimension(imgName, divId){
+    getNaturalDimension(imgName){
 
         // Getting image's current width and height
         // This part of the code i found and copyed from here:
@@ -65,10 +65,10 @@ export class ImageManager{
         let iName  = imgName;
         let image;
         image = new Image();
-         
+
         // Setting src to the current images 
         image.src = this.imageFullPath(iName);
-            
+    
         // On load getting width and height of image
         image.onload = function() {
 
