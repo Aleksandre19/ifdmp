@@ -18,10 +18,12 @@ export class ImageAnimation{
         this.anInSize = null;
         this.fade = null;
         this.secondInterval = null;
-        this.callIntervalSecondTime = false;
         this.animationFadeCaounter = 0;
-        this.divNameF = "";
+        this.divNameF = "dianaSlider-f";
         this.divNameS = "";
+        this.naturalW = 0;
+        this.lastImage = false;
+        this.called = true;
     }
 
 
@@ -43,7 +45,7 @@ export class ImageAnimation{
     // Animating image's width
     animateImageInSize(elDivId , natW){
             
-        
+            this.naturalW = natW;
             // Saving image's starting width  
              _imageStartingNaturLWidth.set(this, natW);
 
@@ -53,23 +55,25 @@ export class ImageAnimation{
             
             this.anInSize = setInterval(() => {
                 
-                let scaledUpWidth = natW++;
+                let scaledUpWidth = this.naturalW++;
 
                 document.getElementById(elDivId).style.backgroundSize = `${scaledUpWidth}px`;
 
                 // When image's dimention is increased by 7% going on next step
                 if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
-                    
+                
+
                     // Getting second image name to set second div background image with
                     let changeImageName = imgAniImageManager.imgName(1);
 
                     if(changeImageName){
 
-                        // Setting seconda backgroud image to the second div element with id #dianaSlider-f
+                        // Setting second backgroud image to the second div element with id #dianaSlider-f
                         if(imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-f")){
 
-                            // Calling animation opacity changer function
-                             this.animationFadeInOut(elDivId);
+                                // Calling animation opacity changer function
+                                this.animationFadeInOut(elDivId);
+                           
 
                         }else{
 
@@ -80,11 +84,12 @@ export class ImageAnimation{
 
                     }else{
                         
-                        // In case there is some mistake in image name the throw new error
+                        // In case there is some mistake in image name so throw new error
                         imgAniMessage.getMessage("There was a some problem! Please check image names in config.js");
 
                         // Stopping animation
-                        clearInterval(this.anInSize);
+                       
+
                         return false;
                     }
                 
@@ -113,17 +118,11 @@ export class ImageAnimation{
         // Counting how much was called this function
         this.animationFadeCaounter++;
 
-        // Getting div slider div element ID
-        this.sliderDivName(this.animationFadeCaounter);
-
-
         console.log(this.animationFadeCaounter);
         // Defining opacity variable
         let op = 1;
-
-        // Variable to check that function was called once
-        let called = true;
         
+        console.log(op);
 
         this.fade =  setInterval(() => {
 
@@ -132,37 +131,74 @@ export class ImageAnimation{
     
            document.getElementById(fadeID).style.opacity = `${op}`;
 
-           // Checking if this was called on first time or not
-           if(!this.callIntervalSecondTime){
-
-                // When opacity is less or equal to 1 than calling a backgroundMoving function for second background image
-                if(op.toFixed(1) <= 1 && called){
-
+           if(this.animationFadeCaounter === 3){
+              
+            // ახლიდან დაუძახო ანიმაციას
+            
+           }
+              
+                // When opacity is less or equal to 5 than calling a backgroundMoving function for second background image
+                if(this.called && this.animationFadeCaounter === 1){
+                        
                         //Animatiing background by moving it 
                         this.backgroundMoving(this.divNameF);
 
                         // Setting value to identify that this if statment was called once inside interval
-                        called = false;
+                        this.called = false;
 
-                }else if(op.toFixed(1) < 0){ // when image oopacity goes down than 0 we stop animation
+                }else if(op.toFixed(1) < 0.0){ // when image oopacity goes down than 0.1 we stop animation
 
-                    // Stopin this interval 
-                    clearInterval(this.fade); 
+                    if(this.animationFadeCaounter === 1){
+                        // Stopin this interval 
+                        clearInterval(this.fade); 
 
-                    // Getting second image's name
-                    let changeImageName = imgAniImageManager.imgName(2);
+                        clearInterval(this.anInSize);
 
-                    // Setting second background image to the #dianaSlider-s
-                    imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-s");
+                        console.log(op.toFixed(1));
 
-                    // Getting #ianaSlider-s" element  
-                    let el = document.getElementById("dianaSlider-s");
+                        console.log("dianaSlider-s has finished");
 
-                    // Setting z-index to the #ianaSlider-s
-                    el.style.zIndex = "5";
-                    
-                    // Resetting #ianaSlider-s" opacity 
-                    el.style.opacity = "1";
+
+                        // Getting second image's name
+                        let changeImageName = imgAniImageManager.imgName(2);
+
+                        // Setting second background image to the #dianaSlider-s
+                        imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "lastImage");
+
+                        // Getting #dianaSlider-s" element  
+                        let el = document.getElementById("dianaSlider-s");
+
+                        // Setting z-index to the #ianaSlider-s
+                        el.style.zIndex = "5";
+                        
+                        // Resetting #ianaSlider-s" opacity 
+                        el.style.opacity = "1";
+
+                     }else if(this.animationFadeCaounter === 2){
+
+                        console.log(op.toFixed(1));
+
+                        console.log("dianaSlider-f has finished");
+
+                        clearInterval(this.bgMove);
+
+                        clearInterval(this.fade);
+                       // this.called = true;
+
+                        this.resetImagesStyles();
+
+                        this.animationFadeInOut("lastImage");
+
+                        
+                    }else if(this.animationFadeCaounter === 3){
+                        
+                        clearInterval(this.bgMove);
+
+                        clearInterval(this.fade);
+
+                        console.log("lastImage has finished");
+                        
+                    }
 
                     
                 }else{
@@ -171,7 +207,6 @@ export class ImageAnimation{
 
                 }
 
-           }
           
           
         }, 15);
@@ -210,19 +245,40 @@ export class ImageAnimation{
            
 
             if(move.toFixed(0) <= -150 && called === true){
-
-                    this.callINtervlaSecondTime = true;
-                    this.animationFadeInOut("dianaSlider-f");
-                    console.log("second times");
-                  // this.runSecondInterval("dianaSlider-f"); 
-               
+    
+                this.animationFadeInOut(this.divNameF);
                 
-
                 called = false;
             }
 
         });
     }
+
+
+
+
+    // Last image animation
+    resetImagesStyles(){
+
+        let changeImageName = imgAniImageManager.imgName(0);
+                        
+        imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-s");
+
+        let el = document.getElementById("dianaSlider-f");
+
+        let elS = document.getElementById("dianaSlider-s");
+
+       
+
+
+    }
+
+
+
+
+
+
+
 
 
 

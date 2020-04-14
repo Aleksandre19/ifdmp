@@ -11,8 +11,8 @@
 }
 
 
-#dianaSlider-f, #dianaSlider-s{
-    position: relative;
+#dianaSlider-f, #dianaSlider-s, #lastImage{
+    
     width: 100%;
     height: 100%;
     background-position: top;
@@ -20,11 +20,27 @@
     background-size: cover;
     background-repeat: no-repeat !important; 
     z-index: 10;
+     position: absolute;
+     top: 0;
+     left: 0;
 }
 
- #dianaSlider-s{
+ #dianaSlider-s, #lastImage{
     position: absolute;
      top: 0;
      left: 0;
  }
+
+ .resset_animation {
+     position: relative;
+    width: 100%;
+    height: 100%;
+    background-position: top;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat !important; 
+    z-index: 10;
+    opacity: 1;
+ }
+
 
