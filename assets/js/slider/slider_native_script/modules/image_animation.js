@@ -77,19 +77,25 @@ export class ImageAnimation{
                         // Setting second backgroud image to the second div element with id #dianaSlider-f
                         if(imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-f")){
 
+                                // When this function calles second time it takes 3 and half second timeout to finish processec before calling next function
                                 if(this.animationFadeCaounter >= 1){
+
                                     console.log("Animation has called second time");
+
                                     setTimeout(() => {
-                                    //let el = document.getElementById("dianaSlider-f").style.zIndex = "10";
+                                        
                                         this.animationFadeInOut(elDivId);
+
                                     }, 3500);
+
                                 }else{
                                     console.log("Animation has called first time");
+
                                     // Calling animation opacity changer function
                                     this.animationFadeInOut(elDivId); 
                                 }    
                         }else{
-
+                            // In other cases it returns false
                             return false;
 
                         }
@@ -99,9 +105,6 @@ export class ImageAnimation{
                         
                         // In case there is some mistake in image name so throw new error
                         imgAniMessage.getMessage("There was a some problem! Please check image names in config.js");
-
-                        // Stopping animation
-                       
 
                         return false;
                     }
@@ -133,6 +136,7 @@ export class ImageAnimation{
         // Counting how much was called this function
         this.animationFadeCaounter++;
 
+        // When step counter reaches more than 3 it resetts back to 1
         if(this.animationFadeCaounter > 3 || this.animationFadeCaounter < 0){
             this.animationFadeCaounter = 1;
         }
@@ -148,9 +152,9 @@ export class ImageAnimation{
     
            document.getElementById(fadeID).style.opacity = `${op}`;
 
-           
+           // When there is last step this code calles animations's circle again
            if(this.animationFadeCaounter === 3 && this.callAnimationAgain){
-        
+    
                 this.called = true;
                     
                 this.imageAnimation("dianaSlider-s", sessionStorage.getItem("imageNaturalWidth"));
@@ -168,7 +172,7 @@ export class ImageAnimation{
                 // Setting value to identify that this if statment was called once inside interval
                 this.called = false;
 
-            }else if(op.toFixed(1) < 0.0){ // when image oopacity goes down than 0.1 we stop animation
+            }else if(op.toFixed(1) < 0.0){ // when image oopacity goes down than 0.0 we call transition controller function
 
                 this.transitionController(this.animationFadeCaounter);
                     
@@ -214,7 +218,7 @@ export class ImageAnimation{
             // Incirsing in size to cover div element
             el.style.backgroundSize = "120%";
            
-
+            // Then image's top reaches to - 150 we call fadeout function
             if(move.toFixed(0) <= -150 && called === true){
     
                 this.animationFadeInOut(this.divNameF);
@@ -226,6 +230,8 @@ export class ImageAnimation{
     }
 
 
+
+    // This functuons controlls transitions between images
     transitionController(step){
 
         if(step === 1){
@@ -241,71 +247,45 @@ export class ImageAnimation{
             // Setting second background image to the #dianaSlider-s
             imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "lastImage");
 
-            // Getting #dianaSlider-s" element  
-            let el = document.getElementById("dianaSlider-s");
-
-            // Setting z-index to the #ianaSlider-s
-            el.style.zIndex = "5";
-                        
-            // Resetting #ianaSlider-s" opacity 
-            el.style.opacity = "1";
-
-            el.style.backgroundImage = "";
-
-            el.style.backgroundSize = `${sessionStorage.getItem("imageNaturalWidth")}px`;
+            // Calling style resett function
+            this.styleResetter(step);
 
             console.log("dianaSlider-s has finished");
 
 
          }else if(step === 2){
 
-
+            // Stoping background moving function
             clearInterval(this.bgMove);
 
-             clearInterval(this.fade);
+            // Stoping fade outing function
+            clearInterval(this.fade);
 
+            // Getting first image name
             let changeImageName = imgAniImageManager.imgName(0);
-                        
+            
+            // Setting first image as a background to #dianaSlider-s div element
             imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-s");
 
-            let el = document.getElementById("dianaSlider-f");
-
-            el.style.backgroundPosition = "0px 0px";
-
-            el.style.zIndex = "5";
-
-            el.style.opacity = "1";
-
-            this.callAnimationAgain = true;
+            // Calling resett function
+            this.styleResetter(step);
 
             console.log("dianaSlider-f has finished");
 
+            // Calling fadeout function
             this.animationFadeInOut("lastImage");
 
                         
         }else if(step === 3){
-                        
+
+             // Stoping background moving function            
             clearInterval(this.bgMove);
 
+            // Stoping fade outing function
             clearInterval(this.fade);
 
-            let el = document.getElementById("dianaSlider-s");
-
-            let el2 = document.getElementById("lastImage");
-
-            let el3 = document.getElementById("dianaSlider-f");
-
-            el.style.zIndex = "10";
-
-            el2.style.opacity = "1";
-
-            el2.style.backgroundImage = "";
-
-            el3.style.zIndex = "10";
-
-           // el3.style.backgroundImage = "";
-
-            this.hasEnteredSecondTime = true;
+            // Calling resett function
+            this.styleResetter(step);
 
             console.log("lastImage has finished");
                         
@@ -318,79 +298,66 @@ export class ImageAnimation{
     }
 
 
+    // Resetting styles for html div elements on each steps
+    styleResetter(step){
 
+        if(step === 1){
 
-    lastStep(){
-         
-    }
+             // Getting #dianaSlider-s" element  
+            let el = document.getElementById("dianaSlider-s");
 
-
-
-
-
-
-
-
-    // Last image animation
-    resetImagesStyles(){
-
-        let changeImageName = imgAniImageManager.imgName(0);
+            // Setting z-index to the #ianaSlider-s
+            el.style.zIndex = "5";
                         
-        imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-s");
+            // Resetting #ianaSlider-s" opacity 
+            el.style.opacity = "1";
 
-        let el = document.getElementById("dianaSlider-f");
+            //Setting nothing to the #dianaSlider-s background
+            el.style.backgroundImage = "";
 
-        let elS = document.getElementById("dianaSlider-s");
+            // Setting original sizes
+            el.style.backgroundSize = `${sessionStorage.getItem("imageNaturalWidth")}px`;
 
-       
+        }else if(step === 2){
 
+            // Getting element in variable
+            let el = document.getElementById("dianaSlider-f");
 
-    }
+            // resetting element's positions to 0s
+            el.style.backgroundPosition = "0px 0px";
 
+            // Setting z-index to 5
+            el.style.zIndex = "5";
 
+            // Making fully visible
+            el.style.opacity = "1";
 
+            this.callAnimationAgain = true;
 
+        }else if(step === 3){
 
+            // Getting elements to variables
+            let el = document.getElementById("dianaSlider-s");
+            let el2 = document.getElementById("lastImage");
+            let el3 = document.getElementById("dianaSlider-f");
 
+            // Resetting z-index back to 10
+            el.style.zIndex = "10";
 
+            // Making fully visible
+            el2.style.opacity = "1";
 
+            // Setting background to nothing
+            el2.style.backgroundImage = "";
 
+            // Resetting z-index back to 10
+            el3.style.zIndex = "10";
 
-
-    // Setting names to slider divs 
-    sliderDivName(id){
-
-        if(id%2 == 0 ){
-            this.divNameF = "dianaSlider-f";
-        }else if((id - 1) > imgAniImageManager.imgName.length){
-            this.divNameF = "dianaSlider-f"
         }else{
-            this.divNameF = "dianaSlider-f"
+            return false;
         }
-    }
 
-
-    runSecondInterval(id){
-
-         let op = 1;
-
-        this.secondInterval =  setInterval(() => {
-
-               op -= 0.003;
-    
-               document.getElementById(id).style.opacity = `${op}`;
-
-        }, 15); 
     }
     
-
-    setXandYpositions(id){
-
-        let imageX = document.getElementById("dianaSlider-f").style.backgroundPositionX;
-        let imageY = document.getElementById("dianaSlider-f").style.backgroundPositionY;
-        
-        document.getElementById("dianaSlider-f").style.backgroundPosition = `${imageX}px ${imageY}px`;
-
-         return true;
-    }
+// End of the Class     
 }
