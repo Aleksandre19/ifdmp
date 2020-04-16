@@ -27,13 +27,10 @@ export class ImageAnimation{
 
         this.callAnimationAgain = true;
         this.hasEnteredSecondTime = false;
+        this.oneCircleHasFinished = false;
 
 
     }
-
-
-
-
 
 
     imageAnimation(naturalWidth, imgAniDivId){
@@ -45,14 +42,13 @@ export class ImageAnimation{
 
     // Animating image's width
     animateImageInSize(elDivId , natW){
-            
+
             // If there is Ipad Pro then we incrise natural width by 10% to hide emnpty space during animation
             if(imgAniImageManager.screenResolution === "iPro"){
                 this.naturalW = (Number(natW) * 10 / 100) + Number(natW);
             }else{
                 this.naturalW = natW;
             }
-
 
             // Saving image's starting width
             // If device is Ipad pro then we save 10% incrised natural with to hide empty space suring animation 
@@ -68,34 +64,24 @@ export class ImageAnimation{
                 document.getElementById(elDivId).style.backgroundSize = `${scaledUpWidth}px`;
 
                 // When image's dimention is increased by 7% going on next step
-                if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
-                
+                if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){     
 
                     // Getting second image name to set second div background image with
-                    let changeImageName = imgAniImageManager.imgName(1);
+                    let changeImageName = imgAniImageManager.imgName(0);
 
                     if(changeImageName){
 
                         // Setting second backgroud image to the second div element with id #dianaSlider-f
                         if(imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-f")){
 
-                                // When this function calles second time it takes 5 seconds timeout to finish processes before calling next function
-                                if(this.animationFadeCaounter >= 1){
-
-                                    console.log("Animation has called second time");
-
-                                    setTimeout(() => {
+                                // Only first time we call fade out function in sequence.
+                                // Next time we call that function end of the each circle
+                                if(this.animationFadeCaounter === 0){
                                         
-                                        this.animationFadeInOut(elDivId);
+                                    this.animationFadeInOut(elDivId);
 
-                                    }, 5000);
-
-                                }else{
-                                    console.log("Animation has called first time");
-
-                                    // Calling animation opacity changer function
-                                    this.animationFadeInOut(elDivId); 
                                 }    
+
                         }else{
                             // In other cases it returns false
                             return false;
@@ -128,9 +114,6 @@ export class ImageAnimation{
     calculateImageIncreasedDemision(sUpWidth){
         return (sUpWidth - _imageStartingNaturLWidth.get(this)) / _imageStartingNaturLWidth.get(this) * 100;
     }
-
-
-
 
     // Animating opacity of image
     animationFadeInOut(fadeID){
@@ -218,7 +201,7 @@ export class ImageAnimation{
             // Dependign on screen resolution we incirsing image in size to cover div element during animation
             if(imgAniImageManager.screenResolution === "md"){
                 // Medium screen size
-               el.style.backgroundSize = "130%"; 
+               el.style.backgroundSize = "135%"; 
 
             }else if(imgAniImageManager.screenResolution === "sm"){
                 // Small screen size
@@ -277,7 +260,7 @@ export class ImageAnimation{
             clearInterval(this.fade);
 
             // Getting first image name
-            let changeImageName = imgAniImageManager.imgName(0);
+            let changeImageName = imgAniImageManager.imgName(1);
             
             // Setting first image as a background to #dianaSlider-s div element
             imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-s");
@@ -301,6 +284,9 @@ export class ImageAnimation{
 
             // Calling resett function
             this.styleResetter(step);
+            
+            // Calling fade out function
+            this.animationFadeInOut("dianaSlider-s");
 
             console.log("lastImage has finished");
                         

@@ -12,7 +12,7 @@ export class AnimationManager{
 
     constructor(){
         
-        this.imgOrderInConfig = 0;
+        this.imgOrderInConfig = 1;
         this.divId = "dianaSlider-s";
 
         //Checking if settiing are ok
@@ -20,7 +20,7 @@ export class AnimationManager{
 
             // Getting image name 
             let currenImgName = anManImageManager.imgName(this.imgOrderInConfig);
-
+            
             // Setting background image to the div element 
             if(anManImageManager.setBackgroundImageToTheDiv(currenImgName, this.divId)){
 
