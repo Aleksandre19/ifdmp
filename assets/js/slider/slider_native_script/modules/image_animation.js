@@ -37,34 +37,36 @@ export class ImageAnimation{
 
 
     imageAnimation(naturalWidth, imgAniDivId){
-       
+        
         this.animateImageInSize(naturalWidth, imgAniDivId);
     }
-
-
-
-
 
 
 
     // Animating image's width
     animateImageInSize(elDivId , natW){
             
-            this.naturalW = natW;
-            // Saving image's starting width  
-             _imageStartingNaturLWidth.set(this, natW);
+            // If there is Ipad Pro then we incrise natural width by 10% to hide emnpty space during animation
+            if(imgAniImageManager.screenResolution === "iPro"){
+                this.naturalW = (Number(natW) * 10 / 100) + Number(natW);
+            }else{
+                this.naturalW = natW;
+            }
+
+
+            // Saving image's starting width
+            // If device is Ipad pro then we save 10% incrised natural with to hide empty space suring animation 
+             _imageStartingNaturLWidth.set(this, (imgAniImageManager.screenResolution != "iPro" ? natW : this.naturalW));
 
            // Defining variable to check if function has been called   
             _functionHasCalled.set(this, true);
 
-            
             this.anInSize = setInterval(() => {
-                
+               
                 let scaledUpWidth = this.naturalW++;
 
                 document.getElementById(elDivId).style.backgroundSize = `${scaledUpWidth}px`;
 
-                
                 // When image's dimention is increased by 7% going on next step
                 if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){
                 
@@ -77,7 +79,7 @@ export class ImageAnimation{
                         // Setting second backgroud image to the second div element with id #dianaSlider-f
                         if(imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-f")){
 
-                                // When this function calles second time it takes 3 and half second timeout to finish processec before calling next function
+                                // When this function calles second time it takes 5 seconds timeout to finish processes before calling next function
                                 if(this.animationFadeCaounter >= 1){
 
                                     console.log("Animation has called second time");
@@ -86,7 +88,7 @@ export class ImageAnimation{
                                         
                                         this.animationFadeInOut(elDivId);
 
-                                    }, 3500);
+                                    }, 5000);
 
                                 }else{
                                     console.log("Animation has called first time");
@@ -181,7 +183,6 @@ export class ImageAnimation{
                 return false;
     
             }
-
           
           
         }, 15);
@@ -208,15 +209,29 @@ export class ImageAnimation{
         // Running timer for animation
         this.bgMove = setInterval(() => {
 
-
             // Decreasing move variable by 0.1 unit 
             move -= 0.1;
             
             // Animating positions
             el.style.backgroundPosition = `${move}px ${move}px`;
 
-            // Incirsing in size to cover div element
-            el.style.backgroundSize = "120%";
+            // Dependign on screen resolution we incirsing image in size to cover div element during animation
+            if(imgAniImageManager.screenResolution === "md"){
+                // Medium screen size
+               el.style.backgroundSize = "130%"; 
+
+            }else if(imgAniImageManager.screenResolution === "sm"){
+                // Small screen size
+                el.style.backgroundSize = "220%";
+
+            }else if(imgAniImageManager.screenResolution === "iPro"){
+                // Ipad Pro
+                el.style.backgroundSize = "240%";    
+            }else{
+
+                // Large screen size
+                el.style.backgroundSize = "120%";
+            }    
            
             // Then image's top reaches to - 150 we call fadeout function
             if(move.toFixed(0) <= -150 && called === true){
@@ -358,6 +373,6 @@ export class ImageAnimation{
         }
 
     }
-    
+
 // End of the Class     
 }

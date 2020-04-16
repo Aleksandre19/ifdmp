@@ -45,12 +45,29 @@ export class ImageManager{
     imageFullPath(imgNames){
 
         let dom = window.location.href;
-        let folderUrl = 'assets/js/slider/slider_images/lg/';
+        let folderUrl = `assets/js/slider/slider_images/${(this.screenResolution != "iPro" ? this.screenResolution : "lg")}/`;
         let imgName = imgNames;
         let imgFullUrl = dom + folderUrl + imgName;
 
         return imgFullUrl;
 
+    }
+
+    // Getting device screen size
+    get screenResolution(){
+
+        let screenW = window.screen.width;
+        let screenH = window.screen.height;
+
+        if(screenW < 576){// Small devices
+            return "sm";
+        }else if(screenW < 992){// Medium devices
+            return "md";
+        }else if(screenW === 1024 && screenH === 1366){// Ipad pro
+            return "iPro";
+        }else{
+            return "lg";// Large devices
+        }
     }
 
 

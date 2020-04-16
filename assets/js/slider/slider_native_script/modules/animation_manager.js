@@ -26,11 +26,11 @@ export class AnimationManager{
 
                 // If background image was set so get natural demisions
                 if(anManImageManager.getNaturalDimension(currenImgName, this.divId)){
-
+                    
                     // Calling Image Animation function from image_animation.js
                     anManImageAnimation.imageAnimation(this.divId, sessionStorage.getItem("imageNaturalWidth"));
-                    
-
+                  
+                    console.log("Your screen resolution is: " + window.screen.width + "x" + window.screen.height);
                 }
        
             }
@@ -39,6 +39,9 @@ export class AnimationManager{
            
         }
     }
+
+
+    
 
 
 }

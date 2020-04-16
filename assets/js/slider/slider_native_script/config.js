@@ -4,9 +4,9 @@ export class Config{
     constructor(){
         _imageNames.set(this,[
             // Write image names here
-            'family-lg.jpg',
-            'food-lg.jpg',
-            'yoga-lg.jpg'
+            'family.jpg',
+            'food.jpg',
+            'yoga.jpg'
 
         ])
     }
