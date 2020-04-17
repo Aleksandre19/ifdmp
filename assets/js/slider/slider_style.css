@@ -55,7 +55,8 @@
 
 .img_text{
     font-size: 80px;
-    text-align: center;  
+    text-align: center; 
+    transform: translate(-150%, -100px); 
 }
 
 .img_author{
