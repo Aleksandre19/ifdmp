@@ -1,7 +1,11 @@
 import {AnimationManager} from './modules/animation_manager.js';
+import {AnimationTexts} from './modules/animation_text.js';
+
 
 const an = new AnimationManager();
 
+
+const text = new AnimationTexts();
 
 
 //import {DianaSliderMessageBox} from './modules1/message.js';
