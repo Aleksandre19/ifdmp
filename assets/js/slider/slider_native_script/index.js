@@ -1,11 +1,15 @@
 import {AnimationManager} from './modules/animation_manager.js';
 import {AnimationTexts} from './modules/animation_text.js';
 
+export class AnimationIndex{
+    constructor(){
+        const an = new AnimationManager();
+        const text = new AnimationTexts();
+    }
+}
 
-const an = new AnimationManager();
+const index = new AnimationIndex();
 
-
-const text = new AnimationTexts();
 
 
 //import {DianaSliderMessageBox} from './modules1/message.js';

@@ -11,10 +11,14 @@ export class AnimationTexts{
         }
         
         this.animateText = null;
+        this.textAuthor = null;
 
         this.insertImageTextsInDiv("text-f", "author-f", 0);
         this.imageTextAnimation("text-f");
+        this.textAuthorAnimation("author-f");
     }
+
+
 
 
     insertImageTextsInDiv(textID, authorID, imgOrder){
@@ -25,6 +29,8 @@ export class AnimationTexts{
         text.innerHTML = `${this.imageText(imgOrder, 0)}`;
         author.innerHTML = `${this.imageText(imgOrder, 1)}`;
     }
+
+
 
 
     imageTextAnimation(id){
@@ -49,4 +55,32 @@ export class AnimationTexts{
         });
 
     }
+
+
+
+    textAuthorAnimation(id){
+        
+        let right = 130;
+
+        this.textAuthor = setInterval(() => {
+
+            if(right.toFixed(0) <= -70){
+                clearInterval(this.textAuthor);
+                right = 130;
+            } else if(right.toFixed(0) <= 60){
+                right -= 0.8;
+            }else if(right.toFixed(0) <= 70){
+                right -= 0.007;
+            }else {
+                 right -= 0.5;
+            }
+
+            document.getElementById(id).style.transform = `translateX(${right}%)`;
+
+        });
+
+    }
+
+
+
 }
