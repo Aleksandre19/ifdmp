@@ -1,8 +1,10 @@
 import {ImageManager} from './image_manager.js';
 import {DianaSliderMessageBox} from './animation_message.js';
+import {AnimationTexts} from './animation_text.js';
 
 const imgAniImageManager = new ImageManager();
 const imgAniMessage = new DianaSliderMessageBox();
+const imgAniTextAnimation = new AnimationTexts();
 
 // Defining private variables by using WeakMap()
 const _imageStartingNaturLWidth = new WeakMap();
@@ -36,6 +38,13 @@ export class ImageAnimation{
     imageAnimation(naturalWidth, imgAniDivId){
         
         this.animateImageInSize(naturalWidth, imgAniDivId);
+
+        // Calling Image text animation functions
+       imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
+        //imgAniTextAnimation.imageTextAnimation("text-f");
+        //imgAniTextAnimation.textAuthorAnimation("author-f");
+
+        imgAniTextAnimation.startImageTextAnimation;
     }
 
 
@@ -129,17 +138,17 @@ export class ImageAnimation{
         console.log(this.animationFadeCaounter);
         // Defining opacity variable
         let op = 1;
-        
+
         this.fade =  setInterval(() => {
 
            // Decrementing opacity by 0.003 each time
            op -= 0.003;
-    
+                      
            document.getElementById(fadeID).style.opacity = `${op}`;
 
            // When there is last step this code calles animations's circle again
            if(this.animationFadeCaounter === 3 && this.callAnimationAgain){
-    
+
                 this.called = true;
                     
                 this.imageAnimation("dianaSlider-s", sessionStorage.getItem("imageNaturalWidth"));
@@ -183,18 +192,43 @@ export class ImageAnimation{
           // Declaring variable for moving ration 
         let move = 1;
 
+        
+
         // Gettig element
         let el = document.getElementById(id);
 
 
         let called = true;
 
+        let called2 = true;
+         
+        let called3 = true;
+
         // Running timer for animation
         this.bgMove = setInterval(() => {
 
             // Decreasing move variable by 0.1 unit 
             move -= 0.1;
-            
+
+            if(move.toFixed(0) <= -100 && called2){
+               
+               imgAniTextAnimation.finishImageTextAnimation;
+               // imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
+               // imgAniTextAnimation.imageTextAnimation("text-f");
+               // imgAniTextAnimation.textAuthorAnimation("author-f");
+
+                called2 = false;
+            }
+
+            if(move.toFixed(0) <= -150 && called3){
+                
+              //  imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
+               // imgAniTextAnimation.imageTextAnimation("text-f");
+                //imgAniTextAnimation.textAuthorAnimation("author-f");
+
+                //called3 = false;
+            }
+
             // Animating positions
             el.style.backgroundPosition = `${move}px ${move}px`;
 
@@ -269,6 +303,7 @@ export class ImageAnimation{
             this.styleResetter(step);
 
             console.log("dianaSlider-f has finished");
+
 
             // Calling fadeout function
             this.animationFadeInOut("lastImage");

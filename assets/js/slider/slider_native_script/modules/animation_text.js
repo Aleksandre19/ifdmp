@@ -10,22 +10,26 @@ export class AnimationTexts{
             return imgText.imageTexts[img][desc];
         }
         
-        this.animateText = null;
+        this.startAnimateText = null;
+        this.finishAnimateText = null;
         this.textAuthor = null;
 
-        this.insertImageTextsInDiv("text-f", "author-f", 0);
-        this.imageTextAnimation("text-f");
-        this.textAuthorAnimation("author-f");
+        this.left = -150; // For animations text
+        this.right = 130; // For author
+        
     }
 
 
 
-
+    // Setting texts to div
     insertImageTextsInDiv(textID, authorID, imgOrder){
         
         let text = document.getElementById(textID);
         let author = document.getElementById(authorID);
 
+        text.innerHTML = '';
+        author.innerHTML = ''; 
+        
         text.innerHTML = `${this.imageText(imgOrder, 0)}`;
         author.innerHTML = `${this.imageText(imgOrder, 1)}`;
     }
@@ -33,24 +37,30 @@ export class AnimationTexts{
 
 
 
-    imageTextAnimation(id){
+  
+    // starting animating of text
+    get startImageTextAnimation(){
 
-        let left = -150;
+        this.startAnimateText = setInterval(() => {
 
-        this.animateText = setInterval(() => {
-            
-            if(left.toFixed(0) >= 300){
-                clearInterval(this.animateText);
-                left = -150;
-            } else if(left.toFixed(0) <= 0){
-                left += 0.7;
-            }else if(left.toFixed(0) >= 13){
-                left += 0.9;
+            // Checking for text
+            if(this.left.toFixed(0) >= 0){   
+                 this.left += 0.01;   
             }else{
-                left += 0.01;
+                this.left += 0.9;
             }
-           
-            document.getElementById(id).style.transform = `translate(${left}%)`;
+
+            // Checking for author
+            if(this.right <= 70){
+                this.right -= 0.01;
+            }else{
+                this.right -= 0.9;
+            }
+
+            // Moving text
+            document.getElementById("text-f").style.transform = `translateX(${this.left}%)`;
+            // Moving author
+            document.getElementById("author-f").style.transform = `translateX(${this.right}%)`;
 
         });
 
@@ -58,24 +68,24 @@ export class AnimationTexts{
 
 
 
-    textAuthorAnimation(id){
+    // Finishing animating of texts
+    get finishImageTextAnimation(){
         
-        let right = 130;
+        this.finishAnimateText = setInterval(() => {
 
-        this.textAuthor = setInterval(() => {
+            if(this.left.toFixed(0) >= 300){
+                 
+                 clearInterval(this.finishAnimateText);
+                 clearInterval(this.startAnimateText);     
+                    
+                 this.left = -150; // Text
+                 this.right = 130; // Author
 
-            if(right.toFixed(0) <= -70){
-                clearInterval(this.textAuthor);
-                right = 130;
-            } else if(right.toFixed(0) <= 60){
-                right -= 0.8;
-            }else if(right.toFixed(0) <= 70){
-                right -= 0.007;
-            }else {
-                 right -= 0.5;
-            }
+            }else{
 
-            document.getElementById(id).style.transform = `translateX(${right}%)`;
+                this.left += 0.9; // Text
+                this.right -= 0.9; // Author
+            } 
 
         });
 

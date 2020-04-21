@@ -16,6 +16,14 @@ export class Config{
             [// First image's text
                 "What you eat is what you will look!",
                 "- Diana Voronina - Akhvlediani" 
+            ],
+            [
+                "A happy family is but an earlier heaven",
+                "–George Bernard Shaw"
+            ],
+            [
+                "Paradise is not a place, it’s a state of consciousness",
+                "–Sri Chinmoy"
             ]
         ]);
     }

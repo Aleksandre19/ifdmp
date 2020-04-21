@@ -8,8 +8,9 @@ export class AnimationIndex{
     }
 }
 
-const index = new AnimationIndex();
 
+
+    const index = new AnimationIndex();
 
 
 //import {DianaSliderMessageBox} from './modules1/message.js';
