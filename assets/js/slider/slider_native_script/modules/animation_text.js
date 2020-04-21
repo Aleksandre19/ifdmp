@@ -1,6 +1,8 @@
 import {Config} from '../config.js';
+import {ImageManager} from './image_manager.js';
 
 const imgText = new Config();
+const imgMan = new ImageManager();
 
 export class AnimationTexts{
     
@@ -51,7 +53,7 @@ export class AnimationTexts{
             }
 
             // Checking for author
-            if(this.right <= 70){
+            if(this.right <= (imgMan.screenResolution === "sm" ? 25 : 70 || imgMan.screenResolution === "md" ? 25 : 70) ){
                 this.right -= 0.01;
             }else{
                 this.right -= 0.9;

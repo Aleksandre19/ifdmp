@@ -211,15 +211,15 @@ export class ImageAnimation{
 
 
             // Managing text animation's transitions
-            if(move.toFixed(0) <= -280 && called6){
+            if(move.toFixed(0) <= -270 && called6){
 
                 imgAniTextAnimation.finishImageTextAnimation;
                 called6 = false;
 
             }else if(move.toFixed(0) <= -175 && called5){
 
-                imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
                 imgAniTextAnimation.startImageTextAnimation;
+                imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
                 called5 = false;
 
             }else if(move.toFixed(0) <= -170 && called4){
@@ -229,8 +229,8 @@ export class ImageAnimation{
 
             }else if(move.toFixed(0) <= -65 && called3){
                 
-               imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
                imgAniTextAnimation.startImageTextAnimation;
+               imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
                called3 = false;
 
             }else if(move.toFixed(0) <= -60 && called2){
@@ -272,16 +272,6 @@ export class ImageAnimation{
             }
 
         });
-    }
-
-
-
-
-    animatingText(i){
-
-    
-       
-
     }
 
 
