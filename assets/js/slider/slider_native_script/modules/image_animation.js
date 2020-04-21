@@ -41,10 +41,8 @@ export class ImageAnimation{
 
         // Calling Image text animation functions
        imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
-        //imgAniTextAnimation.imageTextAnimation("text-f");
-        //imgAniTextAnimation.textAuthorAnimation("author-f");
+       imgAniTextAnimation.startImageTextAnimation;
 
-        imgAniTextAnimation.startImageTextAnimation;
     }
 
 
@@ -197,12 +195,13 @@ export class ImageAnimation{
         // Gettig element
         let el = document.getElementById(id);
 
-
+        // Variables to check that conditional statment has been called only once inside setInterval();
         let called = true;
-
-        let called2 = true;
-         
+        let called2 = true;    
         let called3 = true;
+        let called4 = true;
+        let called5 = true;
+        let called6 = true;
 
         // Running timer for animation
         this.bgMove = setInterval(() => {
@@ -210,24 +209,38 @@ export class ImageAnimation{
             // Decreasing move variable by 0.1 unit 
             move -= 0.1;
 
-            if(move.toFixed(0) <= -100 && called2){
+
+            // Managing text animation's transitions
+            if(move.toFixed(0) <= -280 && called6){
+
+                imgAniTextAnimation.finishImageTextAnimation;
+                called6 = false;
+
+            }else if(move.toFixed(0) <= -175 && called5){
+
+                imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
+                imgAniTextAnimation.startImageTextAnimation;
+                called5 = false;
+
+            }else if(move.toFixed(0) <= -170 && called4){
+
+                imgAniTextAnimation.finishImageTextAnimation;
+                called4 = false;
+
+            }else if(move.toFixed(0) <= -65 && called3){
+                
+               imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
+               imgAniTextAnimation.startImageTextAnimation;
+               called3 = false;
+
+            }else if(move.toFixed(0) <= -60 && called2){
                
                imgAniTextAnimation.finishImageTextAnimation;
-               // imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
-               // imgAniTextAnimation.imageTextAnimation("text-f");
-               // imgAniTextAnimation.textAuthorAnimation("author-f");
+               called2 = false;
 
-                called2 = false;
             }
 
-            if(move.toFixed(0) <= -150 && called3){
-                
-              //  imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
-               // imgAniTextAnimation.imageTextAnimation("text-f");
-                //imgAniTextAnimation.textAuthorAnimation("author-f");
-
-                //called3 = false;
-            }
+           
 
             // Animating positions
             el.style.backgroundPosition = `${move}px ${move}px`;
@@ -259,6 +272,16 @@ export class ImageAnimation{
             }
 
         });
+    }
+
+
+
+
+    animatingText(i){
+
+    
+       
+
     }
 
 
