@@ -39,6 +39,7 @@ export class ImageAnimation{
         
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
+       
         // Calling Image text animation functions
        imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
        imgAniTextAnimation.startImageTextAnimation;
@@ -281,6 +282,9 @@ export class ImageAnimation{
 
         if(step === 1){
 
+            // Activating second slider button
+            this.activeCurrentSlideButton("second_btn");
+
             // Stopin this interval 
             clearInterval(this.fade); 
 
@@ -299,6 +303,9 @@ export class ImageAnimation{
 
 
          }else if(step === 2){
+
+            // Activating third slider button
+            this.activeCurrentSlideButton("third_btn");
 
             // Stoping background moving function
             clearInterval(this.bgMove);
@@ -323,6 +330,9 @@ export class ImageAnimation{
 
                         
         }else if(step === 3){
+
+            // Activating frist slider button
+            this.activeCurrentSlideButton("first_btn");            
 
              // Stoping background moving function            
             clearInterval(this.bgMove);
@@ -407,6 +417,29 @@ export class ImageAnimation{
         }
 
     }
+
+
+
+
+    activeCurrentSlideButton(id){
+
+        this.removeSlidersActiveButton;
+
+        document.getElementById(id).classList.add("active_btn");
+       
+    }
+
+
+    get removeSlidersActiveButton(){
+
+       let el = document.getElementsByClassName("slide_changer_button");
+
+       for(let i = 0; i < el.length; i++){
+           el[i].classList.remove("active_btn");
+       }
+
+    }
+
 
 // End of the Class     
 }
