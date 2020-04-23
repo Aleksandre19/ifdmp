@@ -458,13 +458,31 @@ export class ImageAnimation{
         for(let i = 0; i < el.length; i++){
           
             document.getElementById(el[i].id).addEventListener("click", (event) =>{
-            
-                console.log(event);
-                
+
+    
                 event.preventDefault();
             });
         }
 
+    }
+
+
+    // Here we check which buttons is active
+    checkWhichIsActiveButton(data){
+        
+        for(let className of data){
+
+            if(className === "active_btn"){
+
+                return true;
+
+            }else{
+
+                return false;
+
+            }
+
+        }
     }
 
 
