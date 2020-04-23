@@ -31,6 +31,8 @@ export class ImageAnimation{
         this.hasEnteredSecondTime = false;
         this.oneCircleHasFinished = false;
 
+         this.settingEvenListenerToButtons;
+        
 
     }
 
@@ -39,7 +41,6 @@ export class ImageAnimation{
         
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
-       
         // Calling Image text animation functions
        imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
        imgAniTextAnimation.startImageTextAnimation;
@@ -50,6 +51,8 @@ export class ImageAnimation{
 
     // Animating image's width
     animateImageInSize(elDivId , natW){
+
+        
 
             // If there is Ipad Pro then we incrise natural width by 10% to hide emnpty space during animation
             if(imgAniImageManager.screenResolution === "iPro"){
@@ -282,6 +285,8 @@ export class ImageAnimation{
 
         if(step === 1){
 
+            console.log("step 1" );
+
             // Activating second slider button
             this.activeCurrentSlideButton("second_btn");
 
@@ -303,6 +308,8 @@ export class ImageAnimation{
 
 
          }else if(step === 2){
+
+            console.log("step 2" );
 
             // Activating third slider button
             this.activeCurrentSlideButton("third_btn");
@@ -330,6 +337,8 @@ export class ImageAnimation{
 
                         
         }else if(step === 3){
+
+            console.log("step 2");
 
             // Activating frist slider button
             this.activeCurrentSlideButton("first_btn");            
@@ -420,7 +429,7 @@ export class ImageAnimation{
 
 
 
-
+    // Setting aactive button's style to the current button
     activeCurrentSlideButton(id){
 
         this.removeSlidersActiveButton;
@@ -430,6 +439,7 @@ export class ImageAnimation{
     }
 
 
+    // Removing button's active style
     get removeSlidersActiveButton(){
 
        let el = document.getElementsByClassName("slide_changer_button");
@@ -439,6 +449,24 @@ export class ImageAnimation{
        }
 
     }
+
+    // Here we set click event listener to the slider switcher's buttons
+    get settingEvenListenerToButtons(){
+
+        let el = document.getElementsByClassName("slide_changer_button");
+
+        for(let i = 0; i < el.length; i++){
+          
+            document.getElementById(el[i].id).addEventListener("click", (event) =>{
+            
+                console.log(event);
+                
+                event.preventDefault();
+            });
+        }
+
+    }
+
 
 
 // End of the Class     
