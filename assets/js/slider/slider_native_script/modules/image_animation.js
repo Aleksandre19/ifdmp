@@ -19,6 +19,7 @@ export class ImageAnimation{
 
         this.anInSize = null;
         this.fade = null;
+
         this.secondInterval = null;
         this.animationFadeCaounter = 0;
         this.divNameF = "dianaSlider-f";
@@ -31,7 +32,9 @@ export class ImageAnimation{
         this.hasEnteredSecondTime = false;
         this.oneCircleHasFinished = false;
 
-         this.settingEvenListenerToButtons;
+        this.settingEvenListenerToButtons;
+
+        this.saveSteps = [];
         
 
     }
@@ -68,6 +71,9 @@ export class ImageAnimation{
            // Defining variable to check if function has been called   
             _functionHasCalled.set(this, true);
 
+            // Saving interval in to array to be able to now which interval is running
+            this.animationsStepsSaver('anInSize');
+            
             this.anInSize = setInterval(() => {
                
                 let scaledUpWidth = this.naturalW++;
@@ -88,7 +94,8 @@ export class ImageAnimation{
                                 // Only first time we call fade out function in sequence.
                                 // Next time we call that function end of the each circle
                                 if(this.animationFadeCaounter === 0){
-                                        
+                                       
+                                   
                                     this.animationFadeInOut(elDivId);
 
                                 }    
@@ -141,6 +148,10 @@ export class ImageAnimation{
         // Defining opacity variable
         let op = 1;
 
+         // Saving interval in to array to be able to now which interval is running
+         this.animationsStepsSaver('fade');
+
+
         this.fade =  setInterval(() => {
 
            // Decrementing opacity by 0.003 each time
@@ -170,7 +181,7 @@ export class ImageAnimation{
 
             }else if(op.toFixed(1) < 0.0){ // when image oopacity goes down than 0.0 we call transition controller function
 
-                this.transitionController(this.animationFadeCaounter);
+                this.transitionController(this.animationFadeCaounter, '');
                     
             }else{
                 // In any other casses returning false
@@ -206,6 +217,9 @@ export class ImageAnimation{
         let called4 = true;
         let called5 = true;
         let called6 = true;
+
+         // Saving interval in to array to be able to now which interval is running
+         this.animationsStepsSaver('bgMove');
 
         // Running timer for animation
         this.bgMove = setInterval(() => {
@@ -281,19 +295,24 @@ export class ImageAnimation{
 
 
     // This functuons controlls transitions between images
-    transitionController(step){
-
+    transitionController(step, btnId){
+        console.log("Now is: " + step );
         if(step === 1){
 
             console.log("step 1" );
 
             // Activating second slider button
-            this.activeCurrentSlideButton("second_btn");
+
+            this.activeCurrentSlideButton((btnId === '' ?  'second_btn' :  btnId));
 
             // Stopin this interval 
             clearInterval(this.fade); 
 
             clearInterval(this.anInSize);
+
+            // Removing finished intervals from array
+            this.removeAnimationStepsFromArray('fade');
+            this.removeAnimationStepsFromArray('anInSize');
 
             // Getting second image's name
             let changeImageName = imgAniImageManager.imgName(2);
@@ -312,13 +331,17 @@ export class ImageAnimation{
             console.log("step 2" );
 
             // Activating third slider button
-            this.activeCurrentSlideButton("third_btn");
+            this.activeCurrentSlideButton((btnId === '' ?  'third_btn' :  btnId));
 
             // Stoping background moving function
             clearInterval(this.bgMove);
 
             // Stoping fade outing function
             clearInterval(this.fade);
+
+            // Removing finished intervals from array
+            this.removeAnimationStepsFromArray('bgMove');
+            this.removeAnimationStepsFromArray('fade');
 
             // Getting first image name
             let changeImageName = imgAniImageManager.imgName(1);
@@ -338,16 +361,20 @@ export class ImageAnimation{
                         
         }else if(step === 3){
 
-            console.log("step 2");
+            console.log("step 3");
 
             // Activating frist slider button
-            this.activeCurrentSlideButton("first_btn");            
+            this.activeCurrentSlideButton((btnId === '' ?  'first_btn' :  btnId));            
 
              // Stoping background moving function            
             clearInterval(this.bgMove);
 
             // Stoping fade outing function
             clearInterval(this.fade);
+
+            // Removing finished intervals from array
+            this.removeAnimationStepsFromArray('bgMove');
+            this.removeAnimationStepsFromArray('fade');
 
             // Calling resett function
             this.styleResetter(step);
@@ -428,9 +455,37 @@ export class ImageAnimation{
     }
 
 
+    // Saving animations steps in array to be able to control it
+    animationsStepsSaver(val){
+
+        this.saveSteps.push(val);
+
+        console.log(this.saveSteps);
+
+    }
+
+
+    // Deleting animation's intervals from the array
+    removeAnimationStepsFromArray(val){
+
+        for(let i = 0; i < this.saveSteps.length; i++){
+
+            if(this.saveSteps[i] === val){
+                
+                this.saveSteps.splice(i, 1);
+
+                console.log(this.saveSteps);
+                
+            }
+        }
+
+    }
+
 
     // Setting aactive button's style to the current button
     activeCurrentSlideButton(id){
+
+        console.log(id);
 
         this.removeSlidersActiveButton;
 
@@ -459,12 +514,51 @@ export class ImageAnimation{
           
             document.getElementById(el[i].id).addEventListener("click", (event) =>{
 
-    
+                if(!this.checkWhichIsActiveButton(event.toElement.classList)){
+                    
+                   if(this.findButtonsOrderNumber(el[i].id) != this.animationFadeCaounter){
+
+                        this.sliderSwitcherByButtons(this.findButtonsOrderNumber(el[i].id), el[i].id);
+
+                   }
+
+                }else{
+                    
+                     event.preventDefault(); 
+                     return false;
+                    
+                }
+
                 event.preventDefault();
             });
         }
 
     }
+
+
+    // This function finds button's order number
+    findButtonsOrderNumber(id){
+
+        let el = document.getElementsByClassName('slide_changer_button');
+        
+        let orderNumber = 0;
+
+        for(let i = 0; i < el.length; i++){
+
+            if(el[i].id === id){
+
+                orderNumber = i+1;
+
+            }
+
+        }
+
+
+        return orderNumber;
+
+
+    }
+
 
 
     // Here we check which buttons is active
@@ -481,8 +575,66 @@ export class ImageAnimation{
                 return false;
 
             }
+        }
+    }
+
+
+
+
+
+
+
+    get stopAllIntervals(){
+        clearInterval(this.anInSize);
+        clearInterval(this.fade);
+        clearInterval(this.bgMove);
+    }
+
+    get defaultSettingsForAnimationElements(){
+
+        let el = document.getElementsByClassName('slideshow');
+
+        for(let i = 0; i < el.length; i++){
+
+            if(el[i].id != 'dianaSlider-s'){
+
+                el[i].style.backgroundImage = '';
+
+            }
+
+            el[i].zIndex = '20';
+        }
+
+        
+
+    }
+
+    sliderSwitcherByButtons(num, id){
+        
+        switch(num){
+
+            case 1:
+                this.stopAllIntervals;
+                this.defaultSettingsForAnimationElements;
+                imgAniImageManager.setBackgroundImageToTheDiv(imgAniImageManager.imgName(1), 'dianaSlider-s');
+                this.animateImageInSize('dianaSlider-s', 1800);
+                this.activeCurrentSlideButton(id);
+
+            break;
+
+            case 2:
+                this.stopAllIntervals;
+                // this.activeCurrentSlideButton(id);
+            break;
+            
+            case 3:
+                this.transitionController(2, id);
+                this.transitionController(1, id);
+                // this.activeCurrentSlideButton(id);
+            break;    
 
         }
+
     }
 
 

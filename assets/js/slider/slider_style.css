@@ -13,7 +13,9 @@
 }
 
 
-#dianaSlider-f, #dianaSlider-s, #lastImage{
+#dianaSlider-f,
+#dianaSlider-s, 
+#lastImage{
     width: 100%;
     height: 100%;
     background-position: top;
