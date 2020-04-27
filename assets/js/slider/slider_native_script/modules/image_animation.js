@@ -35,6 +35,8 @@ export class ImageAnimation{
         this.settingEvenListenerToButtons;
 
         this.saveSteps = [];
+
+        this.clickedOnButton = false;
         
 
     }
@@ -44,9 +46,15 @@ export class ImageAnimation{
         
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
-        // Calling Image text animation functions
-       imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
-       imgAniTextAnimation.startImageTextAnimation;
+      
+            // Calling Image text animation functions
+            if(this.clickedOnButton){
+                imgAniTextAnimation.finishImageTextAnimation
+            }
+           
+            imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
+            imgAniTextAnimation.startImageTextAnimation;
+        
 
     }
 
@@ -133,6 +141,8 @@ export class ImageAnimation{
         return (sUpWidth - _imageStartingNaturLWidth.get(this)) / _imageStartingNaturLWidth.get(this) * 100;
     }
 
+
+
     // Animating opacity of image
     animationFadeInOut(fadeID){
 
@@ -168,6 +178,8 @@ export class ImageAnimation{
 
                 this.callAnimationAgain = false;
 
+                this.clickedOnButton = false;
+
            }
 
            // When opacity is less or equal to 5 than calling a backgroundMoving function for second background image
@@ -180,7 +192,7 @@ export class ImageAnimation{
                 this.called = false;
 
             }else if(op.toFixed(1) < 0.0){ // when image oopacity goes down than 0.0 we call transition controller function
-
+                console.log("exla daiwyo");
                 this.transitionController(this.animationFadeCaounter, '');
                     
             }else{
@@ -226,7 +238,6 @@ export class ImageAnimation{
 
             // Decreasing move variable by 0.1 unit 
             move -= 0.1;
-
 
             // Managing text animation's transitions
             if(move.toFixed(0) <= -270 && called6){
@@ -334,14 +345,14 @@ export class ImageAnimation{
             this.activeCurrentSlideButton((btnId === '' ?  'third_btn' :  btnId));
 
             // Stoping background moving function
-            clearInterval(this.bgMove);
+            (this.checkIfIntervalexistsInArray ? clearInterval(this.bgMove) : "");
 
             // Stoping fade outing function
-            clearInterval(this.fade);
+            (this.checkIfIntervalexistsInArray ? clearInterval(this.fade) : "");
 
             // Removing finished intervals from array
-            this.removeAnimationStepsFromArray('this.bgMove');
-            this.removeAnimationStepsFromArray('this.fade');
+            (this.checkIfIntervalexistsInArray ? this.removeAnimationStepsFromArray('this.bgMove') : "" );
+            (this.checkIfIntervalexistsInArray ? this.removeAnimationStepsFromArray('this.fade') : "");
 
             // Getting first image name
             let changeImageName = imgAniImageManager.imgName(1);
@@ -478,6 +489,20 @@ export class ImageAnimation{
     }
 
 
+    checkIfIntervalexistsInArray(val){
+    
+        for(let i = 0; i < this.saveSteps.length; i++){
+
+            if(this.saveSteps[i] === val){
+                return true;
+            }else{
+                return false;
+            }
+
+        }    
+    }
+
+
     // Setting aactive button's style to the current button
     activeCurrentSlideButton(id){
 
@@ -514,7 +539,10 @@ export class ImageAnimation{
                     
                    if(this.findButtonsOrderNumber(el[i].id) != this.animationFadeCaounter){
 
-                        this.sliderSwitcherByButtons(this.findButtonsOrderNumber(el[i].id), el[i].id);
+                        if(this.saveSteps.length > 1){
+
+                            this.sliderSwitcherByButtons(this.findButtonsOrderNumber(el[i].id), el[i].id);
+                        }    
 
                    }
 
@@ -592,9 +620,27 @@ export class ImageAnimation{
     
     sliderSwitcherByButtons(num, id){
         
-      this.stopAllIntervals;
+        this.stopAllIntervals;
         
-        
+        if(num === 2 && this.animationFadeCaounter === 1){
+
+            this.transitionController(1, "second_btn");
+            this.animationFadeInOut(this.divNameF);
+            document.getElementById('dianaSlider-s').style.backgroundPosition = '0px 0px';
+            this.clickedOnButton = true;
+            imgAniTextAnimation.finishImageTextAnimation;
+            imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
+            imgAniTextAnimation.startImageTextAnimation;
+
+        }else if(num === 3 && this.animationFadeCaounter === 1 ){
+
+            this.transitionController(2, "third_btn");
+
+            //this.clickedOnButton = true;
+            //imgAniTextAnimation.finishImageTextAnimation;
+            //imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
+            //imgAniTextAnimation.startImageTextAnimation;
+        }
 
     }
 
