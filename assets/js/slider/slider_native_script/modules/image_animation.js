@@ -72,7 +72,7 @@ export class ImageAnimation{
             _functionHasCalled.set(this, true);
 
             // Saving interval in to array to be able to now which interval is running
-            this.animationsStepsSaver('anInSize');
+            this.animationsStepsSaver('this.anInSize');
             
             this.anInSize = setInterval(() => {
                
@@ -149,7 +149,7 @@ export class ImageAnimation{
         let op = 1;
 
          // Saving interval in to array to be able to now which interval is running
-         this.animationsStepsSaver('fade');
+         this.animationsStepsSaver('this.fade');
 
 
         this.fade =  setInterval(() => {
@@ -219,7 +219,7 @@ export class ImageAnimation{
         let called6 = true;
 
          // Saving interval in to array to be able to now which interval is running
-         this.animationsStepsSaver('bgMove');
+         this.animationsStepsSaver('this.bgMove');
 
         // Running timer for animation
         this.bgMove = setInterval(() => {
@@ -311,8 +311,8 @@ export class ImageAnimation{
             clearInterval(this.anInSize);
 
             // Removing finished intervals from array
-            this.removeAnimationStepsFromArray('fade');
-            this.removeAnimationStepsFromArray('anInSize');
+            this.removeAnimationStepsFromArray('this.fade');
+            this.removeAnimationStepsFromArray('this.anInSize');
 
             // Getting second image's name
             let changeImageName = imgAniImageManager.imgName(2);
@@ -340,8 +340,8 @@ export class ImageAnimation{
             clearInterval(this.fade);
 
             // Removing finished intervals from array
-            this.removeAnimationStepsFromArray('bgMove');
-            this.removeAnimationStepsFromArray('fade');
+            this.removeAnimationStepsFromArray('this.bgMove');
+            this.removeAnimationStepsFromArray('this.fade');
 
             // Getting first image name
             let changeImageName = imgAniImageManager.imgName(1);
@@ -373,8 +373,8 @@ export class ImageAnimation{
             clearInterval(this.fade);
 
             // Removing finished intervals from array
-            this.removeAnimationStepsFromArray('bgMove');
-            this.removeAnimationStepsFromArray('fade');
+            this.removeAnimationStepsFromArray('this.bgMove');
+            this.removeAnimationStepsFromArray('this.fade');
 
             // Calling resett function
             this.styleResetter(step);
@@ -460,8 +460,6 @@ export class ImageAnimation{
 
         this.saveSteps.push(val);
 
-        console.log(this.saveSteps);
-
     }
 
 
@@ -473,8 +471,6 @@ export class ImageAnimation{
             if(this.saveSteps[i] === val){
                 
                 this.saveSteps.splice(i, 1);
-
-                console.log(this.saveSteps);
                 
             }
         }
@@ -580,60 +576,25 @@ export class ImageAnimation{
 
 
 
-
-
-
-
+    // This function stops all current running intervals
     get stopAllIntervals(){
-        clearInterval(this.anInSize);
-        clearInterval(this.fade);
-        clearInterval(this.bgMove);
-    }
 
-    get defaultSettingsForAnimationElements(){
-
-        let el = document.getElementsByClassName('slideshow');
-
-        for(let i = 0; i < el.length; i++){
-
-            if(el[i].id != 'dianaSlider-s'){
-
-                el[i].style.backgroundImage = '';
-
-            }
-
-            el[i].zIndex = '20';
+        for(let intervals of this.saveSteps){
+            
+            console.log(intervals);
+        
+            clearInterval(eval(intervals));
         }
 
-        
-
     }
 
+
+    
     sliderSwitcherByButtons(num, id){
         
-        switch(num){
-
-            case 1:
-                this.stopAllIntervals;
-                this.defaultSettingsForAnimationElements;
-                imgAniImageManager.setBackgroundImageToTheDiv(imgAniImageManager.imgName(1), 'dianaSlider-s');
-                this.animateImageInSize('dianaSlider-s', 1800);
-                this.activeCurrentSlideButton(id);
-
-            break;
-
-            case 2:
-                this.stopAllIntervals;
-                // this.activeCurrentSlideButton(id);
-            break;
-            
-            case 3:
-                this.transitionController(2, id);
-                this.transitionController(1, id);
-                // this.activeCurrentSlideButton(id);
-            break;    
-
-        }
+      this.stopAllIntervals;
+        
+        
 
     }
 
