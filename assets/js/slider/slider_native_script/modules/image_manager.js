@@ -25,19 +25,50 @@ export class ImageManager{
     }
 
     // Setting background image to the div element
-    setBackgroundImageToTheDiv(imageName, divId){
+    get setBackgroundImageToTheDiv(){
         
+
+        let el = document.getElementsByClassName('slideshow_bg_img');
+
+        for(let i = 0; i < el.length; i++){
+
+            if(el[i].id === 'dianaSlider-s'){
+
+                let imgPath = this.imageFullPath(this.imgName(1));
+
+                document.getElementById(el[i].id).style.backgroundImage = "url('"+imgPath+"')";
+
+            }else if(el[i].id === 'dianaSlider-f'){
+
+                let imgPath = this.imageFullPath(this.imgName(0));
+
+                document.getElementById(el[i].id).style.backgroundImage = "url('"+imgPath+"')";
+
+            }else if(el[i].id === 'lastImage'){
+
+                let imgPath = this.imageFullPath(this.imgName(2));
+
+                document.getElementById(el[i].id).style.backgroundImage = "url('"+imgPath+"')";
+
+            }
+
+            el[i].classList.add('slideshow_bg_img');
+
+        }
+
+        return true;
+
         // Geting html div element
-        let divEl = document.getElementById(divId);
+       // let divEl = document.getElementById(divId);
 
         // Getting image full path
-        let imgPath = this.imageFullPath(imageName);
+        //let imgPath = this.imageFullPath(imageName);
 
         // Setting background image to the div element
-        divEl.style.backgroundImage = "url('"+imgPath+"')";
+        //divEl.style.backgroundImage = "url('"+imgPath+"')";
         
         // If everithing gose well returning true
-        return true;
+        //return true;
     }
 
 

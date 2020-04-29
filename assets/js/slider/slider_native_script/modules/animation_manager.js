@@ -22,22 +22,21 @@ export class AnimationManager{
             let currenImgName = anManImageManager.imgName(this.imgOrderInConfig);
             
             // Setting background image to the div element 
-            if(anManImageManager.setBackgroundImageToTheDiv(currenImgName, this.divId)){
+            if(anManImageManager.setBackgroundImageToTheDiv){
 
                 // If background image was set so get natural demisions
                 if(anManImageManager.getNaturalDimension(currenImgName, this.divId)){
                     
                     // Calling Image Animation function from image_animation.js
-                    anManImageAnimation.imageAnimation(this.divId, sessionStorage.getItem("imageNaturalWidth"));
+                   anManImageAnimation.imageAnimation(this.divId, sessionStorage.getItem("imageNaturalWidth"));
                   
                     console.log("Your screen resolution is: " + window.screen.width + "x" + window.screen.height);
                 }
        
             }
-
-            
            
         }
+
     }
 
 

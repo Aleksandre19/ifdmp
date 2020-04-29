@@ -47,9 +47,9 @@ export class AnimationTexts{
 
             // Checking for text
             if(this.left.toFixed(0) >= 0){   
-                 this.left += 0.01;   
+                 this.left += 0.01; 
             }else{
-                this.left += 0.9;
+                this.left += 2;
             }
 
             // Checking for author
@@ -85,8 +85,8 @@ export class AnimationTexts{
 
             }else{
 
-                this.left += 0.9; // Text
-                this.right -= 0.9; // Author
+                this.left += 2; // Text
+                this.right -= 2; // Author
             } 
 
         });

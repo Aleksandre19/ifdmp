@@ -2,9 +2,11 @@ import {ImageManager} from './image_manager.js';
 import {DianaSliderMessageBox} from './animation_message.js';
 import {AnimationTexts} from './animation_text.js';
 
+
 const imgAniImageManager = new ImageManager();
 const imgAniMessage = new DianaSliderMessageBox();
 const imgAniTextAnimation = new AnimationTexts();
+
 
 // Defining private variables by using WeakMap()
 const _imageStartingNaturLWidth = new WeakMap();
@@ -21,7 +23,7 @@ export class ImageAnimation{
         this.fade = null;
 
         this.secondInterval = null;
-        this.animationFadeCaounter = 0;
+        this.animationStepCounter = 0;
         this.divNameF = "dianaSlider-f";
         this.divNameS = "";
         this.naturalW = 0;
@@ -37,19 +39,25 @@ export class ImageAnimation{
         this.saveSteps = [];
 
         this.clickedOnButton = false;
+
+        
         
 
     }
 
 
     imageAnimation(naturalWidth, imgAniDivId){
+
+       
+
         
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
-      
+            
+
             // Calling Image text animation functions
             if(this.clickedOnButton){
-                imgAniTextAnimation.finishImageTextAnimation
+                imgAniTextAnimation.finishImageTextAnimation;
             }
            
             imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
@@ -91,38 +99,14 @@ export class ImageAnimation{
                 // When image's dimention is increased by 7% going on next step
                 if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){     
 
-                    // Getting second image name to set second div background image with
-                    let changeImageName = imgAniImageManager.imgName(0);
+                    // Only first time we call fade out function in sequence.
+                    // Next time we call that function end of the each circle
+                    if(this.animationStepCounter === 0){
+                                                                       
+                        this.animationFadeInOut(elDivId);
 
-                    if(changeImageName){
-
-                        // Setting second backgroud image to the second div element with id #dianaSlider-f
-                        if(imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-f")){
-
-                                // Only first time we call fade out function in sequence.
-                                // Next time we call that function end of the each circle
-                                if(this.animationFadeCaounter === 0){
-                                       
-                                   
-                                    this.animationFadeInOut(elDivId);
-
-                                }    
-
-                        }else{
-                            // In other cases it returns false
-                            return false;
-
-                        }
- 
-
-                    }else{
-                        
-                        // In case there is some mistake in image name so throw new error
-                        imgAniMessage.getMessage("There was a some problem! Please check image names in config.js");
-
-                        return false;
-                    }
-                
+                    }    
+    
                     // resseting valie of this variable
                     _functionHasCalled.set(this, false);
                 }
@@ -146,20 +130,25 @@ export class ImageAnimation{
     // Animating opacity of image
     animationFadeInOut(fadeID){
 
+       
+
         // Counting how much was called this function
-        this.animationFadeCaounter++;
+        this.animationStepCounter++;
 
         // When step counter reaches more than 3 it resetts back to 1
-        if(this.animationFadeCaounter > 3 || this.animationFadeCaounter < 0){
-            this.animationFadeCaounter = 1;
+        if(this.animationStepCounter > 3 || this.animationStepCounter < 0){
+            this.animationStepCounter = 1;
         }
 
-        console.log(this.animationFadeCaounter);
+        console.log("Step Caounter " +  this.animationStepCounter);
+
+         console.log("Click BUtton is: "  +  this.clickedOnButton);
+        
         // Defining opacity variable
         let op = 1;
 
-         // Saving interval in to array to be able to now which interval is running
-         this.animationsStepsSaver('this.fade');
+        // Saving interval in to array to be able to now which interval is running
+        this.animationsStepsSaver('this.fade');
 
 
         this.fade =  setInterval(() => {
@@ -170,7 +159,7 @@ export class ImageAnimation{
            document.getElementById(fadeID).style.opacity = `${op}`;
 
            // When there is last step this code calles animations's circle again
-           if(this.animationFadeCaounter === 3 && this.callAnimationAgain){
+           if(this.animationStepCounter === 3 && this.callAnimationAgain){
 
                 this.called = true;
                     
@@ -183,7 +172,7 @@ export class ImageAnimation{
            }
 
            // When opacity is less or equal to 5 than calling a backgroundMoving function for second background image
-            if(this.called && this.animationFadeCaounter === 1){
+            if(this.called && this.animationStepCounter === 1){
                         
                 //Animatiing background by moving it 
                 this.backgroundMoving(this.divNameF);
@@ -191,9 +180,9 @@ export class ImageAnimation{
                 // Setting value to identify that this if statment was called once inside interval
                 this.called = false;
 
-            }else if(op.toFixed(1) < 0.0){ // when image oopacity goes down than 0.0 we call transition controller function
-                console.log("exla daiwyo");
-                this.transitionController(this.animationFadeCaounter, '');
+            }else if(op.toFixed(1) < 0.0){ // when image opacity goes down than 0.0 we call transition controller function
+                
+                this.transitionController(this.animationStepCounter, '');
                     
             }else{
                 // In any other casses returning false
@@ -294,7 +283,7 @@ export class ImageAnimation{
            
             // Then image's top reaches to - 150 we call fadeout function
             if(move.toFixed(0) <= -150 && called === true){
-    
+                
                 this.animationFadeInOut(this.divNameF);
                 
                 called = false;
@@ -307,10 +296,10 @@ export class ImageAnimation{
 
     // This functuons controlls transitions between images
     transitionController(step, btnId){
-        console.log("Now is: " + step );
+       
         if(step === 1){
 
-            console.log("step 1" );
+            console.log("transitionController 1" );
 
             // Activating second slider button
 
@@ -325,12 +314,7 @@ export class ImageAnimation{
             this.removeAnimationStepsFromArray('this.fade');
             this.removeAnimationStepsFromArray('this.anInSize');
 
-            // Getting second image's name
-            let changeImageName = imgAniImageManager.imgName(2);
-
-            // Setting second background image to the #dianaSlider-s
-            imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "lastImage");
-
+        
             // Calling style resett function
             this.styleResetter(step);
 
@@ -339,40 +323,36 @@ export class ImageAnimation{
 
          }else if(step === 2){
 
-            console.log("step 2" );
+
+            
+            console.log("transitionController 2" );
 
             // Activating third slider button
             this.activeCurrentSlideButton((btnId === '' ?  'third_btn' :  btnId));
 
             // Stoping background moving function
-            (this.checkIfIntervalexistsInArray ? clearInterval(this.bgMove) : "");
+            clearInterval(this.bgMove);
 
             // Stoping fade outing function
-            (this.checkIfIntervalexistsInArray ? clearInterval(this.fade) : "");
+            clearInterval(this.fade);
 
             // Removing finished intervals from array
-            (this.checkIfIntervalexistsInArray ? this.removeAnimationStepsFromArray('this.bgMove') : "" );
-            (this.checkIfIntervalexistsInArray ? this.removeAnimationStepsFromArray('this.fade') : "");
+            this.removeAnimationStepsFromArray('this.bgMove');
+            this.removeAnimationStepsFromArray('this.fade');
 
-            // Getting first image name
-            let changeImageName = imgAniImageManager.imgName(1);
-            
-            // Setting first image as a background to #dianaSlider-s div element
-            imgAniImageManager.setBackgroundImageToTheDiv(changeImageName, "dianaSlider-s");
 
             // Calling resett function
             this.styleResetter(step);
 
             console.log("dianaSlider-f has finished");
 
-
             // Calling fadeout function
             this.animationFadeInOut("lastImage");
-
+        
                         
         }else if(step === 3){
 
-            console.log("step 3");
+            console.log("transitionController 3");
 
             // Activating frist slider button
             this.activeCurrentSlideButton((btnId === '' ?  'first_btn' :  btnId));            
@@ -406,58 +386,44 @@ export class ImageAnimation{
 
     // Resetting styles for html div elements on each steps
     styleResetter(step){
+       
+        // Getting elements to variables
+        let el = document.getElementById("dianaSlider-s");
+        let el2 = document.getElementById("dianaSlider-f");
+        let el3 = document.getElementById("lastImage");
+        
 
         if(step === 1){
 
-             // Getting #dianaSlider-s" element  
-            let el = document.getElementById("dianaSlider-s");
+            let el = document.getElementById('dianaSlider-s');
 
-            // Setting z-index to the #ianaSlider-s
-            el.style.zIndex = "5";
-                        
-            // Resetting #ianaSlider-s" opacity 
-            el.style.opacity = "1";
+            el.style.opacity = '1';
 
-            //Setting nothing to the #dianaSlider-s background
-            el.style.backgroundImage = "";
+            el.style.zIndex = '5';
 
             // Setting original sizes
             el.style.backgroundSize = `${sessionStorage.getItem("imageNaturalWidth")}px`;
 
         }else if(step === 2){
 
-            // Getting element in variable
-            let el = document.getElementById("dianaSlider-f");
+            el2.style.backgroundPosition = "0px 0px";
 
-            // resetting element's positions to 0s
-            el.style.backgroundPosition = "0px 0px";
+            el2.style.opacity = '1';
 
-            // Setting z-index to 5
-            el.style.zIndex = "5";
-
-            // Making fully visible
-            el.style.opacity = "1";
+            el2.style.zIndex = '5';
 
             this.callAnimationAgain = true;
 
         }else if(step === 3){
 
-            // Getting elements to variables
-            let el = document.getElementById("dianaSlider-s");
-            let el2 = document.getElementById("lastImage");
-            let el3 = document.getElementById("dianaSlider-f");
-
             // Resetting z-index back to 10
             el.style.zIndex = "10";
 
+             // Resetting z-index back to 10
+            el2.style.zIndex = "10";
+
             // Making fully visible
-            el2.style.opacity = "1";
-
-            // Setting background to nothing
-            el2.style.backgroundImage = "";
-
-            // Resetting z-index back to 10
-            el3.style.zIndex = "10";
+            el3.style.opacity = "1";
 
         }else{
             return false;
@@ -506,8 +472,6 @@ export class ImageAnimation{
     // Setting aactive button's style to the current button
     activeCurrentSlideButton(id){
 
-        console.log(id);
-
         this.removeSlidersActiveButton;
 
         document.getElementById(id).classList.add("active_btn");
@@ -537,7 +501,7 @@ export class ImageAnimation{
 
                 if(!this.checkWhichIsActiveButton(event.toElement.classList)){
                     
-                   if(this.findButtonsOrderNumber(el[i].id) != this.animationFadeCaounter){
+                   if(this.findButtonsOrderNumber(el[i].id) != this.animationStepCounter){
 
                         if(this.saveSteps.length > 1){
 
@@ -608,9 +572,7 @@ export class ImageAnimation{
     get stopAllIntervals(){
 
         for(let intervals of this.saveSteps){
-            
-            console.log(intervals);
-        
+
             clearInterval(eval(intervals));
         }
 
@@ -622,24 +584,57 @@ export class ImageAnimation{
         
         this.stopAllIntervals;
         
-        if(num === 2 && this.animationFadeCaounter === 1){
+        if(num === 2 && this.animationStepCounter === 1){
 
-            this.transitionController(1, "second_btn");
-            this.animationFadeInOut(this.divNameF);
-            document.getElementById('dianaSlider-s').style.backgroundPosition = '0px 0px';
-            this.clickedOnButton = true;
             imgAniTextAnimation.finishImageTextAnimation;
             imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
             imgAniTextAnimation.startImageTextAnimation;
 
-        }else if(num === 3 && this.animationFadeCaounter === 1 ){
 
-            this.transitionController(2, "third_btn");
+            this.transitionController(1, "second_btn");
+            document.getElementById('dianaSlider-s').style.backgroundPosition = '0px 0px';
+            this.clickedOnButton = true;
 
-            //this.clickedOnButton = true;
-            //imgAniTextAnimation.finishImageTextAnimation;
-            //imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
-            //imgAniTextAnimation.startImageTextAnimation;
+            console.log("Click BUtton is: "  +  this.clickedOnButton);
+
+
+            setTimeout(() =>{
+                this.animationFadeInOut(this.divNameF); 
+            },2000);
+
+        }else if(num === 3 && this.animationStepCounter === 1 ){
+
+            this.activeCurrentSlideButton('third_btn');
+
+            let el = document.getElementsByClassName('slideshow');
+
+            for(let i = 0; i < el.length; i++){
+                   
+                if(el[i].id === 'lastImage'){
+
+                  
+                    document.getElementById(el[i].id).style.zIndex = '10';
+
+                    imgAniTextAnimation.finishImageTextAnimation;
+                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
+                    imgAniTextAnimation.startImageTextAnimation;
+
+                    setTimeout(() => {
+
+                        //this.animationStepCounter = 2;
+                        this.animationFadeInOut("lastImage");
+
+                    }, 2000);
+
+
+                }else{
+
+                    document.getElementById(el[i].id).style.zIndex = '5';
+
+                }
+
+            }
+           
         }
 
     }
