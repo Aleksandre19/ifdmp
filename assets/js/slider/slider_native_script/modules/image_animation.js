@@ -40,8 +40,10 @@ export class ImageAnimation{
 
         this.clickedOnButton = false;
 
+        this.textAnimationHasCalled = true;
+
         
-        
+        this.animationHasStarted = true;
 
     }
 
@@ -54,9 +56,13 @@ export class ImageAnimation{
         if(this.clickedOnButton){
             imgAniTextAnimation.finishImageTextAnimation;
         }
-           
-        imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
-        imgAniTextAnimation.startImageTextAnimation;    
+          
+        if(this.animationHasStarted){
+            imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
+            imgAniTextAnimation.startImageTextAnimation; 
+        }
+        
+        this.animationHasStarted = false;
 
     }
 
@@ -91,8 +97,8 @@ export class ImageAnimation{
                 document.getElementById(elDivId).style.backgroundSize = `${scaledUpWidth}px`;
 
                 // When image's dimention is increased by 7% going on next step
-                if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){     
-
+                if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){    
+                    
                     // Only first time we call fade out function in sequence.
                     // Next time we call that function end of the each circle
                     if(this.animationStepCounter === 0){
@@ -149,7 +155,10 @@ export class ImageAnimation{
 
            // Decrementing opacity by 0.003 each time
            op -= 0.003;
-                      
+           
+           // Here i start to animate text. I make value of opacity as a transition point which is 0.3
+           this.textAnimation(this.animationStepCounter, op.toFixed(1), this.textAnimationHasCalled);
+                        
            document.getElementById(fadeID).style.opacity = `${op}`;
 
            // When there is last step this code calles animations's circle again
@@ -176,6 +185,8 @@ export class ImageAnimation{
 
             }else if(op.toFixed(1) < 0.0){ // when image opacity goes down than 0.0 we call transition controller function
                 
+                this.textAnimationHasCalled = true;
+
                 this.transitionController(this.animationStepCounter, '');
                     
             }else{
@@ -200,18 +211,13 @@ export class ImageAnimation{
           // Declaring variable for moving ration 
         let move = 1;
 
-        
+               
 
         // Gettig element
         let el = document.getElementById(id);
 
         // Variables to check that conditional statment has been called only once inside setInterval();
         let called = true;
-        let called2 = true;    
-        let called3 = true;
-        let called4 = true;
-        let called5 = true;
-        let called6 = true;
 
          // Saving interval in to array to be able to now which interval is running
          this.animationsStepsSaver('this.bgMove');
@@ -220,39 +226,7 @@ export class ImageAnimation{
         this.bgMove = setInterval(() => {
 
             // Decreasing move variable by 0.1 unit 
-            move -= 0.1;
-
-            // Managing text animation's transitions
-            if(move.toFixed(0) <= -270 && called6){
-
-                imgAniTextAnimation.finishImageTextAnimation;
-                called6 = false;
-
-            }else if(move.toFixed(0) <= -175 && called5){
-
-                imgAniTextAnimation.startImageTextAnimation;
-                imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
-                called5 = false;
-
-            }else if(move.toFixed(0) <= -170 && called4){
-
-                imgAniTextAnimation.finishImageTextAnimation;
-                called4 = false;
-
-            }else if(move.toFixed(0) <= -65 && called3){
-                
-               imgAniTextAnimation.startImageTextAnimation;
-               imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
-               called3 = false;
-
-            }else if(move.toFixed(0) <= -60 && called2){
-               
-               imgAniTextAnimation.finishImageTextAnimation;
-               called2 = false;
-
-            }
-
-           
+            move -= 0.1;           
 
             // Animating positions
             el.style.backgroundPosition = `${move}px ${move}px`;
@@ -421,6 +395,37 @@ export class ImageAnimation{
     }
 
 
+
+    textAnimation(step, opacity, hasCalled){
+
+        if(step === 1 && opacity <= 0.3 && hasCalled){
+
+                    imgAniTextAnimation.finishImageTextAnimation;
+                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
+                    imgAniTextAnimation.startImageTextAnimation;
+
+                    this.textAnimationHasCalled = false;
+
+           }else if(step === 2 && opacity <= 0.3 && hasCalled){
+                    
+                    imgAniTextAnimation.finishImageTextAnimation;
+                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
+                    imgAniTextAnimation.startImageTextAnimation;
+
+                    this.textAnimationHasCalled = false;
+
+                   
+           }else if(step === 3 && opacity <= 0.3 && hasCalled){
+
+                    imgAniTextAnimation.finishImageTextAnimation;
+                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
+                    imgAniTextAnimation.startImageTextAnimation;
+
+                    this.textAnimationHasCalled = false;
+           }
+    }
+
+
     // Saving animations steps in array to be able to control it
     animationsStepsSaver(val){
 
@@ -449,19 +454,6 @@ export class ImageAnimation{
 
     }
 
-
-    checkIfIntervalexistsInArray(val){
-    
-        for(let i = 0; i < this.saveSteps.length; i++){
-
-            if(this.saveSteps[i] === val){
-                return true;
-            }else{
-                return false;
-            }
-
-        }    
-    }
 
 
     stopRunningIntervals(...intervals){

@@ -19,6 +19,7 @@ export class AnimationTexts{
         this.left = -150; // For animations text
         this.right = 130; // For author
         
+        
     }
 
 
