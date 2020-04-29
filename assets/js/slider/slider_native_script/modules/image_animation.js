@@ -48,21 +48,15 @@ export class ImageAnimation{
 
     imageAnimation(naturalWidth, imgAniDivId){
 
-       
-
-        
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
-            
-
-            // Calling Image text animation functions
-            if(this.clickedOnButton){
-                imgAniTextAnimation.finishImageTextAnimation;
-            }
+         // Calling Image text animation functions
+        if(this.clickedOnButton){
+            imgAniTextAnimation.finishImageTextAnimation;
+        }
            
-            imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
-            imgAniTextAnimation.startImageTextAnimation;
-        
+        imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
+        imgAniTextAnimation.startImageTextAnimation;    
 
     }
 
@@ -305,10 +299,9 @@ export class ImageAnimation{
 
             this.activeCurrentSlideButton((btnId === '' ?  'second_btn' :  btnId));
 
-            // Stopin this interval 
-            clearInterval(this.fade); 
-
-            clearInterval(this.anInSize);
+            // Stoping running intervals
+            this.stopRunningIntervals('this.fade', 'this.anInSize'); 
+           
 
             // Removing finished intervals from array
             this.removeAnimationStepsFromArray('this.fade');
@@ -330,12 +323,10 @@ export class ImageAnimation{
             // Activating third slider button
             this.activeCurrentSlideButton((btnId === '' ?  'third_btn' :  btnId));
 
-            // Stoping background moving function
-            clearInterval(this.bgMove);
 
-            // Stoping fade outing function
-            clearInterval(this.fade);
-
+             // Stoping running intervals
+            this.stopRunningIntervals('this.bgMove', 'this.fade'); 
+            
             // Removing finished intervals from array
             this.removeAnimationStepsFromArray('this.bgMove');
             this.removeAnimationStepsFromArray('this.fade');
@@ -357,11 +348,9 @@ export class ImageAnimation{
             // Activating frist slider button
             this.activeCurrentSlideButton((btnId === '' ?  'first_btn' :  btnId));            
 
-             // Stoping background moving function            
-            clearInterval(this.bgMove);
+             // Stoping running intervals
+            this.stopRunningIntervals('this.bgMove', 'this.fade'); 
 
-            // Stoping fade outing function
-            clearInterval(this.fade);
 
             // Removing finished intervals from array
             this.removeAnimationStepsFromArray('this.bgMove');
@@ -467,6 +456,25 @@ export class ImageAnimation{
 
         }    
     }
+
+
+    stopRunningIntervals(...intervals){
+
+        for(let int of intervals){
+
+            clearInterval(eval(int));
+
+        }
+
+    }
+
+
+
+
+
+
+
+
 
 
     // Setting aactive button's style to the current button
