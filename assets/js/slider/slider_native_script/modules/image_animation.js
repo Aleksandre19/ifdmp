@@ -304,8 +304,8 @@ export class ImageAnimation{
            
 
             // Removing finished intervals from array
-            this.removeAnimationStepsFromArray('this.fade');
-            this.removeAnimationStepsFromArray('this.anInSize');
+            this.removeAnimationStepsFromArray('this.fade','this.anInSize');
+           
 
         
             // Calling style resett function
@@ -327,9 +327,10 @@ export class ImageAnimation{
              // Stoping running intervals
             this.stopRunningIntervals('this.bgMove', 'this.fade'); 
             
+
             // Removing finished intervals from array
-            this.removeAnimationStepsFromArray('this.bgMove');
-            this.removeAnimationStepsFromArray('this.fade');
+            this.removeAnimationStepsFromArray('this.fade','this.bgMove');
+        
 
 
             // Calling resett function
@@ -353,8 +354,7 @@ export class ImageAnimation{
 
 
             // Removing finished intervals from array
-            this.removeAnimationStepsFromArray('this.bgMove');
-            this.removeAnimationStepsFromArray('this.fade');
+            this.removeAnimationStepsFromArray('this.fade','this.bgMove');
 
             // Calling resett function
             this.styleResetter(step);
@@ -429,15 +429,21 @@ export class ImageAnimation{
     }
 
 
-    // Deleting animation's intervals from the array
-    removeAnimationStepsFromArray(val){
+    // Deleting animation's intervals from the array.
+    // The way this code is written generally is not good for n-Notation,
+    // But in my case there is small amount of data and i can use two
+    // for loops one inside other.
+    removeAnimationStepsFromArray(...val){
 
-        for(let i = 0; i < this.saveSteps.length; i++){
+        for(let intName of val){
 
-            if(this.saveSteps[i] === val){
-                
-                this.saveSteps.splice(i, 1);
-                
+             for(let i = 0; i < this.saveSteps.length; i++){
+
+                if(this.saveSteps[i] === intName){
+
+                    this.saveSteps.splice(i, 1);
+                            
+                }
             }
         }
 
