@@ -25,16 +25,35 @@ export class AnimationTexts{
 
 
     // Setting texts to div
-    insertImageTextsInDiv(textID, authorID, imgOrder){
+    textAnimation(...val){
         
-        let text = document.getElementById(textID);
-        let author = document.getElementById(authorID);
+        for(let i = 0; i < val.length; i++){
 
-        text.innerHTML = '';
-        author.innerHTML = ''; 
-        
-        text.innerHTML = `${this.imageText(imgOrder, 0)}`;
-        author.innerHTML = `${this.imageText(imgOrder, 1)}`;
+            if(!isNaN(val[i])){
+
+                let text = document.getElementById('text-f');
+                let author = document.getElementById('author-f');
+
+                text.innerHTML = '';
+                author.innerHTML = ''; 
+                
+                text.innerHTML = `${this.imageText(val[i], 0)}`;
+                author.innerHTML = `${this.imageText(val[i], 1)}`;
+
+            }else if(val[i] === 'start'){
+
+                this.startImageTextAnimation;
+
+            }else if(val[i] === 'finish'){
+
+                this.finishImageTextAnimation;
+
+            }else{
+                return false;
+            }
+
+        }
+
     }
 
 

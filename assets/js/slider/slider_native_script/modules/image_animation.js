@@ -54,12 +54,13 @@ export class ImageAnimation{
 
          // Calling Image text animation functions
         if(this.clickedOnButton){
-            imgAniTextAnimation.finishImageTextAnimation;
+            imgAniTextAnimation.textAnimation('finish');
         }
-          
+        
+        // Only at the beginning I call here text animation's function
+        // 
         if(this.animationHasStarted){
-            imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
-            imgAniTextAnimation.startImageTextAnimation; 
+            imgAniTextAnimation.textAnimation(0, 'start');
         }
         
         this.animationHasStarted = false;
@@ -394,35 +395,27 @@ export class ImageAnimation{
 
     }
 
+    
 
-
+    // This is text animation's function
     textAnimation(step, opacity, hasCalled){
 
         if(step === 1 && opacity <= 0.3 && hasCalled){
+         
+             imgAniTextAnimation.textAnimation('finish', 1, 'start');        
+             this.textAnimationHasCalled = false;
 
-                    imgAniTextAnimation.finishImageTextAnimation;
-                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
-                    imgAniTextAnimation.startImageTextAnimation;
+        }else if(step === 2 && opacity <= 0.3 && hasCalled){
 
-                    this.textAnimationHasCalled = false;
+             imgAniTextAnimation.textAnimation('finish', 2, 'start');
+             this.textAnimationHasCalled = false;
+ 
+        }else if(step === 3 && opacity <= 0.3 && hasCalled){
 
-           }else if(step === 2 && opacity <= 0.3 && hasCalled){
-                    
-                    imgAniTextAnimation.finishImageTextAnimation;
-                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
-                    imgAniTextAnimation.startImageTextAnimation;
+            imgAniTextAnimation.textAnimation('finish', 0, 'start');
+            this.textAnimationHasCalled = false;
+        }
 
-                    this.textAnimationHasCalled = false;
-
-                   
-           }else if(step === 3 && opacity <= 0.3 && hasCalled){
-
-                    imgAniTextAnimation.finishImageTextAnimation;
-                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 0);
-                    imgAniTextAnimation.startImageTextAnimation;
-
-                    this.textAnimationHasCalled = false;
-           }
     }
 
 
