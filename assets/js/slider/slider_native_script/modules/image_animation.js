@@ -233,22 +233,7 @@ export class ImageAnimation{
             el.style.backgroundPosition = `${move}px ${move}px`;
 
             // Dependign on screen resolution we incirsing image in size to cover div element during animation
-            if(imgAniImageManager.screenResolution === "md"){
-                // Medium screen size
-               el.style.backgroundSize = "135%"; 
-
-            }else if(imgAniImageManager.screenResolution === "sm"){
-                // Small screen size
-                el.style.backgroundSize = "220%";
-
-            }else if(imgAniImageManager.screenResolution === "iPro"){
-                // Ipad Pro
-                el.style.backgroundSize = "240%";    
-            }else{
-
-                // Large screen size
-                el.style.backgroundSize = "120%";
-            }    
+            this.increasingImageSizeBasedOnScreenResolution(imgAniImageManager.screenResolution, id);
            
             // Then image's top reaches to - 150 we call fadeout function
             if(move.toFixed(0) <= -150 && called === true){
@@ -418,6 +403,31 @@ export class ImageAnimation{
 
     }
 
+
+
+    increasingImageSizeBasedOnScreenResolution(screenRes, id){
+
+            let el = document.getElementById(id); 
+
+         // Dependign on screen resolution we incirsing image in size to cover div element during animation
+            if(screenRes === "md"){
+                // Medium screen size
+               el.style.backgroundSize = "135%"; 
+
+            }else if(screenRes === "sm"){
+                // Small screen size
+                el.style.backgroundSize = "220%";
+
+            }else if(screenRes === "iPro"){
+                // Ipad Pro
+                el.style.backgroundSize = "240%";    
+            }else{
+
+                // Large screen size
+                el.style.backgroundSize = "120%";
+            }  
+
+    }
 
     // Saving animations steps in array to be able to control it
     animationsStepsSaver(val){
