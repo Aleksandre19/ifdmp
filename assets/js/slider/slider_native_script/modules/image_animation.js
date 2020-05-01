@@ -45,6 +45,13 @@ export class ImageAnimation{
         
         this.animationHasStarted = true;
 
+        this.move = 1;
+
+        this.opacity = 1;
+
+        this.scaledUpWidth = 0;
+
+
     }
 
 
@@ -71,8 +78,9 @@ export class ImageAnimation{
 
     // Animating image's width
     animateImageInSize(elDivId , natW){
-
-        
+            
+            // Restoring the value of the animation in size variable
+            this.scaledUpWidth = 0;
 
             // If there is Ipad Pro then we incrise natural width by 10% to hide emnpty space during animation
             if(imgAniImageManager.screenResolution === "iPro"){
@@ -89,16 +97,19 @@ export class ImageAnimation{
             _functionHasCalled.set(this, true);
 
             // Saving interval in to array to be able to now which interval is running
-            this.animationsStepsSaver('this.anInSize');
+            this.animationsIntervalsSaver({ int : 'this.anInSize', val: this.naturalW});
             
             this.anInSize = setInterval(() => {
                
-                let scaledUpWidth = this.naturalW++;
+                this.scaledUpWidth = this.naturalW++;
 
-                document.getElementById(elDivId).style.backgroundSize = `${scaledUpWidth}px`;
+                // Here i updating value of chenged image's size in the array (this.saveSteps) where is save this value.
+                this.updatingSavedIntervalsValue('this.anInSize', this.scaledUpWidth);
+
+                document.getElementById(elDivId).style.backgroundSize = `${this.scaledUpWidth}px`;
 
                 // When image's dimention is increased by 7% going on next step
-                if(Math.round(this.calculateImageIncreasedDemision(scaledUpWidth)) === 7 && _functionHasCalled.get(this)){    
+                if(Math.round(this.calculateImageIncreasedDemision(this.scaledUpWidth)) === 7 && _functionHasCalled.get(this)){    
                     
                     // Only first time we call fade out function in sequence.
                     // Next time we call that function end of the each circle
@@ -131,7 +142,8 @@ export class ImageAnimation{
     // Animating opacity of image
     animationFadeInOut(fadeID){
 
-       
+        // Restoring the value of the opacity variable
+        this.opacity = 1;
 
         // Counting how much was called this function
         this.animationStepCounter++;
@@ -145,22 +157,22 @@ export class ImageAnimation{
 
          console.log("Click BUtton is: "  +  this.clickedOnButton);
         
-        // Defining opacity variable
-        let op = 1;
-
         // Saving interval in to array to be able to now which interval is running
-        this.animationsStepsSaver('this.fade');
+        this.animationsIntervalsSaver({ int : 'this.fade', val: this.opacity});
 
 
         this.fade =  setInterval(() => {
 
            // Decrementing opacity by 0.003 each time
-           op -= 0.003;
+           this.opacity -= 0.003;
+
+           // Here i updating value of chenged opacity in the array (this.saveSteps) where is save this value.
+           this.updatingSavedIntervalsValue('this.fade', this.opacity);
            
            // Here i start to animate text. I make value of opacity as a transition point which is 0.3
-           this.textAnimation(this.animationStepCounter, op.toFixed(1), this.textAnimationHasCalled);
+           this.textAnimation(this.animationStepCounter, this.opacity.toFixed(1), this.textAnimationHasCalled);
                         
-           document.getElementById(fadeID).style.opacity = `${op}`;
+           document.getElementById(fadeID).style.opacity = `${this.opacity}`;
 
            // When there is last step this code calles animations's circle again
            if(this.animationStepCounter === 3 && this.callAnimationAgain){
@@ -184,7 +196,7 @@ export class ImageAnimation{
                 // Setting value to identify that this if statment was called once inside interval
                 this.called = false;
 
-            }else if(op.toFixed(1) < 0.0){ // when image opacity goes down than 0.0 we call transition controller function
+            }else if(this.opacity.toFixed(1) < 0.0){ // when image opacity goes down than 0.0 we call transition controller function
                 
                 this.textAnimationHasCalled = true;
 
@@ -208,11 +220,12 @@ export class ImageAnimation{
     // Moving backgrounf function
 
     backgroundMoving(id){
+         
+        // Restoring the value of the background moving's variable
+        this.move = 1;
 
-          // Declaring variable for moving ration 
-        let move = 1;
-
-               
+        // Dependign on screen resolution we incirsing image in size to cover div element during animation
+        this.increasingImageSizeBasedOnScreenResolution(imgAniImageManager.screenResolution, id);
 
         // Gettig element
         let el = document.getElementById(id);
@@ -221,22 +234,22 @@ export class ImageAnimation{
         let called = true;
 
          // Saving interval in to array to be able to now which interval is running
-         this.animationsStepsSaver('this.bgMove');
+         this.animationsIntervalsSaver({ int : 'this.bgMove', val: this.move});
 
         // Running timer for animation
         this.bgMove = setInterval(() => {
 
             // Decreasing move variable by 0.1 unit 
-            move -= 0.1;           
+            this.move -= 0.1; 
+            
+             // Here i updating value of chenged positions in the array (this.saveSteps) where is save this value.
+            this.updatingSavedIntervalsValue('this.bgMove', this.move);
 
             // Animating positions
-            el.style.backgroundPosition = `${move}px ${move}px`;
-
-            // Dependign on screen resolution we incirsing image in size to cover div element during animation
-            this.increasingImageSizeBasedOnScreenResolution(imgAniImageManager.screenResolution, id);
+            el.style.backgroundPosition = `${this.move}px ${this.move}px`;
            
             // Then image's top reaches to - 150 we call fadeout function
-            if(move.toFixed(0) <= -150 && called === true){
+            if(this.move.toFixed(0) <= -150 && called === true){
                 
                 this.animationFadeInOut(this.divNameF);
                 
@@ -286,7 +299,7 @@ export class ImageAnimation{
 
              // Stoping running intervals
             this.stopRunningIntervals('this.bgMove', 'this.fade'); 
-            
+        
 
             // Removing finished intervals from array
             this.removeAnimationStepsFromArray('this.fade','this.bgMove');
@@ -430,9 +443,24 @@ export class ImageAnimation{
     }
 
     // Saving animations steps in array to be able to control it
-    animationsStepsSaver(val){
+    animationsIntervalsSaver(val){
 
         this.saveSteps.push(val);
+
+    }
+
+
+    updatingSavedIntervalsValue(int, val){
+
+        for(let i in this.saveSteps){
+            
+            if(this.saveSteps[i].int === int){
+
+               this.saveSteps[i].val = val;
+
+            }
+
+        }
 
     }
 
