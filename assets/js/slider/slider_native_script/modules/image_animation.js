@@ -51,6 +51,7 @@ export class ImageAnimation{
 
         this.scaledUpWidth = 0;
 
+        this.wrapperID = 2;
 
     }
 
@@ -97,7 +98,7 @@ export class ImageAnimation{
             _functionHasCalled.set(this, true);
 
             // Saving interval in to array to be able to now which interval is running
-            this.animationsIntervalsSaver({ int : 'this.anInSize', val: this.naturalW});
+            this.animationsIntervalsSaver({ int : 'this.anInSize', val: this.naturalW, divId: elDivId});
             
             this.anInSize = setInterval(() => {
                
@@ -115,7 +116,7 @@ export class ImageAnimation{
                     // Next time we call that function end of the each circle
                     if(this.animationStepCounter === 0){
                                                                        
-                        this.animationFadeInOut(elDivId);
+                        this.animationFadeInOut(this.getSliderWrappersID);
 
                     }    
     
@@ -139,6 +140,32 @@ export class ImageAnimation{
 
 
 
+    get getSliderWrappersID(){
+
+        let el = document.getElementsByClassName('slideshow_bg_img');
+        let divElID = '';
+
+        console.log(this.wrapperID);
+
+        for(let i in el){
+            if(Number(i) === Number(this.wrapperID)){
+                divElID = el[i].id;
+            }
+        }
+
+        this.wrapperID -= 1;
+
+        if(this.wrapperID < 0){
+            this.wrapperID = 2;
+        }
+
+        return divElID;
+
+    }
+
+
+
+
     // Animating opacity of image
     animationFadeInOut(fadeID){
 
@@ -158,7 +185,7 @@ export class ImageAnimation{
          console.log("Click BUtton is: "  +  this.clickedOnButton);
         
         // Saving interval in to array to be able to now which interval is running
-        this.animationsIntervalsSaver({ int : 'this.fade', val: this.opacity});
+        this.animationsIntervalsSaver({ int : 'this.fade', val: this.opacity, divId: fadeID});
 
 
         this.fade =  setInterval(() => {
@@ -234,7 +261,7 @@ export class ImageAnimation{
         let called = true;
 
          // Saving interval in to array to be able to now which interval is running
-         this.animationsIntervalsSaver({ int : 'this.bgMove', val: this.move});
+         this.animationsIntervalsSaver({ int : 'this.bgMove', val: this.move, divId: id});
 
         // Running timer for animation
         this.bgMove = setInterval(() => {
@@ -251,7 +278,7 @@ export class ImageAnimation{
             // Then image's top reaches to - 150 we call fadeout function
             if(this.move.toFixed(0) <= -150 && called === true){
                 
-                this.animationFadeInOut(this.divNameF);
+                this.animationFadeInOut(this.getSliderWrappersID);
                 
                 called = false;
             }
@@ -312,7 +339,7 @@ export class ImageAnimation{
             console.log("dianaSlider-f has finished");
 
             // Calling fadeout function
-            this.animationFadeInOut("lastImage");
+            this.animationFadeInOut(this.getSliderWrappersID);
         
                         
         }else if(step === 3){
@@ -333,7 +360,7 @@ export class ImageAnimation{
             this.styleResetter(step);
             
             // Calling fade out function
-            this.animationFadeInOut("dianaSlider-s");
+            this.animationFadeInOut(this.getSliderWrappersID);
 
             console.log("lastImage has finished");
                         
@@ -449,7 +476,7 @@ export class ImageAnimation{
 
     }
 
-
+    // Here i save current values for this.move, this.fade and this.anInSize variables
     updatingSavedIntervalsValue(int, val){
 
         for(let i in this.saveSteps){
@@ -603,76 +630,95 @@ export class ImageAnimation{
         }
     }
 
-
-
-    // This function stops all current running intervals
     get stopAllIntervals(){
 
-        for(let intervals of this.saveSteps){
+        for(let i in this.saveSteps){
 
-            clearInterval(eval(intervals));
+            clearInterval(eval(this.saveSteps[i].int));
+
         }
 
     }
 
 
+
+    // speedUpCurrentIntervals(num){
+
+    //     let intName = '';
+
+    //     let intValue = '';
+
+    //     let speedUpint = null;
+
+    //     let speedUpBgMove = null;
+
+    //     for(let i in this.saveSteps){
+
+    //        if(this.saveSteps[i].int === 'this.fade'){
+
+    //             let opacity = this.saveSteps[i].val;
+
+    //             clearInterval(eval(this.saveSteps[i].int));
+
+    //             speedUpint = setInterval(() => {
+
+    //                 opacity -= 0.003;
+
+    //                 document.getElementById(this.saveSteps[i].divId).style.opacity = `${opacity}`;
+
+    //                 if(opacity.toFixed(1) < 0.0){
+
+    //                     console.log(opacity.toFixed(1));
+
+    //                     clearInterval(speedUpint);
+
+    //                 }
+
+    //             },1)
+
+    //        }else if(this.saveSteps[i].int === 'this.bgMove' && num ===){
+
+
+    //             let move = this.saveSteps[i].val;
+
+    //             clearInterval(eval(this.saveSteps[i].int));
+
+    //             speedUpBgMove = setInterval(() => {
+
+    //                 move += 1;
+
+    //                 document.getElementById(this.saveSteps[i].divId).style.backgroundPosition = `${move}px ${move}px`;
+
+    //                 if(move.toFixed(0) >= 0){
+
+    //                     console.log(move.toFixed(0));
+
+    //                     clearInterval(speedUpBgMove);
+
+    //                 }
+
+    //             },1)     
+
+
+    //        }
+
+    //     }        
+
+    // }   
+
     
     sliderSwitcherByButtons(num, id){
-        
+
+        console.log("num "  + num);
+
         this.stopAllIntervals;
-        
-        if(num === 2 && this.animationStepCounter === 1){
 
-            imgAniTextAnimation.finishImageTextAnimation;
-            imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 1);
-            imgAniTextAnimation.startImageTextAnimation;
+        this.wrapperID = Number(num - 1);
+
+        this.stopAllIntervals;
 
 
-            this.transitionController(1, "second_btn");
-            document.getElementById('dianaSlider-s').style.backgroundPosition = '0px 0px';
-            this.clickedOnButton = true;
-
-            console.log("Click BUtton is: "  +  this.clickedOnButton);
-
-
-            setTimeout(() =>{
-                this.animationFadeInOut(this.divNameF); 
-            },2000);
-
-        }else if(num === 3 && this.animationStepCounter === 1 ){
-
-            this.activeCurrentSlideButton('third_btn');
-
-            let el = document.getElementsByClassName('slideshow');
-
-            for(let i = 0; i < el.length; i++){
-                   
-                if(el[i].id === 'lastImage'){
-
-                  
-                    document.getElementById(el[i].id).style.zIndex = '10';
-
-                    imgAniTextAnimation.finishImageTextAnimation;
-                    imgAniTextAnimation.insertImageTextsInDiv("text-f", "author-f", 2);
-                    imgAniTextAnimation.startImageTextAnimation;
-
-                    setTimeout(() => {
-
-                        //this.animationStepCounter = 2;
-                        this.animationFadeInOut("lastImage");
-
-                    }, 2000);
-
-
-                }else{
-
-                    document.getElementById(el[i].id).style.zIndex = '5';
-
-                }
-
-            }
-           
-        }
+        this.animationFadeInOut(this.getSliderWrappersID);
 
     }
 
