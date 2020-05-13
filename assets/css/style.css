@@ -1840,3 +1840,12 @@ h4 {
 .navbar-light .navbar-nav .nav-link:hover{
     color: #00dddb;
 }
+
+
+
+
+#map{
+    width: 100%;
+    min-height: 500px;
+    border: 1px solid red;
+}
