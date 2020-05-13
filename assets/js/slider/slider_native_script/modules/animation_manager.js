@@ -28,7 +28,7 @@ export class AnimationManager{
                 if(anManImageManager.getNaturalDimension(currenImgName, this.divId)){
                     
                     // Calling Image Animation function from image_animation.js
-                   anManImageAnimation.imageAnimation(this.divId, sessionStorage.getItem("imageNaturalWidth"));
+                   anManImageAnimation.imageAnimation(anManImageAnimation.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
                   
                     console.log("Your screen resolution is: " + window.screen.width + "x" + window.screen.height);
                 }

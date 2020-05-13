@@ -53,10 +53,14 @@ export class ImageAnimation{
 
         this.wrapperID = 2;
 
+        const APIkey = 'AIzaSyBTHOShiV37hHaNUxC1aQhZxMyY4VFKX2U';   
+        
+
     }
 
 
     imageAnimation(naturalWidth, imgAniDivId){
+
 
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
@@ -111,12 +115,13 @@ export class ImageAnimation{
 
                 // When image's dimention is increased by 7% going on next step
                 if(Math.round(this.calculateImageIncreasedDemision(this.scaledUpWidth)) === 7 && _functionHasCalled.get(this)){    
-                    
+
                     // Only first time we call fade out function in sequence.
                     // Next time we call that function end of the each circle
                     if(this.animationStepCounter === 0){
-                                                                       
-                        this.animationFadeInOut(this.getSliderWrappersID);
+                        
+                        
+                        this.animationFadeInOut(elDivId);
 
                     }    
     
@@ -135,6 +140,7 @@ export class ImageAnimation{
 
     // Calculating how much the image has increased
     calculateImageIncreasedDemision(sUpWidth){
+
         return (sUpWidth - _imageStartingNaturLWidth.get(this)) / _imageStartingNaturLWidth.get(this) * 100;
     }
 
@@ -145,7 +151,12 @@ export class ImageAnimation{
         let el = document.getElementsByClassName('slideshow_bg_img');
         let divElID = '';
 
-        console.log(this.wrapperID);
+      
+
+
+        if(this.wrapperID < 0){
+            this.wrapperID = 2;
+        }
 
         for(let i in el){
             if(Number(i) === Number(this.wrapperID)){
@@ -155,9 +166,7 @@ export class ImageAnimation{
 
         this.wrapperID -= 1;
 
-        if(this.wrapperID < 0){
-            this.wrapperID = 2;
-        }
+       
 
         return divElID;
 
@@ -180,10 +189,9 @@ export class ImageAnimation{
             this.animationStepCounter = 1;
         }
 
-        console.log("Step Caounter " +  this.animationStepCounter);
+        console.log(this.animationStepCounter);
 
-         console.log("Click BUtton is: "  +  this.clickedOnButton);
-        
+       
         // Saving interval in to array to be able to now which interval is running
         this.animationsIntervalsSaver({ int : 'this.fade', val: this.opacity, divId: fadeID});
 
@@ -205,8 +213,8 @@ export class ImageAnimation{
            if(this.animationStepCounter === 3 && this.callAnimationAgain){
 
                 this.called = true;
-                    
-                this.imageAnimation("dianaSlider-s", sessionStorage.getItem("imageNaturalWidth"));
+                  
+                this.imageAnimation(this.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
 
                 this.callAnimationAgain = false;
 
@@ -218,7 +226,7 @@ export class ImageAnimation{
             if(this.called && this.animationStepCounter === 1){
                         
                 //Animatiing background by moving it 
-                this.backgroundMoving(this.divNameF);
+                this.backgroundMoving(this.getSliderWrappersID);
 
                 // Setting value to identify that this if statment was called once inside interval
                 this.called = false;
@@ -278,7 +286,7 @@ export class ImageAnimation{
             // Then image's top reaches to - 150 we call fadeout function
             if(this.move.toFixed(0) <= -150 && called === true){
                 
-                this.animationFadeInOut(this.getSliderWrappersID);
+                this.animationFadeInOut(id);
                 
                 called = false;
             }
@@ -293,7 +301,7 @@ export class ImageAnimation{
        
         if(step === 1){
 
-            console.log("transitionController 1" );
+           
 
             // Activating second slider button
 
@@ -311,14 +319,14 @@ export class ImageAnimation{
             // Calling style resett function
             this.styleResetter(step);
 
-            console.log("dianaSlider-s has finished");
+            
 
 
          }else if(step === 2){
 
 
             
-            console.log("transitionController 2" );
+           
 
             // Activating third slider button
             this.activeCurrentSlideButton((btnId === '' ?  'third_btn' :  btnId));
@@ -336,7 +344,7 @@ export class ImageAnimation{
             // Calling resett function
             this.styleResetter(step);
 
-            console.log("dianaSlider-f has finished");
+           
 
             // Calling fadeout function
             this.animationFadeInOut(this.getSliderWrappersID);
@@ -344,7 +352,7 @@ export class ImageAnimation{
                         
         }else if(step === 3){
 
-            console.log("transitionController 3");
+           
 
             // Activating frist slider button
             this.activeCurrentSlideButton((btnId === '' ?  'first_btn' :  btnId));            
@@ -360,9 +368,9 @@ export class ImageAnimation{
             this.styleResetter(step);
             
             // Calling fade out function
-            this.animationFadeInOut(this.getSliderWrappersID);
+           this.animationFadeInOut("dianaSlider-s");
 
-            console.log("lastImage has finished");
+         
                         
         }else{
 
@@ -708,17 +716,38 @@ export class ImageAnimation{
 
     
     sliderSwitcherByButtons(num, id){
+        
 
-        console.log("num "  + num);
+        this.activeCurrentSlideButton(id);
+
+        
+        imgAniTextAnimation.textAnimation('finish');
 
         this.stopAllIntervals;
 
         this.wrapperID = Number(num - 1);
 
-        this.stopAllIntervals;
+        imgAniTextAnimation.textAnimation(this.wrapperID, 'start');
+
+        this.called = true;
+
+        console.log(this.wrapperID);
+
+        console.log("num "  + num);
+        this.animationStepCounter = 0;
+
+        let el = document.getElementsByClassName('slideshow_bg_img');
+
+        for(let i = 0; i < el.length; i++){
+            document.getElementById(el[i].id).classList.add('slideshow_bg_img');
+        }
 
 
-        this.animationFadeInOut(this.getSliderWrappersID);
+        this.styleResetter(this.wrapperID);
+
+         this.imageAnimation(this.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
+
+       
 
     }
 
