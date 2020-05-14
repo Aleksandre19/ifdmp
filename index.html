@@ -533,6 +533,8 @@
        
         var map;
 
+        let me = new Array();
+
         function initMap() {
 
             map = new google.maps.Map(document.getElementById('map'), {
@@ -541,6 +543,7 @@
             });
 
             setMarkers(map);
+
             
         }
 
@@ -553,7 +556,7 @@
             ['Giorgi Voronini', 41.646229, 41.649158, 1]
         ];
 
-        let marker = new Array();
+        var marker = new Array();
 
         let lanAndLng = []; 
 
@@ -654,7 +657,7 @@
 
                 function drop() {
 
-                    clearMarkers();
+                    //clearMarkers();
 
                     for (var i = 0; i < locations.length; i++) {
 
@@ -668,14 +671,14 @@
 
                         });
 
-
                         
+
                     }
                     
                 }
 
 
-
+                
                 function addMarkerWithTimeout(position, timeout, img, title, zInd, i) {
 
                     window.setTimeout(function() {
@@ -692,6 +695,17 @@
 
                         }));
 
+
+                        // Adding marker's clusters
+                        if(i >= 3){
+
+                            var markerCluster = new MarkerClusterer(map, marker, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+                        }
+
+                        
+                        
+                        // Adding mouseover and mouseout events on icons
                          marker[i].addListener('mouseover',  function() {
 
                             infowindow[i].open(map, marker[i]);
@@ -707,19 +721,6 @@
                                 
 
                     }, timeout);
-                }
-
-
-
-                function clearMarkers() {
-                    
-                    for (var i = 0; i < marker.length; i++) {
-
-                        marker[i].setMap(null);
-
-                    }
-
-                    marker = [];
 
                 }
             
