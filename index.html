@@ -26,7 +26,7 @@
     <script type="text/javascript">
         (function(){
             emailjs.init("user_QMDdgN0GbGdJEWtY55dDV");
-            emailjs.send('gmail', 'aleksandre', {name: "Diana", notes: "Hello there, i want to have free consultation" });
+           
         })();
     </script>
 </head>
@@ -374,7 +374,7 @@
                         <!-- /Registration's texts -->
                         <!-- Registration's form -->
                         <div class="register-form">
-                            <form action="#" method="get">
+                            <form onsubmit="return sendMail(this);">
                                 <input type="text" id="name" name="name" class="register-inputs" placeholder=" Your name" required>
                                 <input type="text" id="lastname" name="lastname" class="register-inputs" placeholder=" Your last name" required>
                                 <input type="email" id="email" name="email" class="register-inputs" placeholder=" Your email address" required>
@@ -737,9 +737,10 @@
     
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDHHyac2SiOYPNYxXMK7rqJjnB8nCaaxE&callback=initMap"></script>
-    <!-- <script type="module" src="assets/js/feedbacks/feedbacks.js" ></script> -->
+    <!-- <script src="assets/js/feedbacks/feedbacks.js" ></script> -->
+    <script src="assets/js/emailJS/email.js" ></script>
     
-</body>
+    </body>
 </body>
 
 </html>
