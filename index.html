@@ -530,56 +530,12 @@
     <script type="module" src="assets/js/slider/slider_native_script/index.js" ></script>
 
     <script>
-        // function initMap() {
-        //     var map = new google.maps.Map(document.getElementById("map"), {
-        //         zoom: 7,
-        //         center: {
-        //             lat: 41.715137,
-        //             lng: 44.827095
-        //         }
-        //     });
-
-        //     var labels = "ABCDEFGHIJKLMONPQRSTUVWXYZ";
-
-        //     var locations = [{
-        //         lat: 41.715137,
-        //         lng: 44.827095
-        //     }, {
-        //         lat: 41.744068,
-        //         lng: 45.795769
-        //     }, {
-        //         lat: 41.922130,
-        //         lng: 45.470370
-        //     }];
-
-        //     var markers = locations.map(function(location, i) {
-        //         return new google.maps.Marker({
-        //             position: location,
-        //             label: labels[i % labels.length]
-        //         });
-        //     });
-
-        //     var markerCluster = new MarkerClusterer(map, markers, {
-        //         imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-        //     });
-
-        //     var image = 'assets/images/feedbacks/avatar/avatar1.jpg';
-        //     var beachMarker = new google.maps.Marker({
-        //     position: {lat: 42.270000, lng: 42.698341},
-        //     map: map,
-        //     icon: image
-        //     });
-
-        // }
-
-                
-            // The following example creates complex markers to indicate beaches near
-        // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
-        // to the base of the flagpole.
+       
+        var map;
 
         function initMap() {
 
-            var map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 7,
                 center: {lat: 41.715137, lng: 44.827095}
             });
@@ -597,15 +553,22 @@
             ['Giorgi Voronini', 41.646229, 41.649158, 1]
         ];
 
+        let marker = new Array();
+
+        let lanAndLng = []; 
+
+        let image = new Array();
+
+        let text = new Array();
+
+        let shape;
+
+
+        let infowindow = new Array();
+
         function setMarkers(map) {
-                // Adds markers to the map.
-
-                // Marker sizes are expressed as a Size of X,Y where the origin of the image
-                // (0,0) is located in the top left of the image.
-
-                // Origins, anchor positions and coordinates of the marker increase in the X
-                // direction to the right and in the Y direction down.
-                const image = [
+                
+                image = [
 
                         {
                             url: 'assets/images/feedbacks/avatar/avatar1.png',
@@ -647,7 +610,7 @@
                 ];
 
 
-                var texts = [
+                texts = [
 
                    `<p>
                         <i class="fas fa-quote-left front-quote feedback-quote"></i> Not only losing weight but also understand much more about yourself and step on right and healthy way in communication with yourself.
@@ -676,58 +639,89 @@
                 // Shapes define the clickable region of the icon. The type defines an HTML
                 // <area> element 'poly' which traces out a polygon as a series of X,Y points.
                 // The final coordinate closes the poly by connecting to the first coordinate.
-                var shape = {
+                shape = {
                     coords: [1, 1, 1, 60, 60, 60, 60, 1],
                     type: 'poly'
                 };
 
-                let marker = new Array();
-                let infowindow = new Array();
 
-                for (var i = 0; i < locations.length; i++) {
+                drop();
 
-                    var location = locations[i];
-                
-                    marker[i] = new google.maps.Marker({
+        }
 
-                        position: {lat: location[1], lng: location[2]},
-                        map: map,
-                        icon: image[i],
-                        shape: shape,
-                        title: location[0],
-                        zIndex: location[3]
 
-                    }); 
 
+
+                function drop() {
+
+                    clearMarkers();
+
+                    for (var i = 0; i < locations.length; i++) {
+
+                        lanAndLng[i] = {lat: locations[i][1], lng: locations[i][2]};
+
+                        addMarkerWithTimeout(lanAndLng[i], i * 400, image[i], locations[i][0], locations[i][3], i);
+
+                        infowindow[i] =  new google.maps.InfoWindow({
+
+                            content: texts[i]  
+
+                        });
+
+
+                        
+                    }
                     
-                    infowindow[i] =  new google.maps.InfoWindow({
-
-                         content: texts[i]  
-
-                    });
-
                 }
 
 
-              for(let i = 0; i < marker.length; i++){
 
-                  marker[i].addListener('mouseover', function() {
+                function addMarkerWithTimeout(position, timeout, img, title, zInd, i) {
 
-                     infowindow[i].open(map, marker[i]);
+                    window.setTimeout(function() {
 
-                  });
+                        marker.push(new google.maps.Marker({
+                            
+                            position: position,
+                            map: map,
+                            icon: img,
+                            shape: shape,
+                            animation: google.maps.Animation.DROP,
+                            title: title,
+                            zIndex: zInd
 
-                  marker[i].addListener('mouseout', function() {
+                        }));
 
-                     infowindow[i].close(map, marker[i]);
+                         marker[i].addListener('mouseover',  function() {
 
-                  });
+                            infowindow[i].open(map, marker[i]);
+
+                        });
+
+                         marker[i].addListener('mouseout',  function() {
+
+                            infowindow[i].close(map, marker[i]);
+
+                        });
+
+                                
+
+                    }, timeout);
+                }
 
 
 
-              }
+                function clearMarkers() {
+                    
+                    for (var i = 0; i < marker.length; i++) {
 
-        }
+                        marker[i].setMap(null);
+
+                    }
+
+                    marker = [];
+
+                }
             
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
