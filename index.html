@@ -530,27 +530,219 @@
     <script type="module" src="assets/js/slider/slider_native_script/index.js" ></script>
 
     <script>
+        // function initMap() {
+        //     var map = new google.maps.Map(document.getElementById("map"), {
+        //         zoom: 7,
+        //         center: {
+        //             lat: 41.715137,
+        //             lng: 44.827095
+        //         }
+        //     });
 
-        function initMap(){
+        //     var labels = "ABCDEFGHIJKLMONPQRSTUVWXYZ";
 
-            var map = new google.maps.Map(document.getElementById("map"), {
+        //     var locations = [{
+        //         lat: 41.715137,
+        //         lng: 44.827095
+        //     }, {
+        //         lat: 41.744068,
+        //         lng: 45.795769
+        //     }, {
+        //         lat: 41.922130,
+        //         lng: 45.470370
+        //     }];
+
+        //     var markers = locations.map(function(location, i) {
+        //         return new google.maps.Marker({
+        //             position: location,
+        //             label: labels[i % labels.length]
+        //         });
+        //     });
+
+        //     var markerCluster = new MarkerClusterer(map, markers, {
+        //         imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+        //     });
+
+        //     var image = 'assets/images/feedbacks/avatar/avatar1.jpg';
+        //     var beachMarker = new google.maps.Marker({
+        //     position: {lat: 42.270000, lng: 42.698341},
+        //     map: map,
+        //     icon: image
+        //     });
+
+        // }
+
                 
-                zoom: 3,
-                center: {
+            // The following example creates complex markers to indicate beaches near
+        // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+        // to the base of the flagpole.
 
-                    lat: 46.619261,
-                    lng: -33.134766
+        function initMap() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: {lat: 41.715137, lng: 44.827095}
+            });
+
+            setMarkers(map);
+            
+        }
+
+        // Data for the markers consisting of a name, a LatLng and a zIndex for the
+        // order in which these markers should display on top of each other.
+        var locations = [
+            ['Aleksandre Voroini', 42.270000, 42.698341, 4],
+            ['Darejani Shoshikelashvili', 41.715137, 44.827095, 3],
+            ['Diana Voronini', 41.618290, 45.921700, 2],
+            ['Giorgi Voronini', 41.646229, 41.649158, 1]
+        ];
+
+        function setMarkers(map) {
+                // Adds markers to the map.
+
+                // Marker sizes are expressed as a Size of X,Y where the origin of the image
+                // (0,0) is located in the top left of the image.
+
+                // Origins, anchor positions and coordinates of the marker increase in the X
+                // direction to the right and in the Y direction down.
+                const image = [
+
+                        {
+                            url: 'assets/images/feedbacks/avatar/avatar1.png',
+                            // This marker is 20 pixels wide by 32 pixels high.
+                            size: new google.maps.Size(60, 60),
+                            // The origin for this image is (0, 0).
+                            origin: new google.maps.Point(0, 0),
+                            // The anchor for this image is the base of the flagpole at (0, 32).
+                            anchor: new google.maps.Point(0, 70)
+                        },
+                        {
+                            url: 'assets/images/feedbacks/avatar/avatar2.png',
+                            // This marker is 20 pixels wide by 32 pixels high.
+                            size: new google.maps.Size(60, 60),
+                            // The origin for this image is (0, 0).
+                            origin: new google.maps.Point(0, 0),
+                            // The anchor for this image is the base of the flagpole at (0, 32).
+                            anchor: new google.maps.Point(0, 70)
+                        },
+                        {
+                            url: 'assets/images/feedbacks/avatar/avatar3.png',
+                            // This marker is 20 pixels wide by 32 pixels high.
+                            size: new google.maps.Size(60, 60),
+                            // The origin for this image is (0, 0).
+                            origin: new google.maps.Point(0, 0),
+                            // The anchor for this image is the base of the flagpole at (0, 32).
+                            anchor: new google.maps.Point(0, 70)
+                        },
+                        {
+                            url: 'assets/images/feedbacks/avatar/avatar4.png',
+                            // This marker is 20 pixels wide by 32 pixels high.
+                            size: new google.maps.Size(60, 60),
+                            // The origin for this image is (0, 0).
+                            origin: new google.maps.Point(0, 0),
+                            // The anchor for this image is the base of the flagpole at (0, 32).
+                            anchor: new google.maps.Point(0, 70)
+                        }
+                    
+                ];
+
+
+                var texts = [
+
+                   `<p>
+                        <i class="fas fa-quote-left front-quote feedback-quote"></i> Not only losing weight but also understand much more about yourself and step on right and healthy way in communication with yourself.
+                            <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                    </p>`,
+
+                    ` <p >
+                        <i class="fas fa-quote-left front-quote feedback-quote"></i> Eating everything and losing weight is really unimaginable but real case for me. It was stressfree to do it.
+                            <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                    </p>`,
+                    
+                    ` <p>
+                        <i class="fas fa-quote-left front-quote feedback-quote"></i> She really finds the key which cause the hight weight. Managing relationship around me not only changed my life but also lost my weight.
+                            <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                    </p>`,
+
+                    ` <p>
+                        <i class="fas fa-quote-left front-quote feedback-quote"></i> I could never imagine that the weight losing was possible such way. It is really right and healthy way to do it.
+                            <i class="fas fa-quote-right black-quote feedback-quote"></i>
+                    </p>`
+
+                ];
+
+
+                var infowindow = new Array();
+
+                for(let i = 0; i < texts.length; i++){
+                   
+                        infowindow[i] =  new google.maps.InfoWindow({
+
+                                content: texts[i]  
+
+                        });
+
+
+                }
+            
+                 
+
+               
+
+                
+                // Shapes define the clickable region of the icon. The type defines an HTML
+                // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+                // The final coordinate closes the poly by connecting to the first coordinate.
+                var shape = {
+                    coords: [1, 1, 1, 60, 60, 60, 60, 1],
+                    type: 'poly'
+                };
+
+                const marker = new Array();
+
+                for (var i = 0; i < locations.length; i++) {
+
+                    var location = locations[i];
+                
+                    marker[i] = new google.maps.Marker({
+                        position: {lat: location[1], lng: location[2]},
+                        map: map,
+                        icon: image[i],
+                        shape: shape,
+                        title: location[0],
+                        zIndex: location[3]
+                    });  
 
                 }
 
-            });
+
+              for(let i = 0; i < marker.length; i++){
+
+
+                    marker[i].addListener('click', function() {
+                        infowindow[i].open(map, marker[i]);
+                    });
+
+                    console.log(marker[i]);
+
+              }
+
+               
+
+
+
+
+                   
+
+               
+
 
         }
-
+            
     </script>
-
-    <script src="/maps/documentation/javascript/examples/markerclusterer/markerclustererplus@4.0.1.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTHOShiV37hHaNUxC1aQhZxMyY4VFKX2U&callback=initMap"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDHHyac2SiOYPNYxXMK7rqJjnB8nCaaxE&callback=initMap"></script>
+</body>
 </body>
 
 </html>
