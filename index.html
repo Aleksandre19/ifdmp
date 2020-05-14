@@ -20,6 +20,15 @@
             $(".loader").fadeOut("slow");
         });
     </script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("user_QMDdgN0GbGdJEWtY55dDV");
+            emailjs.send('gmail', 'aleksandre', {name: "Diana", notes: "Hello there, i want to have free consultation" });
+        })();
+    </script>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -531,7 +540,7 @@
 
     <script>
        
-        var map;
+        let map;
 
         let me = new Array();
 
@@ -657,8 +666,7 @@
 
                 function drop() {
 
-                    //clearMarkers();
-
+                   
                     for (var i = 0; i < locations.length; i++) {
 
                         lanAndLng[i] = {lat: locations[i][1], lng: locations[i][2]};
@@ -725,8 +733,12 @@
                 }
             
     </script>
+
+    
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDHHyac2SiOYPNYxXMK7rqJjnB8nCaaxE&callback=initMap"></script>
+    <!-- <script type="module" src="assets/js/feedbacks/feedbacks.js" ></script> -->
+    
 </body>
 </body>
 
