@@ -672,23 +672,6 @@
                 ];
 
 
-                var infowindow = new Array();
-
-                for(let i = 0; i < texts.length; i++){
-                   
-                        infowindow[i] =  new google.maps.InfoWindow({
-
-                                content: texts[i]  
-
-                        });
-
-
-                }
-            
-                 
-
-               
-
                 
                 // Shapes define the clickable region of the icon. The type defines an HTML
                 // <area> element 'poly' which traces out a polygon as a series of X,Y points.
@@ -698,44 +681,51 @@
                     type: 'poly'
                 };
 
-                const marker = new Array();
+                let marker = new Array();
+                let infowindow = new Array();
 
                 for (var i = 0; i < locations.length; i++) {
 
                     var location = locations[i];
                 
                     marker[i] = new google.maps.Marker({
+
                         position: {lat: location[1], lng: location[2]},
                         map: map,
                         icon: image[i],
                         shape: shape,
                         title: location[0],
                         zIndex: location[3]
-                    });  
+
+                    }); 
+
+                    
+                    infowindow[i] =  new google.maps.InfoWindow({
+
+                         content: texts[i]  
+
+                    });
 
                 }
 
 
               for(let i = 0; i < marker.length; i++){
 
+                  marker[i].addListener('mouseover', function() {
 
-                    marker[i].addListener('click', function() {
-                        infowindow[i].open(map, marker[i]);
-                    });
+                     infowindow[i].open(map, marker[i]);
 
-                    console.log(marker[i]);
+                  });
+
+                  marker[i].addListener('mouseout', function() {
+
+                     infowindow[i].close(map, marker[i]);
+
+                  });
+
+
 
               }
-
-               
-
-
-
-
-                   
-
-               
-
 
         }
             
