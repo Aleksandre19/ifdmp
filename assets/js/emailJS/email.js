@@ -1,6 +1,9 @@
 
 
-
+    /**
+     * This is the function which is being initiated on submit 
+     * @param {Recives html form element} contactForm 
+     */
     function sendMail(contactForm) {
 
         animateRegisterButton(contactForm);
@@ -9,15 +12,18 @@
     }
 
 
-    /**
-     * 
+
+     /**
+     * This function animates submit button as soon as it was clicked and
+     * sets timeout one second and then calls function which sends free consultation's request
+     * @param {Recives html form element} contactForm 
      */
 
     let rot = null;
 
     function animateRegisterButton(contactForm){
 
-        animateButtonBeforeSend('inset', '#ffffff', '10px', '80px', '50%', true);
+        animateButtonBeforeSend('inset', '#f6f6f6', '10px', '80px', '50%', true);
 
         setTimeout(function(){
 
@@ -27,6 +33,17 @@
 
     }
 
+
+    /**
+     * This function animates submit button's style to became circle
+     * and then calls function for rotation of button
+     * @param {Button border Style} brdStyle 
+     * @param {Button background-color} bgColor 
+     * @param {Button border width} brdWidth 
+     * @param {Button width} btnWidth 
+     * @param {button border radius} brdRadius 
+     * @param {When this is true it calls rotatingButton()} send 
+     */
 
     function animateButtonBeforeSend(brdStyle, bgColor, brdWidth, btnWidth, brdRadius, send){
 
@@ -41,12 +58,17 @@
 
             if(send){
                 rotatingButton();
+                document.getElementById("submit").value = '';
             }
 
         });
 
     }
 
+
+    /**
+     * This function spins already circled  button 
+     */
 
     function rotatingButton(){
 
@@ -62,6 +84,15 @@
         
     }
 
+
+    /**
+     * This function sends email by emailJS and
+     * if or then response is positive it calles function to animate
+     * subbmit button back to it's original style.
+     * 
+     * If there is error it console logs error
+     * @param {Recives html form element} contactForm 
+     */
 
     function sendConsultationsRequest(contactForm){
 
@@ -91,6 +122,13 @@
 
 
 
+    /**
+     * This function checks if email has been sent.
+     * If so it stops rotating of the circled button, 
+     * sets rotation's degree to 0 and calles function for checked icon
+     * @param {Recives response from emailJS} response 
+     */
+
     function animateButtonAfterSend(response){
 
         if(response.status === 200 && response.text === 'OK'){
@@ -108,7 +146,13 @@
 
 
 
-
+    /**
+     * When email sends this function replace welcoming text with message and
+     * chnages text color to green.
+     * Message says that email has been recived.
+     * Finally it takes 3 seconds timeout and then calls itself with false parameter to return back previouses text and text color  
+     * @param {If this is true submit button becames circle } start 
+     */
 
     function getMessage(start){
 
@@ -146,7 +190,15 @@
 
 
 
-
+    /**
+     * This function animates check icons's pop up process.
+     * When check icon's animation is finished it stops interval,
+     * returns back the original text and text color,
+     * takes 3 seconds of timeout,
+     * sets 1px with to icon,
+     * animates circled button back to the original style 
+     * and sets input tag's value to nothing
+     */
 
     let popUpInt = null;
 
@@ -176,7 +228,7 @@
 
                         animateButtonBeforeSend('solid', '#04d9d9', '1px', '100%', '10px', false);
 
-                        resetPlaceHolders();
+                        resetValues();
 
                     }, 3000);
                 }
@@ -190,11 +242,16 @@
     }
 
 
-    function resetPlaceHolders(){
+    /**
+     * This function sets input tags values to nothing
+     */
+
+    function resetValues(){
 
         document.getElementById("name").value = "";
         document.getElementById("lastname").value = '';
         document.getElementById("email").value = '';
+        document.getElementById("submit").value = 'Register';
 
     }
 
