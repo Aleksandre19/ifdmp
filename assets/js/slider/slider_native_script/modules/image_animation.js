@@ -1,8 +1,16 @@
+/**
+ * On this page happens image animation,
+ * text animation and 
+ * here is also code for buttons which will be moved in other file in the future
+ */
+
+ // importing modules
 import {ImageManager} from './image_manager.js';
 import {DianaSliderMessageBox} from './animation_message.js';
 import {AnimationTexts} from './animation_text.js';
 
 
+// Initiating object
 const imgAniImageManager = new ImageManager();
 const imgAniMessage = new DianaSliderMessageBox();
 const imgAniTextAnimation = new AnimationTexts();
@@ -12,29 +20,35 @@ const imgAniTextAnimation = new AnimationTexts();
 const _imageStartingNaturLWidth = new WeakMap();
 const _functionHasCalled = new WeakMap();
 
+
+/**
+ * This class defines variables,
+ * animates first image in the size by animateImageInSize() function ,
+ * then increased image size reaches to 7% of the original size it calls next function animationFadeInOut()
+ * which starts fading out of the first image.
+ * At the same time from the animationFadeInOut() starts backgroundMoving() function.
+ * This function starts position's animation and moves second image from the bottom to the left and from right to the left at the same time.
+ * Then second image has moved more than 150px it starts fading out.
+ * After fading out second image there starts fading out of the third image and
+ * After that the circle starts again.
+ *       
+ */
 export class ImageAnimation{
 
 
-
-    
     constructor(){
-
+        // Defining variables
         this.anInSize = null;
+
         this.fade = null;
 
-        this.secondInterval = null;
         this.animationStepCounter = 0;
-        this.divNameF = "dianaSlider-f";
-        this.divNameS = "";
+
         this.naturalW = 0;
-        this.lastImage = false;
+        
         this.called = true;
 
         this.callAnimationAgain = true;
-        this.hasEnteredSecondTime = false;
-        this.oneCircleHasFinished = false;
-
-        this.settingEvenListenerToButtons;
 
         this.saveSteps = [];
 
@@ -42,7 +56,6 @@ export class ImageAnimation{
 
         this.textAnimationHasCalled = true;
 
-        
         this.animationHasStarted = true;
 
         this.move = 1;
@@ -52,25 +65,24 @@ export class ImageAnimation{
         this.scaledUpWidth = 0;
 
         this.wrapperID = 2;
-
-        const APIkey = 'AIzaSyBTHOShiV37hHaNUxC1aQhZxMyY4VFKX2U';   
+ 
         
-
     }
 
 
+    /**
+     * This functions starts animations first effect's function - animateImageInSize()
+     * and when page loads first time then it calls text animations function - imgAniTextAnimation.textAnimation(0, 'start');
+     * @param {Image's natural width} naturalWidth 
+     * @param {Id of the div in which the image is background} imgAniDivId 
+     */
     imageAnimation(naturalWidth, imgAniDivId){
 
 
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
-         // Calling Image text animation functions
-        if(this.clickedOnButton){
-            imgAniTextAnimation.textAnimation('finish');
-        }
         
         // Only at the beginning I call here text animation's function
-        // 
         if(this.animationHasStarted){
             imgAniTextAnimation.textAnimation(0, 'start');
         }
@@ -80,6 +92,12 @@ export class ImageAnimation{
     }
 
 
+    /**
+     * This function animates image (only first one) in size.
+     * Then image size has increased by 7% it calls fading out function - animationFadeInOut(elDivId)
+     * @param {Id of the div in which the image is background} elDivId 
+     * @param {Image's natural width} natW 
+     */
 
     // Animating image's width
     animateImageInSize(elDivId , natW){
@@ -136,44 +154,14 @@ export class ImageAnimation{
 
 
 
-
-
-    // Calculating how much the image has increased
-    calculateImageIncreasedDemision(sUpWidth){
-
-        return (sUpWidth - _imageStartingNaturLWidth.get(this)) / _imageStartingNaturLWidth.get(this) * 100;
-    }
-
-
-
-    get getSliderWrappersID(){
-
-        let el = document.getElementsByClassName('slideshow_bg_img');
-        let divElID = '';
-
-      
-
-
-        if(this.wrapperID < 0){
-            this.wrapperID = 2;
-        }
-
-        for(let i in el){
-            if(Number(i) === Number(this.wrapperID)){
-                divElID = el[i].id;
-            }
-        }
-
-        this.wrapperID -= 1;
-
-       
-
-        return divElID;
-
-    }
-
-
-
+    /**
+     * This function fading outs the images,
+     * controls the switching of the animated texts,
+     * controls finishing of the one animation's circle,
+     * controls steps of the transition,
+     * and colls background moving function - backgroundMoving()
+     * @param {Id of the div in which the image is background} fadeID 
+     */
 
     // Animating opacity of image
     animationFadeInOut(fadeID){
@@ -188,9 +176,6 @@ export class ImageAnimation{
         if(this.animationStepCounter > 3 || this.animationStepCounter < 0){
             this.animationStepCounter = 1;
         }
-
-        console.log(this.animationStepCounter);
-
        
         // Saving interval in to array to be able to now which interval is running
         this.animationsIntervalsSaver({ int : 'this.fade', val: this.opacity, divId: fadeID});
@@ -252,8 +237,10 @@ export class ImageAnimation{
 
     
 
-    // Moving backgrounf function
-
+    /**
+     * This functions animates second image's position from bottom to the top and from right to the left at the same time
+     * @param {Id of the div in which the image is background} id 
+     */
     backgroundMoving(id){
          
         // Restoring the value of the background moving's variable
@@ -277,7 +264,7 @@ export class ImageAnimation{
             // Decreasing move variable by 0.1 unit 
             this.move -= 0.1; 
             
-             // Here i updating value of chenged positions in the array (this.saveSteps) where is save this value.
+             // Here i updating value of chenged positions in the array (this.saveSteps).
             this.updatingSavedIntervalsValue('this.bgMove', this.move);
 
             // Animating positions
@@ -295,13 +282,54 @@ export class ImageAnimation{
     }
 
 
+     /**
+      * This functions calculates how much the image was increased in %
+      * @param {Increased width of the image} sUpWidth 
+      */
+    calculateImageIncreasedDemision(sUpWidth){
 
-    // This functuons controlls transitions between images
+        return (sUpWidth - _imageStartingNaturLWidth.get(this)) / _imageStartingNaturLWidth.get(this) * 100;
+    }
+
+
+    /**
+     * This function gets the id of the div element in this the images ar as a backgrounds
+     */
+    get getSliderWrappersID(){
+
+        // Getting all div elements
+        let el = document.getElementsByClassName('slideshow_bg_img');
+
+        let divElID = '';
+
+        if(this.wrapperID < 0){
+            this.wrapperID = 2;
+        }
+
+        for(let i in el){
+            if(Number(i) === Number(this.wrapperID)){
+                divElID = el[i].id;
+            }
+        }
+
+        this.wrapperID -= 1;
+
+        return divElID;
+
+    }
+
+
+    /**
+     * This function prepears thing before and after image transition from one to another.
+     * It changes border color for button switcher,
+     * stops appropriate intervals
+     * and calls style resetter  
+     * @param {Step of the transition} step 
+     * @param {Button switcher's ID} btnId 
+     */
     transitionController(step, btnId){
        
         if(step === 1){
-
-           
 
             // Activating second slider button
 
@@ -310,56 +338,37 @@ export class ImageAnimation{
             // Stoping running intervals
             this.stopRunningIntervals('this.fade', 'this.anInSize'); 
            
-
             // Removing finished intervals from array
             this.removeAnimationStepsFromArray('this.fade','this.anInSize');
            
-
-        
             // Calling style resett function
             this.styleResetter(step);
-
-            
 
 
          }else if(step === 2){
 
-
-            
-           
-
             // Activating third slider button
             this.activeCurrentSlideButton((btnId === '' ?  'third_btn' :  btnId));
-
 
              // Stoping running intervals
             this.stopRunningIntervals('this.bgMove', 'this.fade'); 
         
-
             // Removing finished intervals from array
             this.removeAnimationStepsFromArray('this.fade','this.bgMove');
-        
-
 
             // Calling resett function
             this.styleResetter(step);
 
-           
-
             // Calling fadeout function
             this.animationFadeInOut(this.getSliderWrappersID);
-        
                         
         }else if(step === 3){
-
-           
 
             // Activating frist slider button
             this.activeCurrentSlideButton((btnId === '' ?  'first_btn' :  btnId));            
 
              // Stoping running intervals
-            this.stopRunningIntervals('this.bgMove', 'this.fade'); 
-
+            this.stopRunningIntervals('this.bgMove', 'this.fade');
 
             // Removing finished intervals from array
             this.removeAnimationStepsFromArray('this.fade','this.bgMove');
@@ -369,8 +378,6 @@ export class ImageAnimation{
             
             // Calling fade out function
            this.animationFadeInOut("dianaSlider-s");
-
-         
                         
         }else{
 
@@ -381,45 +388,51 @@ export class ImageAnimation{
     }
 
 
-    // Resetting styles for html div elements on each steps
+    /**
+     * This function resetts styles of the animation's elements
+     * @param {Number of the slide} step 
+     */
     styleResetter(step){
        
         // Getting elements to variables
-        let el = document.getElementById("dianaSlider-s");
-        let el2 = document.getElementById("dianaSlider-f");
-        let el3 = document.getElementById("lastImage");
+        let el = document.getElementById("dianaSlider-s");// First slide
+        let el2 = document.getElementById("dianaSlider-f");// Second slide
+        let el3 = document.getElementById("lastImage"); // Third slide
         
 
         if(step === 1){
 
-            let el = document.getElementById('dianaSlider-s');
-
+            // returning back opacity of the first slide
             el.style.opacity = '1';
 
+            //Decreasing z-index of the first slide
             el.style.zIndex = '5';
 
-            // Setting original sizes
+            // Setting original sizes to the first slide
             el.style.backgroundSize = `${sessionStorage.getItem("imageNaturalWidth")}px`;
 
         }else if(step === 2){
 
+            // Returning background positions back to 0 for the second slide
             el2.style.backgroundPosition = "0px 0px";
 
+            // returning back opacity of the second slide
             el2.style.opacity = '1';
 
+            //Decreasing z-index of the second slide
             el2.style.zIndex = '5';
 
             this.callAnimationAgain = true;
 
         }else if(step === 3){
 
-            // Resetting z-index back to 10
+            // Resetting z-index back to 10 for the first slide
             el.style.zIndex = "10";
 
-             // Resetting z-index back to 10
+             // Resetting z-index back to 10 for the second slide
             el2.style.zIndex = "10";
 
-            // Making fully visible
+            // Making fully visible - third slide
             el3.style.opacity = "1";
 
         }else{
@@ -430,7 +443,15 @@ export class ImageAnimation{
 
     
 
-    // This is text animation's function
+    /**
+     * This functions controls switching of the animation text.
+     * On appropriate step then the opacity equals 0.3 or is less than 0.3 it makes transitions 
+     * from one text to another
+     * @param {Number of the slide} step 
+     * @param {opacity} opacity 
+     * @param {call this function only once} hasCalled 
+     */
+
     textAnimation(step, opacity, hasCalled){
 
         if(step === 1 && opacity <= 0.3 && hasCalled){
@@ -452,7 +473,12 @@ export class ImageAnimation{
     }
 
 
-
+    /**
+     * Depending on the screen resolution this function increases the image size of the slide
+     * to cover empty areas which appears durring animation of slides
+     * @param {Screen resolution} screenRes 
+     * @param {ID of the slide} id 
+     */
     increasingImageSizeBasedOnScreenResolution(screenRes, id){
 
             let el = document.getElementById(id); 
@@ -477,14 +503,25 @@ export class ImageAnimation{
 
     }
 
-    // Saving animations steps in array to be able to control it
+
+
+    /**
+     * This function saves running intervals
+     * @param {Intervals name} val 
+     */
     animationsIntervalsSaver(val){
 
         this.saveSteps.push(val);
 
     }
 
-    // Here i save current values for this.move, this.fade and this.anInSize variables
+
+
+    /**
+     * This function saves value of the intervasl incrementer 
+     * @param {Interval's name} int 
+     * @param {value} val 
+     */
     updatingSavedIntervalsValue(int, val){
 
         for(let i in this.saveSteps){
@@ -521,6 +558,10 @@ export class ImageAnimation{
     }
 
 
+    /**
+     * This functions stops intervasls
+     * @param  {Array of the interval's name} intervals 
+     */
 
     stopRunningIntervals(...intervals){
 
@@ -535,13 +576,10 @@ export class ImageAnimation{
 
 
 
-
-
-
-
-
-
-    // Setting aactive button's style to the current button
+    /**
+     * This functions sets style of the active button
+     * @param {ID of the button} id 
+     */
     activeCurrentSlideButton(id){
 
         this.removeSlidersActiveButton;
@@ -551,7 +589,9 @@ export class ImageAnimation{
     }
 
 
-    // Removing button's active style
+    /**
+     * This function removes active button's style
+     */
     get removeSlidersActiveButton(){
 
        let el = document.getElementsByClassName("slide_changer_button");
@@ -562,13 +602,20 @@ export class ImageAnimation{
 
     }
 
-    // Here we set click event listener to the slider switcher's buttons
+
+
+    /**
+     * This function sets event listener to the buttons (Sliders switching button)
+     * and calls slider switcher button
+     */
     get settingEvenListenerToButtons(){
 
+        // Getting all buttons elements
         let el = document.getElementsByClassName("slide_changer_button");
 
         for(let i = 0; i < el.length; i++){
-          
+            
+            // Settting click event to all buttons
             document.getElementById(el[i].id).addEventListener("click", (event) =>{
 
                 if(!this.checkWhichIsActiveButton(event.toElement.classList)){
@@ -577,6 +624,7 @@ export class ImageAnimation{
 
                         if(this.saveSteps.length > 1){
 
+                            // Calling slider switcher's function
                             this.sliderSwitcherByButtons(this.findButtonsOrderNumber(el[i].id), el[i].id);
                         }    
 
@@ -596,7 +644,10 @@ export class ImageAnimation{
     }
 
 
-    // This function finds button's order number
+    /**
+     * This function finds slider switcher's ordering number
+     * @param {ID of the button} id 
+     */
     findButtonsOrderNumber(id){
 
         let el = document.getElementsByClassName('slide_changer_button');
@@ -621,7 +672,10 @@ export class ImageAnimation{
 
 
 
-    // Here we check which buttons is active
+    /**
+     * This function fiinds which button is active
+     * @param {IDs of the button} data 
+     */
     checkWhichIsActiveButton(data){
         
         for(let className of data){
@@ -638,6 +692,10 @@ export class ImageAnimation{
         }
     }
 
+
+    /**
+     * This function stops all intervals
+     */
     stopAllIntervals(){
 
         for(let i in this.saveSteps){
@@ -649,103 +707,39 @@ export class ImageAnimation{
     }
 
 
-
-    // speedUpCurrentIntervals(num){
-
-    //     let intName = '';
-
-    //     let intValue = '';
-
-    //     let speedUpint = null;
-
-    //     let speedUpBgMove = null;
-
-    //     for(let i in this.saveSteps){
-
-    //        if(this.saveSteps[i].int === 'this.fade'){
-
-    //             let opacity = this.saveSteps[i].val;
-
-    //             clearInterval(eval(this.saveSteps[i].int));
-
-    //             speedUpint = setInterval(() => {
-
-    //                 opacity -= 0.003;
-
-    //                 document.getElementById(this.saveSteps[i].divId).style.opacity = `${opacity}`;
-
-    //                 if(opacity.toFixed(1) < 0.0){
-
-    //                     console.log(opacity.toFixed(1));
-
-    //                     clearInterval(speedUpint);
-
-    //                 }
-
-    //             },1)
-
-    //        }else if(this.saveSteps[i].int === 'this.bgMove' && num ===){
-
-
-    //             let move = this.saveSteps[i].val;
-
-    //             clearInterval(eval(this.saveSteps[i].int));
-
-    //             speedUpBgMove = setInterval(() => {
-
-    //                 move += 1;
-
-    //                 document.getElementById(this.saveSteps[i].divId).style.backgroundPosition = `${move}px ${move}px`;
-
-    //                 if(move.toFixed(0) >= 0){
-
-    //                     console.log(move.toFixed(0));
-
-    //                     clearInterval(speedUpBgMove);
-
-    //                 }
-
-    //             },1)     
-
-
-    //        }
-
-    //     }        
-
-    // }   
-
     
     sliderSwitcherByButtons(num, id){
         
+        return false;
 
-        this.activeCurrentSlideButton(id);
+        // this.activeCurrentSlideButton(id);
 
         
-        imgAniTextAnimation.textAnimation('finish');
+        // imgAniTextAnimation.textAnimation('finish');
 
-        this.stopAllIntervals();
+        // this.stopAllIntervals();
 
-        this.wrapperID = Number(num - 1);
+        // this.wrapperID = Number(num - 1);
 
-        imgAniTextAnimation.textAnimation(this.wrapperID, 'start');
+        // imgAniTextAnimation.textAnimation(this.wrapperID, 'start');
 
-        this.called = true;
+        // this.called = true;
 
-        console.log(this.wrapperID);
+        // console.log(this.wrapperID);
 
-        console.log("num "  + num);
-        this.animationStepCounter = 0;
+        // console.log("num "  + num);
+        // this.animationStepCounter = 0;
 
-        let el = document.getElementsByClassName('slideshow_bg_img');
+        // let el = document.getElementsByClassName('slideshow_bg_img');
 
-        for(let i = 0; i < el.length; i++){
-            document.getElementById(el[i].id).classList.add('slideshow_bg_img');
-        }
+        // for(let i = 0; i < el.length; i++){
+        //     document.getElementById(el[i].id).classList.add('slideshow_bg_img');
+        // }
 
 
-        this.styleResetter(this.wrapperID);
+        // this.styleResetter(this.wrapperID);
 
-        this.imageAnimation(this.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
+        // this.imageAnimation(this.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
 
        
 
