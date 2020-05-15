@@ -3,7 +3,7 @@
      * It imports two main objects and initiates them
      */
 
-    // Importing files 
+    // Importing modules 
     import {AnimationManager} from './modules/animation_manager.js';
     import {AnimationTexts} from './modules/animation_text.js';
 
