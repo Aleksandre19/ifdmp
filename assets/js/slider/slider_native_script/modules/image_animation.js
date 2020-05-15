@@ -638,7 +638,7 @@ export class ImageAnimation{
         }
     }
 
-    get stopAllIntervals(){
+    stopAllIntervals(){
 
         for(let i in this.saveSteps){
 
@@ -723,7 +723,7 @@ export class ImageAnimation{
         
         imgAniTextAnimation.textAnimation('finish');
 
-        this.stopAllIntervals;
+        this.stopAllIntervals();
 
         this.wrapperID = Number(num - 1);
 
@@ -745,7 +745,7 @@ export class ImageAnimation{
 
         this.styleResetter(this.wrapperID);
 
-         this.imageAnimation(this.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
+        this.imageAnimation(this.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
 
        
 
