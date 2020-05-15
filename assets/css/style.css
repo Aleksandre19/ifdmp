@@ -1849,17 +1849,15 @@ h4 {
     min-height: 500px;
 }
 
-/* #map img{
 
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    border: 2px solid #d9b23d;
-    box-shadow: 1px 1px 5px 2px #d6d6d6;
-    -webkit-box-shadow: 1px 1px 5px 2px #d6d6d6;
-    -moz-box-shadow: 1px 1px 5px 2px #d6d6d6;
-    -o-box-shadow: 1px 1px 5px 2px #d6d6d6;
-
-} */
+#submit_btn_wrapper{
+    position: relative;
+}
+#done{
+    position: absolute;
+    top:0;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 
