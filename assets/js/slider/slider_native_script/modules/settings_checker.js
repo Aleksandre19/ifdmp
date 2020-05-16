@@ -1,11 +1,20 @@
+/**
+ * Importing modules
+ */
 import {DianaSliderMessageBox} from './message.js'; // Imprting MessageBox class for messages.js
 import {Config} from '../config.js';
 
+/**
+ * Initiating Objects
+ */
 const settingsMessage = new DianaSliderMessageBox(); // initialising message object 
 const settingsConfig = new Config();
 
 
-
+/**
+ * This class checks if the animation has more than one images
+ * and if image's names are written in config.js
+ */
 export class SettingsChecker{
 
     constructor(){

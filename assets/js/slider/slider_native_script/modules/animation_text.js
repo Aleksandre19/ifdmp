@@ -1,13 +1,27 @@
+/**
+ * Importing modules
+ */
 import {Config} from '../config.js';
 import {ImageManager} from './image_manager.js';
 
+/**
+ * Initiating Objects
+ */
 const imgText = new Config();
 const imgMan = new ImageManager();
 
+
+/**
+ * This class gets texts,
+ * Adds texts to sliders,
+ * Starts text animation
+ * and stops text animation
+ */
 export class AnimationTexts{
     
     constructor(){
 
+        // Gets texts
         this.imageText = function(img, desc){
             return imgText.imageTexts[img][desc];
         }
@@ -24,7 +38,12 @@ export class AnimationTexts{
 
 
 
-    // Setting texts to div
+     /**
+      * Thiis function manages text animation:
+      * It sets text to sliders,
+      * and calls starting and finishing function on appropriate stage
+      * @param  {Three types of value: 'start' , 'finish', and image's order number} val 
+      */
     textAnimation(...val){
         
         for(let i = 0; i < val.length; i++){
@@ -60,7 +79,9 @@ export class AnimationTexts{
 
 
   
-    // starting animating of text
+    /**
+     * This function starts text animation
+     */
     get startImageTextAnimation(){
 
         this.startAnimateText = setInterval(() => {
@@ -90,7 +111,9 @@ export class AnimationTexts{
 
 
 
-    // Finishing animating of texts
+    /**
+     * This function stops text animation
+     */
     get finishImageTextAnimation(){
         
         this.finishAnimateText = setInterval(() => {

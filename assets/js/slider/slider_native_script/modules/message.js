@@ -1,4 +1,6 @@
-// Creating alert box
+/**
+ * This class creates error's massage box
+ */
 export class DianaSliderMessageBox{
 
     getMessage(msg){

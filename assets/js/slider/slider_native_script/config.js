@@ -1,6 +1,13 @@
+/**
+ * Declearing private variables
+ */
 const _imageNames = new WeakMap();
 const _imageText = new WeakMap();
 
+/**
+ * This class keeps image's names and slider's texts,
+ * and gets image's name and slider's text
+ */
 export class Config{
     constructor(){
         _imageNames.set(this,[
@@ -28,10 +35,16 @@ export class Config{
         ]);
     }
 
+    /**
+     * This function returns image's name
+     */
     get imgName(){
         return _imageNames.get(this);
     }
 
+    /**
+     * This function returns slider's text
+     */
     get imageTexts(){
         return _imageText.get(this);
     }

@@ -65,6 +65,8 @@ export class ImageAnimation{
         this.scaledUpWidth = 0;
 
         this.wrapperID = 2;
+
+        this.settingEvenListenerToButtons;
  
         
     }
@@ -605,7 +607,7 @@ console.log("testt");
 
 
     /**
-     * This function sets event listener to the buttons (Sliders switching button)
+     * This function sets event listener to the buttons (Sliders switching buttons)
      * and calls slider switcher button
      */
     get settingEvenListenerToButtons(){
@@ -618,12 +620,14 @@ console.log("testt");
             // Settting click event to all buttons
             document.getElementById(el[i].id).addEventListener("click", (event) =>{
 
+               
+
                 if(!this.checkWhichIsActiveButton(event.toElement.classList)){
                     
                    if(this.findButtonsOrderNumber(el[i].id) != this.animationStepCounter){
 
                         if(this.saveSteps.length > 1){
-
+                            
                             // Calling slider switcher's function
                             this.sliderSwitcherByButtons(this.findButtonsOrderNumber(el[i].id), el[i].id);
                         }    
@@ -709,8 +713,6 @@ console.log("testt");
 
     
     sliderSwitcherByButtons(num, id){
-        
-        return false;
 
         // this.activeCurrentSlideButton(id);
 
