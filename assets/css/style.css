@@ -1268,6 +1268,12 @@ header {
 
 /* ######## FEEDBACK SECTION ######################## */
 
+
+.all-quote-wrapper{
+    width: 95%;
+    margin: auto;
+}
+
 .feedback-section {
     height: auto;
     padding-top: 15px;
@@ -1404,9 +1410,8 @@ header {
 
     .all-quote-wrapper {
         width: 90%;
-        margin: 0 auto;
-        margin-right: 2%;
     }
+    
 
 
 
@@ -1477,17 +1482,17 @@ header {
 
 @media(min-width: 992px) {
     .feedback-title {
-        margin-left: 100px;
+        margin-left: 60px;
     }
 
     .feedback-title-underline {
-        margin-left: 100px;
+        margin-left: 60px;
         margin-bottom: 70px
     }
 
     .feedback-section-title-icon {
-        margin-left: 265px;
-        margin-top: -120px;
+        margin-left: 225px;
+        margin-top: -125px;
     }
 
     .feedback-wrapper {
@@ -1495,9 +1500,6 @@ header {
         margin: 0 auto;
     }
 
-    .all-quote-wrapper {
-        padding-top: 40px;
-    }
 }
 
 /* END Desktop */
@@ -1585,6 +1587,7 @@ header {
 }
 
 #submit {
+    margin: auto;
     border: 1px solid #04d9d9;
     background-color: #04d9d9;
     text-transform: uppercase;
