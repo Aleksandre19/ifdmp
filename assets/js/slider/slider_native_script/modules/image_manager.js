@@ -1,7 +1,9 @@
-// Importing classes
+/**
+ * Importing Objects
+ */
 import {Config} from '../config.js';
 
-// Declaring Classes
+// Initiating Objects
 const imgConfig = new Config();
 
 
@@ -10,12 +12,21 @@ const _imageNaturalWidth = new WeakMap();
 const _imageStartingNaturLWidth = new WeakMap();
 const _functionHasCalled = new WeakMap();
 
+
+/**
+ * This class sets background images to the html div elements,
+ * gets image name from config.js,
+ * gets image's full path,
+ * controls screen resolution
+ * and gets image's natural demensions 
+ */
 export class ImageManager{
+
     constructor(){
         this.anInSize = null;
         this.imgManDivId = '';
         
-        // This variable is used to control setting background image with out calling animation
+        // This variable is used to control setting background image without calling animation
         this.justSetBgImage = false;
 
         // Getting image name
@@ -24,14 +35,19 @@ export class ImageManager{
         }
     }
 
-    // Setting background image to the div element
+
+
+    /**
+     * This function sets background images 
+     */
     get setBackgroundImageToTheDiv(){
         
-
+        // Getting html div elements
         let el = document.getElementsByClassName('slideshow_bg_img');
 
         for(let i = 0; i < el.length; i++){
 
+            // Irritating and settiing backgrount images to the appropriate divs
             if(el[i].id === 'dianaSlider-s'){
 
                 let imgPath = this.imageFullPath(this.imgName(1));
@@ -52,27 +68,20 @@ export class ImageManager{
 
             }
 
+            // Adding css style
             el[i].classList.add('slideshow_bg_img');
 
         }
 
         return true;
 
-        // Geting html div element
-       // let divEl = document.getElementById(divId);
-
-        // Getting image full path
-        //let imgPath = this.imageFullPath(imageName);
-
-        // Setting background image to the div element
-        //divEl.style.backgroundImage = "url('"+imgPath+"')";
-        
-        // If everithing gose well returning true
-        //return true;
     }
 
 
-    // Getting image's full path
+    /**
+     * This function gets images's full path
+     * @param {image's name} imgNames 
+     */
     imageFullPath(imgNames){
 
         let dom = window.location.href;
@@ -84,7 +93,11 @@ export class ImageManager{
 
     }
 
-    // Getting device screen size
+
+
+    /**
+     * This function gets devices screen resolution
+     */
     get screenResolution(){
 
         let screenW = window.screen.width;
@@ -102,7 +115,10 @@ export class ImageManager{
     }
 
 
-    // Get image natural deminsion
+    /**
+     * This function gets images natural demensions
+     * @param {Image's name} imgName 
+     */
     getNaturalDimension(imgName){
 
         // Getting image's current width and height
