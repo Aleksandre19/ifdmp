@@ -33,6 +33,20 @@ export class AnimationManager{
         this.imgOrderInConfig = 1;
         this.divId = "dianaSlider-s";
 
+        /**
+         * Setting image's demensions in the beginning
+         */
+        if(sessionStorage.getItem("imageNaturalWidth") === null){
+            
+            if(anManImageManager.screenResolution === 'sm' || anManImageManager.screenResolution === 'md' ){
+                sessionStorage.setItem("imageNaturalWidth", 625);
+            }else{
+                sessionStorage.setItem("imageNaturalWidth", 1800);
+            }   
+        }
+
+        console.log(this.natDemension);
+        
         //Checking if settiing are ok
         if(anManSetting.checkImageNamesInConfig){
 
@@ -43,7 +57,7 @@ export class AnimationManager{
             if(anManImageManager.setBackgroundImageToTheDiv){
 
                 // If background image was set so get natural demisions
-                if(anManImageManager.getNaturalDimension(currenImgName, this.divId)){
+                if(anManImageManager.getNaturalDimension(currenImgName)){
                     
                     // Calling Image Animation function from image_animation.js
                    anManImageAnimation.imageAnimation(anManImageAnimation.getSliderWrappersID, sessionStorage.getItem("imageNaturalWidth"));
