@@ -1,3 +1,4 @@
+
     /**
      * This is the index page and animation starts here.
      * It imports two main objects and initiates them

@@ -1,7 +1,5 @@
 import {Config} from '../config.js';
-import {AnimationManager} from './animation_manager.js';
 
-const imgAnManager = new AnimationManager();
 
 const config = new Config();
 
@@ -63,8 +61,13 @@ export class Images{
 
     // Setting background image
     setBackgroundImage(id,i){
+<<<<<<< HEAD:assets/js/slider/slider_native_script/modules1/images.js
             console.log(id);
             document.getElementById(id).style.backgroundImage = "url('"+this.imgFullPath(this.getImageName(i))+"')";
     } 
+=======
+        document.getElementById(id).style.backgroundImage = "url('"+this.imgFullPath(this.getImageName(i))+"')";
+    }
+>>>>>>> 4d4f6d306b25cf5befc12380e461a83c8421c1f8:assets/js/slider/slider_native_script/modules/images.js
     
 }

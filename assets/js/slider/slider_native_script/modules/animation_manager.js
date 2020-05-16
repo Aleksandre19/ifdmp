@@ -1,3 +1,4 @@
+
 /**
  * This page set ups environment before actualy starting of animation
  */
@@ -5,6 +6,7 @@
 // Importing modules 
 import {SettingsChecker} from './settings_checker.js';
 import {ImageManager} from './image_manager.js';
+// Importing classes
 import {Config} from '../config.js';
 import {ImageAnimation} from './image_animation.js';
 
@@ -23,8 +25,10 @@ const anManImageAnimation = new ImageAnimation();
  * gets image's natural dimensions and
  * finally calls animation function
  */
-export class AnimationManager{
 
+
+// Animation manager class
+export class AnimationManager{
     constructor(){
         
         this.imgOrderInConfig = 1;
@@ -52,9 +56,5 @@ export class AnimationManager{
         }
 
     }
-
-
-    
-
 
 }
