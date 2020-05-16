@@ -1,8 +1,8 @@
 /**
  * Importing modules
  */
-import {Config} from '../config.js';
-import {ImageManager} from './image_manager.js';
+import {Config} from '../config';
+import {ImageManager} from './image_manager';
 
 /**
  * Initiating Objects

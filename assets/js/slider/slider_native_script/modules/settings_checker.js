@@ -1,8 +1,8 @@
 /**
  * Importing modules
  */
-import {DianaSliderMessageBox} from './message.js'; // Imprting MessageBox class for messages.js
-import {Config} from '../config.js';
+import {DianaSliderMessageBox} from './message'; // Imprting MessageBox class for messages.js
+import {Config} from '../config';
 
 /**
  * Initiating Objects

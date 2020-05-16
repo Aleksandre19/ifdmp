@@ -5,8 +5,8 @@
      */
 
     // Importing modules 
-    import {AnimationManager} from './modules/animation_manager.js';
-    import {AnimationTexts} from './modules/animation_text.js';
+    import {AnimationManager} from './modules/animation_manager';
+    import {AnimationTexts} from './modules/animation_text';
 
     /**
      * This class initiates animation manager's and animation text's objects

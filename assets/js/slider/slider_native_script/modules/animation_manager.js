@@ -4,10 +4,10 @@
  */
 
 // Importing modules 
-import {SettingsChecker} from './settings_checker.js';
-import {ImageManager} from './image_manager.js';
-import {Config} from '../config.js';
-import {ImageAnimation} from './image_animation.js';
+import {SettingsChecker} from './settings_checker';
+import {ImageManager} from './image_manager';
+import {Config} from '../config';
+import {ImageAnimation} from './image_animation';
 
 
 //Initiating objects
@@ -44,8 +44,6 @@ export class AnimationManager{
                 sessionStorage.setItem("imageNaturalWidth", 1800);
             }   
         }
-
-        console.log(this.natDemension);
         
         //Checking if settiing are ok
         if(anManSetting.checkImageNamesInConfig){

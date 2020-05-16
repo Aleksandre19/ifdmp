@@ -1,7 +1,7 @@
 /**
  * Importing Objects
  */
-import {Config} from '../config.js';
+import {Config} from '../config';
 
 // Initiating Objects
 const imgConfig = new Config();
@@ -136,8 +136,7 @@ export class ImageManager{
         // On load getting width and height of image
         image.onload = function() {
 
-            // Saving data in the browser 
-           sessionStorage.setItem("imageNaturalWidth", image.naturalWidth);
+            sessionStorage.setItem("imageNaturalWidth", image.naturalWidth);
 
         };
 
