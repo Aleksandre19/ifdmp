@@ -15,6 +15,7 @@
         constructor(){
             const an = new AnimationManager();
             const text = new AnimationTexts();
+            
         }
     }
 

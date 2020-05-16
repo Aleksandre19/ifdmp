@@ -1,4 +1,4 @@
-import {DianaSliderMessageBox} from './animation_message.js'; // Imprting MessageBox class for messages.js
+import {DianaSliderMessageBox} from './message.js'; // Imprting MessageBox class for messages.js
 import {Config} from '../config.js';
 
 const settingsMessage = new DianaSliderMessageBox(); // initialising message object 

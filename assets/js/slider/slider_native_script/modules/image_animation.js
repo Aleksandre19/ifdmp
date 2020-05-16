@@ -6,7 +6,7 @@
 
  // importing modules
 import {ImageManager} from './image_manager.js';
-import {DianaSliderMessageBox} from './animation_message.js';
+import {DianaSliderMessageBox} from './message.js';
 import {AnimationTexts} from './animation_text.js';
 
 
@@ -78,7 +78,7 @@ export class ImageAnimation{
      */
     imageAnimation(naturalWidth, imgAniDivId){
 
-
+console.log("testt");
         this.animateImageInSize(naturalWidth, imgAniDivId);
 
         

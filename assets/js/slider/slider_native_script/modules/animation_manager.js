@@ -6,7 +6,6 @@
 // Importing modules 
 import {SettingsChecker} from './settings_checker.js';
 import {ImageManager} from './image_manager.js';
-// Importing classes
 import {Config} from '../config.js';
 import {ImageAnimation} from './image_animation.js';
 
